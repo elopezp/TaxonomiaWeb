@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfBmv813000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv813000" nillable="true" type="tns:Bmv813000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv813000" nillable="true" type="tns:ArrayOfBmv813000" />
+  <xs:complexType name="Bmv813000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv813000" nillable="true" type="tns:Bmv813000" />
+  <xs:complexType name="BmvBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AtributoColumna" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CampoDinamico" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Contenido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormatoCampo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdAxisPadre" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdReporte" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdReporteDetalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTaxonomiaDetalle" type="xs:int" />
+      <xs:element minOccurs="0" name="IdentificadorFila" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Lectura" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Orden" type="xs:int" />
+      <xs:element minOccurs="0" name="Valor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BmvBase" nillable="true" type="tns:BmvBase" />
+  <xs:complexType name="ArrayOfBmv800600">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800600" nillable="true" type="tns:Bmv800600" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800600" nillable="true" type="tns:ArrayOfBmv800600" />
+  <xs:complexType name="Bmv800600">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800600" nillable="true" type="tns:Bmv800600" />
+  <xs:complexType name="ArrayOfBmv800500">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800500" nillable="true" type="tns:Bmv800500" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800500" nillable="true" type="tns:ArrayOfBmv800500" />
+  <xs:complexType name="Bmv800500">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800500" nillable="true" type="tns:Bmv800500" />
+  <xs:complexType name="ArrayOfBmv800200">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800200" nillable="true" type="tns:Bmv800200" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800200" nillable="true" type="tns:ArrayOfBmv800200" />
+  <xs:complexType name="Bmv800200">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcumuladoAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="AcumuladoAnoAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreAnoAnterior" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800200" nillable="true" type="tns:Bmv800200" />
+  <xs:complexType name="ArrayOfBmv800100">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800100" nillable="true" type="tns:Bmv800100" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800100" nillable="true" type="tns:ArrayOfBmv800100" />
+  <xs:complexType name="Bmv800100">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CierreEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="InicioEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800100" nillable="true" type="tns:Bmv800100" />
+  <xs:complexType name="ArrayOfBmv800007">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800007" nillable="true" type="tns:Bmv800007" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800007" nillable="true" type="tns:ArrayOfBmv800007" />
+  <xs:complexType name="Bmv800007">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800007" nillable="true" type="tns:Bmv800007" />
+  <xs:complexType name="ArrayOfBmv800005">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800005" nillable="true" type="tns:Bmv800005" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800005" nillable="true" type="tns:ArrayOfBmv800005" />
+  <xs:complexType name="Bmv800005">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IngresosDeSubsidiariasEnElExtranjero" type="xs:double" />
+          <xs:element minOccurs="0" name="IngresosNacionales" type="xs:double" />
+          <xs:element minOccurs="0" name="IngresosPorExportacion" type="xs:double" />
+          <xs:element minOccurs="0" name="IngresosTotales" type="xs:double" />
+          <xs:element minOccurs="0" name="PrincipalesMarcas" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrincipalesProductosOLineaDeProductos" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800005" nillable="true" type="tns:Bmv800005" />
+  <xs:complexType name="ArrayOfBmv800003">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800003" nillable="true" type="tns:Bmv800003" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800003" nillable="true" type="tns:ArrayOfBmv800003" />
+  <xs:complexType name="Bmv800003">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Dolares" type="xs:double" />
+          <xs:element minOccurs="0" name="DolaresContravalorPesos" type="xs:double" />
+          <xs:element minOccurs="0" name="OtrasMonedasContravalorDolares" type="xs:double" />
+          <xs:element minOccurs="0" name="OtrasMonedasContravalorPesos" type="xs:double" />
+          <xs:element minOccurs="0" name="TotalDePesos" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800003" nillable="true" type="tns:Bmv800003" />
+  <xs:complexType name="ArrayOfBmv800001">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv800001" nillable="true" type="tns:Bmv800001" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv800001" nillable="true" type="tns:ArrayOfBmv800001" />
+  <xs:complexType name="Bmv800001">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FechaDeFirmaContrato" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaDeVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Institucion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InstitucionExtranjera" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraHasta1Ano" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraHasta2Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraHasta3Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraHasta4Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaExtranjeraHasta5AnosOMas" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalHasta1Ano" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalHasta2Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalHasta3Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalHasta4Anos" type="xs:double" />
+          <xs:element minOccurs="0" name="MonedaNacionalHasta5AnosOMas" type="xs:double" />
+          <xs:element minOccurs="0" name="TasaDeInteresYOSobreTasa" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv800001" nillable="true" type="tns:Bmv800001" />
+  <xs:complexType name="ArrayOfBmv700003">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv700003" nillable="true" type="tns:Bmv700003" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv700003" nillable="true" type="tns:ArrayOfBmv700003" />
+  <xs:complexType name="Bmv700003">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="AnoAnterior" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv700003" nillable="true" type="tns:Bmv700003" />
+  <xs:complexType name="ArrayOfBmv700002">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv700002" nillable="true" type="tns:Bmv700002" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv700002" nillable="true" type="tns:ArrayOfBmv700002" />
+  <xs:complexType name="Bmv700002">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcumuladoAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="AcumuladoAnoAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreAnoAnterior" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv700002" nillable="true" type="tns:Bmv700002" />
+  <xs:complexType name="ArrayOfBmv700000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv700000" nillable="true" type="tns:Bmv700000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv700000" nillable="true" type="tns:ArrayOfBmv700000" />
+  <xs:complexType name="Bmv700000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CierreEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="InicioEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv700000" nillable="true" type="tns:Bmv700000" />
+  <xs:complexType name="ArrayOfBmv610000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv610000" nillable="true" type="tns:Bmv610000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv610000" nillable="true" type="tns:ArrayOfBmv610000" />
+  <xs:complexType name="Bmv610000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AccionesEnTesoreria" type="xs:double" />
+          <xs:element minOccurs="0" name="CapitalContable" type="xs:double" />
+          <xs:element minOccurs="0" name="CapitalContableDeLaParticipacionControladora" type="xs:double" />
+          <xs:element minOccurs="0" name="CapitalSocial" type="xs:double" />
+          <xs:element minOccurs="0" name="CoberturasDeFlujosDeEfectivo" type="xs:double" />
+          <xs:element minOccurs="0" name="EfectoPorConversion" type="xs:double" />
+          <xs:element minOccurs="0" name="ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta" type="xs:double" />
+          <xs:element minOccurs="0" name="NuevasMedicionesDePlanesDeBeneficiosDefinidos" type="xs:double" />
+          <xs:element minOccurs="0" name="OtrosResultadosIntegrales" type="xs:double" />
+          <xs:element minOccurs="0" name="OtrosResultadosIntegralesAcumulados" type="xs:double" />
+          <xs:element minOccurs="0" name="PagosBasadosEnAcciones" type="xs:double" />
+          <xs:element minOccurs="0" name="ParticipacionNoControladora" type="xs:double" />
+          <xs:element minOccurs="0" name="PrimaEnEmisionDeAcciones" type="xs:double" />
+          <xs:element minOccurs="0" name="ReservaDeComponentesDeParticipacionDiscrecional" type="xs:double" />
+          <xs:element minOccurs="0" name="ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo" type="xs:double" />
+          <xs:element minOccurs="0" name="ReservaParaCatastrofes" type="xs:double" />
+          <xs:element minOccurs="0" name="ReservaParaEstabilizacion" type="xs:double" />
+          <xs:element minOccurs="0" name="SuperavitDeRevaluacion" type="xs:double" />
+          <xs:element minOccurs="0" name="UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital" type="xs:double" />
+          <xs:element minOccurs="0" name="UtilidadPerdidaPorCambiosEnValorRazonableDeActivosFinancierosDisponiblesParaLaVenta" type="xs:double" />
+          <xs:element minOccurs="0" name="UtilidadPerdidaPorInversionesEnInstrumentosDeCapital" type="xs:double" />
+          <xs:element minOccurs="0" name="UtilidadesAcumuladas" type="xs:double" />
+          <xs:element minOccurs="0" name="VariacionEnElValorDeContratosAFuturo" type="xs:double" />
+          <xs:element minOccurs="0" name="VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera" type="xs:double" />
+          <xs:element minOccurs="0" name="VariacionEnElValorTemporalDeLasOpciones" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv610000" nillable="true" type="tns:Bmv610000" />
+  <xs:complexType name="ArrayOfBmv520000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv520000" nillable="true" type="tns:Bmv520000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv520000" nillable="true" type="tns:ArrayOfBmv520000" />
+  <xs:complexType name="Bmv520000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcumuladoAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="AcumuladoAnoAnterior" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv520000" nillable="true" type="tns:Bmv520000" />
+  <xs:complexType name="ArrayOfBmv410000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv410000" nillable="true" type="tns:Bmv410000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv410000" nillable="true" type="tns:ArrayOfBmv410000" />
+  <xs:complexType name="Bmv410000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcumuladoAnoActual" type="xs:double" />
+          <xs:element minOccurs="0" name="AcumuladoAnoAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreAnoAnterior" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv410000" nillable="true" type="tns:Bmv410000" />
+  <xs:complexType name="ArrayOfBmv310000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv310000" nillable="true" type="tns:Bmv310000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv310000" nillable="true" type="tns:ArrayOfBmv310000" />
+  <xs:complexType name="Bmv310000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AcumuladoAnoActual" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AcumuladoAnoAnterior" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TrimestreAnoAnterior" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv310000" nillable="true" type="tns:Bmv310000" />
+  <xs:complexType name="ArrayOfBmv210000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv210000" nillable="true" type="tns:Bmv210000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv210000" nillable="true" type="tns:ArrayOfBmv210000" />
+  <xs:complexType name="Bmv210000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CierreEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="InicioEjercicioAnterior" type="xs:double" />
+          <xs:element minOccurs="0" name="TrimestreActual" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv210000" nillable="true" type="tns:Bmv210000" />
+  <xs:complexType name="ArrayOfBmv105000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv105000" nillable="true" type="tns:Bmv105000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv105000" nillable="true" type="tns:ArrayOfBmv105000" />
+  <xs:complexType name="Bmv105000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv105000" nillable="true" type="tns:Bmv105000" />
+  <xs:complexType name="ArrayOfBmv110000">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bmv110000" nillable="true" type="tns:Bmv110000" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmv110000" nillable="true" type="tns:ArrayOfBmv110000" />
+  <xs:complexType name="Bmv110000">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BmvBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TrimestreActual" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Bmv110000" nillable="true" type="tns:Bmv110000" />
+  <xs:complexType name="ArrayOfFormContenido">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FormContenido" nillable="true" type="tns:FormContenido" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFormContenido" nillable="true" type="tns:ArrayOfFormContenido" />
+  <xs:complexType name="FormContenido">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Contenido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FormContenido" nillable="true" type="tns:FormContenido" />
+  <xs:complexType name="ArrayOfBmvDetalleSuma">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BmvDetalleSuma" nillable="true" type="tns:BmvDetalleSuma" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBmvDetalleSuma" nillable="true" type="tns:ArrayOfBmvDetalleSuma" />
+  <xs:complexType name="BmvDetalleSuma">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Contenido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdTaxonomiaHijo" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTaxonomiaPadre" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BmvDetalleSuma" nillable="true" type="tns:BmvDetalleSuma" />
+  <xs:complexType name="ArrayOfReporteDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReporteDetalle" nillable="true" type="tns:ReporteDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReporteDetalle" nillable="true" type="tns:ArrayOfReporteDetalle" />
+  <xs:complexType name="ReporteDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Estado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FormatoCampo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdReporte" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdReporteDetalle" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdentificadorFila" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Valor" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReporteDetalle" nillable="true" type="tns:ReporteDetalle" />
+  <xs:complexType name="ArrayOfPeriodoTrimestre">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeriodoTrimestre" nillable="true" type="tns:PeriodoTrimestre" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriodoTrimestre" nillable="true" type="tns:ArrayOfPeriodoTrimestre" />
+  <xs:complexType name="PeriodoTrimestre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdTrimestre" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodoTrimestre" nillable="true" type="tns:PeriodoTrimestre" />
+  <xs:complexType name="ArrayOfPeriodoAno">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeriodoAno" nillable="true" type="tns:PeriodoAno" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriodoAno" nillable="true" type="tns:ArrayOfPeriodoAno" />
+  <xs:complexType name="PeriodoAno">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Ano" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdAno" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodoAno" nillable="true" type="tns:PeriodoAno" />
+</xs:schema>

@@ -1,0 +1,46 @@
+﻿<navigation:Page x:Class="TaxonomiaWeb.Forms.Home" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"
+    Title="Home"
+    Style="{StaticResource PageStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+            <Grid  Grid.Row="0">
+                <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="ListBox" Grid.Row="0"  SelectionChanged="ListBox_SelectionChanged" Style="{StaticResource StoriesList}"   Loaded="ListBox_Loaded" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel Orientation="Horizontal" >
+
+                            <StackPanel Style="{StaticResource ContenidoPanel}" >
+
+                                <TextBlock Text="{Binding Contenido}" Style="{StaticResource ContenidoBlock}" />
+
+                            </StackPanel>
+
+                            <StackPanel Style="{StaticResource DescripcionPanel}" >
+                                <!-- Story Title-->
+                                <TextBlock Text="{Binding Descripcion}"  Style="{StaticResource DescripcionBlock}"/>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <Button x:Name="BtnGenerarXblr" Grid.Row="1" Content="Generar Xblr" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGenerarXblr_Click"></Button>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</navigation:Page>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" />
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv813000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv813000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv813000Result" nillable="true" type="q1:ArrayOfBmv813000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800600">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800600Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800600Result" nillable="true" type="q2:ArrayOfBmv800600" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800500">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800500Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800500Result" nillable="true" type="q3:ArrayOfBmv800500" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800200">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800200Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800200Result" nillable="true" type="q4:ArrayOfBmv800200" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800100">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800100Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800100Result" nillable="true" type="q5:ArrayOfBmv800100" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800007">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800007Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800007Result" nillable="true" type="q6:ArrayOfBmv800007" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800005">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800005Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800005Result" nillable="true" type="q7:ArrayOfBmv800005" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800003">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800003Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800003Result" nillable="true" type="q8:ArrayOfBmv800003" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800001">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv800001Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv800001Result" nillable="true" type="q9:ArrayOfBmv800001" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700003">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700003Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv700003Result" nillable="true" type="q10:ArrayOfBmv700003" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700002">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700002Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv700002Result" nillable="true" type="q11:ArrayOfBmv700002" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv700000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv700000Result" nillable="true" type="q12:ArrayOfBmv700000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv610000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv610000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv610000Result" nillable="true" type="q13:ArrayOfBmv610000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv610000Anterior">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv610000AnteriorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv610000AnteriorResult" nillable="true" type="q14:ArrayOfBmv610000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv520000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv520000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv520000Result" nillable="true" type="q15:ArrayOfBmv520000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv410000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv410000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv410000Result" nillable="true" type="q16:ArrayOfBmv410000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv310000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv310000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv310000Result" nillable="true" type="q17:ArrayOfBmv310000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv210000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv210000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv210000Result" nillable="true" type="q18:ArrayOfBmv210000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv105000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv105000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv105000Result" nillable="true" type="q19:ArrayOfBmv105000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv110000">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmv110000Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmv110000Result" nillable="true" type="q20:ArrayOfBmv110000" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllForms">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFormsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetAllFormsResult" nillable="true" type="q21:ArrayOfFormContenido" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmvDetalleSuma">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idContenido" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBmvDetalleSumaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetBmvDetalleSumaResult" nillable="true" type="q22:ArrayOfBmvDetalleSuma" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveBmvReporte">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="listBmv" nillable="true" type="q23:ArrayOfReporteDetalle" />
+        <xs:element minOccurs="0" name="emisora" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="periodo" type="xs:int" />
+        <xs:element minOccurs="0" name="trimestre" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveBmvReporteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveBmvReporteResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDinamicoBmvReporte">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="listBmv" nillable="true" type="q24:ArrayOfReporteDetalle" />
+        <xs:element minOccurs="0" name="emisora" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="periodo" type="xs:int" />
+        <xs:element minOccurs="0" name="trimestre" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDinamicoBmvReporteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveDinamicoBmvReporteResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllTrimesters">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllTrimestersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetAllTrimestersResult" nillable="true" type="q25:ArrayOfPeriodoTrimestre" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllYears">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllYearsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" minOccurs="0" name="GetAllYearsResult" nillable="true" type="q26:ArrayOfPeriodoAno" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerarContextos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="idAno" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerarContextosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GenerarContextosResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

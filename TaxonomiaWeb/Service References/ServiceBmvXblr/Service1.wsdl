@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv813000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv813000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv813000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv813000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800600_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800600" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800600_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800600Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800500_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800500" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800500_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800500Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800200_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800200" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800200_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800200Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800100_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800100" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800100_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800100Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800007_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800007" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800007_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800007Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800005_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800005" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800005_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800005Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800003_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800003" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800003Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800001_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800001" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv800001_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv800001Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700003_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700003" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700003_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700003Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700002_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700002" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700002_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700002Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv700000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv700000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv610000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv610000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv610000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv610000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv610000Anterior_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv610000Anterior" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv610000Anterior_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv610000AnteriorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv520000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv520000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv520000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv520000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv410000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv410000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv410000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv410000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv310000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv310000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv310000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv310000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv210000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv210000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv210000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv210000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv105000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv105000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv105000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv105000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv110000_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv110000" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmv110000_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmv110000Response" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllForms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllForms" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllForms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFormsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmvDetalleSuma_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmvDetalleSuma" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetBmvDetalleSuma_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBmvDetalleSumaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SaveBmvReporte_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBmvReporte" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SaveBmvReporte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBmvReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SaveDinamicoBmvReporte_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDinamicoBmvReporte" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SaveDinamicoBmvReporte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDinamicoBmvReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllTrimesters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTrimesters" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllTrimesters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTrimestersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllYears_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllYears" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllYears_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllYearsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GenerarContextos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerarContextos" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GenerarContextos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerarContextosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataResponse" message="tns:IService1_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv813000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv813000" message="tns:IService1_GetBmv813000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv813000Response" message="tns:IService1_GetBmv813000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800600">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800600" message="tns:IService1_GetBmv800600_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800600Response" message="tns:IService1_GetBmv800600_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800500">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800500" message="tns:IService1_GetBmv800500_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800500Response" message="tns:IService1_GetBmv800500_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800200">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800200" message="tns:IService1_GetBmv800200_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800200Response" message="tns:IService1_GetBmv800200_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800100">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800100" message="tns:IService1_GetBmv800100_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800100Response" message="tns:IService1_GetBmv800100_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800007">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800007" message="tns:IService1_GetBmv800007_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800007Response" message="tns:IService1_GetBmv800007_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800005">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800005" message="tns:IService1_GetBmv800005_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800005Response" message="tns:IService1_GetBmv800005_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800003">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800003" message="tns:IService1_GetBmv800003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800003Response" message="tns:IService1_GetBmv800003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800001">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv800001" message="tns:IService1_GetBmv800001_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv800001Response" message="tns:IService1_GetBmv800001_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700003">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv700003" message="tns:IService1_GetBmv700003_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv700003Response" message="tns:IService1_GetBmv700003_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700002">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv700002" message="tns:IService1_GetBmv700002_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv700002Response" message="tns:IService1_GetBmv700002_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv700000" message="tns:IService1_GetBmv700000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv700000Response" message="tns:IService1_GetBmv700000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv610000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv610000" message="tns:IService1_GetBmv610000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv610000Response" message="tns:IService1_GetBmv610000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv610000Anterior">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv610000Anterior" message="tns:IService1_GetBmv610000Anterior_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv610000AnteriorResponse" message="tns:IService1_GetBmv610000Anterior_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv520000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv520000" message="tns:IService1_GetBmv520000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv520000Response" message="tns:IService1_GetBmv520000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv410000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv410000" message="tns:IService1_GetBmv410000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv410000Response" message="tns:IService1_GetBmv410000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv310000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv310000" message="tns:IService1_GetBmv310000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv310000Response" message="tns:IService1_GetBmv310000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv210000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv210000" message="tns:IService1_GetBmv210000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv210000Response" message="tns:IService1_GetBmv210000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv105000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv105000" message="tns:IService1_GetBmv105000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv105000Response" message="tns:IService1_GetBmv105000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv110000">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmv110000" message="tns:IService1_GetBmv110000_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmv110000Response" message="tns:IService1_GetBmv110000_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllForms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllForms" message="tns:IService1_GetAllForms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllFormsResponse" message="tns:IService1_GetAllForms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBmvDetalleSuma">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBmvDetalleSuma" message="tns:IService1_GetBmvDetalleSuma_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBmvDetalleSumaResponse" message="tns:IService1_GetBmvDetalleSuma_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveBmvReporte">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SaveBmvReporte" message="tns:IService1_SaveBmvReporte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SaveBmvReporteResponse" message="tns:IService1_SaveBmvReporte_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDinamicoBmvReporte">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SaveDinamicoBmvReporte" message="tns:IService1_SaveDinamicoBmvReporte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SaveDinamicoBmvReporteResponse" message="tns:IService1_SaveDinamicoBmvReporte_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTrimesters">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllTrimesters" message="tns:IService1_GetAllTrimesters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllTrimestersResponse" message="tns:IService1_GetAllTrimesters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllYears">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllYears" message="tns:IService1_GetAllYears_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllYearsResponse" message="tns:IService1_GetAllYears_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerarContextos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GenerarContextos" message="tns:IService1_GenerarContextos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GenerarContextosResponse" message="tns:IService1_GenerarContextos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceBinding" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv813000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv813000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800600">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800600" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800500">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800500" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800200">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800200" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800100">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800100" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800007">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800007" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800005">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800005" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800003">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv800001">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv800001" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700003">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv700003" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700002">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv700002" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv700000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv700000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv610000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv610000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv610000Anterior">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv610000Anterior" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv520000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv520000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv410000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv410000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv310000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv310000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv210000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv210000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv105000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv105000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmv110000">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmv110000" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllForms">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllForms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBmvDetalleSuma">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetBmvDetalleSuma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveBmvReporte">
+      <soap:operation soapAction="http://tempuri.org/IService1/SaveBmvReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDinamicoBmvReporte">
+      <soap:operation soapAction="http://tempuri.org/IService1/SaveDinamicoBmvReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTrimesters">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllTrimesters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllYears">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAllYears" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerarContextos">
+      <soap:operation soapAction="http://tempuri.org/IService1/GenerarContextos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="ServiceBinding" binding="tns:ServiceBinding">
+      <soap:address location="http://localhost:1790/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

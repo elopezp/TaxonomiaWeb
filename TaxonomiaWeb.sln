@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxonomiaWeb.Wcf", "TaxonomiaWeb.Wcf\TaxonomiaWeb.Wcf.csproj", "{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxonomiaWeb", "TaxonomiaWeb\TaxonomiaWeb.csproj", "{E88B2848-DF5A-413E-9F3E-F845B8C738E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A17C1373-3657-4CA0-85C8-13BD153F45A9} = {A17C1373-3657-4CA0-85C8-13BD153F45A9}
+		{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D} = {46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxonomiaWeb.Web", "TaxonomiaWeb.Web\TaxonomiaWeb.Web.csproj", "{A17C1373-3657-4CA0-85C8-13BD153F45A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B3DF7D-D519-40FC-B1DD-54DCF7314F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88B2848-DF5A-413E-9F3E-F845B8C738E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88B2848-DF5A-413E-9F3E-F845B8C738E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88B2848-DF5A-413E-9F3E-F845B8C738E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88B2848-DF5A-413E-9F3E-F845B8C738E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A17C1373-3657-4CA0-85C8-13BD153F45A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A17C1373-3657-4CA0-85C8-13BD153F45A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A17C1373-3657-4CA0-85C8-13BD153F45A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A17C1373-3657-4CA0-85C8-13BD153F45A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

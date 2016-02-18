@@ -1,0 +1,21 @@
+﻿<configuration>
+
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="MyBasicHttpBinding" closeTimeout="00:10:00" openTimeout="00:10:00"
+          receiveTimeout="00:10:00" sendTimeout="00:10:00" maxBufferSize="2147483647"
+          maxReceivedMessageSize="2147483647">
+          <security mode="None" />
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+
+    <client>
+      <endpoint address="http://localhost:1790/Service1.svc" binding="basicHttpBinding"
+        bindingConfiguration="MyBasicHttpBinding" contract="ServiceBmvXblr.IService1"
+        name="ServiceBinding" />
+    </client>
+
+  </system.serviceModel>
+</configuration>
