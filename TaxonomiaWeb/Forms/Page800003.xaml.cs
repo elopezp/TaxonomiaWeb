@@ -26,6 +26,8 @@ namespace TaxonomiaWeb.Forms
         private Service1Client servBmvXblr = null;
         private ObservableCollection<Bmv800003> listaBmv = null;
         private ObservableCollection<Bmv800003> listaBmvAgrupada = null;
+        private ObservableCollection<Bmv800003> listaBmvAgrupadaFueraDeTabla = null;
+        private ObservableCollection<BmvDetalleSuma> listBmvSuma = null;
         private MainPage mainPage = null;
 
         public Page800003()
@@ -395,10 +397,60 @@ namespace TaxonomiaWeb.Forms
             {
                 listaBmv = e.Result;
                 listaBmvAgrupada = bindAndGroupList(listaBmv);
-                DgvTaxo.ItemsSource = listaBmvAgrupada;
+                foreach (var item in listaBmvAgrupada)
+                {
+                    item.PropertyChanged += new PropertyChangedEventHandler(bmv_PropertyChanged);
+                }
+
+                bindAndGroupOutsideTable(listaBmv);
+       
+                servBmvXblr = new Service1Client();
+                servBmvXblr.GetBmvDetalleSumaCompleted += servBmvXblr_GetBmvDetalleSumaCompleted;
+                servBmvXblr.GetBmvDetalleSumaAsync("800003");
             }
         }
 
+        private void bindAndGroupOutsideTable(ObservableCollection<Bmv800003> listaBmv)
+        {
+            //Agrupamos por registro los valores que no estan dentro de la tabla(datagrid)
+            var tempListaBmvAgrupadaFueraDeTabla = from element in listaBmv
+                                               where element.Orden < 0
+                                               group element by element.IdTaxonomiaDetalle
+                                                   into groups
+                                                   select groups.OrderBy(p => p.IdReporte).First();
+             listaBmvAgrupadaFueraDeTabla = new ObservableCollection<Bmv800003>(tempListaBmvAgrupadaFueraDeTabla);
+            if (listaBmvAgrupadaFueraDeTabla.Any() == true)
+            {
+                foreach (var itemAgrupado in listaBmvAgrupadaFueraDeTabla)
+                {
+                
+                    if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
+                    {
+                        //Como es un solo valor con una columna en Taxonomia_Reporte, el valor viene inmerso en el campo Valor.
+                        Lbl1.Text = itemAgrupado.Descripcion;
+                        Txt1.Text = itemAgrupado.Valor;
+                    }
+                   
+                }
+
+            }
+        }
+
+
+
+
+        void servBmvXblr_GetBmvDetalleSumaCompleted(object sender, GetBmvDetalleSumaCompletedEventArgs e)
+        {
+            if (e.Result != null)
+            {
+                listBmvSuma = e.Result;
+                listTotal = (from p in listBmvSuma
+                             group p.IdTaxonomiaHijo by p.IdTaxonomiaPadre into g
+                             select new { IdPadre = g.Key, ListaIdHijos = g.ToList() }).ToDictionary(p => p.IdPadre, p => p.ListaIdHijos);
+                DgvTaxo.ItemsSource = listaBmvAgrupada;
+
+            }
+        }
 
 
 
@@ -426,6 +478,87 @@ namespace TaxonomiaWeb.Forms
         }
         #endregion
 
+        #region Evento cuando la celda cambia
+        private void bmv_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var user = sender as Bmv800003;
+            Bmv800003 result = listaBmvAgrupada.SingleOrDefault(s => s == user);
+            System.Reflection.PropertyInfo[] listProp = typeof(Bmv800100).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            if (result != null)
+            {
+                foreach (KeyValuePair<int, List<int>> value in listTotal)
+                {
+                    List<int> list = value.Value as List<int>;
+                    if (list != null)
+                    {
+                        foreach (int order in list)
+                        {
+                            //Si contiene order en lista
+                            if (order == result.IdTaxonomiaDetalle)
+                            {
+
+                                var filteredList = from o in listaBmvAgrupada
+                                                   where list.Contains(o.IdTaxonomiaDetalle)
+                                                   select o;
+                                long subtotalPositivo = 0;
+                                long subtotalNegativo = 0;
+                                if (filteredList != null)
+                                {
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.Dolares));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.Dolares));
+                                    //Actualizamos el campo
+                                    foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
+                                    {
+                                        u.Dolares = subtotalPositivo - subtotalNegativo;
+                                    }
+                                    subtotalPositivo = 0;
+                                    subtotalNegativo = 0;
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.DolaresContravalorPesos));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.DolaresContravalorPesos));
+                                    //Actualizamos el campo
+                                    foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
+                                    {
+                                        u.DolaresContravalorPesos = subtotalPositivo - subtotalNegativo;
+                                    }
+                                    subtotalPositivo = 0;
+                                    subtotalNegativo = 0;
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.OtrasMonedasContravalorDolares));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.OtrasMonedasContravalorDolares));
+                                    //Actualizamos el campo
+                                    foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
+                                    {
+                                        u.OtrasMonedasContravalorDolares = subtotalPositivo - subtotalNegativo;
+                                    }
+                                    subtotalPositivo = 0;
+                                    subtotalNegativo = 0;
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.OtrasMonedasContravalorPesos));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.OtrasMonedasContravalorPesos));
+                                    //Actualizamos el campo
+                                    foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
+                                    {
+                                        u.OtrasMonedasContravalorPesos = subtotalPositivo - subtotalNegativo;
+                                    }
+                                    subtotalPositivo = 0;
+                                    subtotalNegativo = 0;
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.TotalDePesos));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.TotalDePesos));
+                                    //Actualizamos el campo
+                                    foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
+                                    {
+                                        u.TotalDePesos = subtotalPositivo - subtotalNegativo;
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        #endregion
 
 
         #region Metodos de clase
@@ -458,6 +591,7 @@ namespace TaxonomiaWeb.Forms
         {
             //Agrupamos por registro de taxonomia detalle y obtenemos solo un registro
             var tempListaBmvAgrupada = from element in listaBmv
+                                       where element.Orden > 0
                                        group element by element.IdTaxonomiaDetalle
                                            into groups
                                            select groups.OrderBy(p => p.IdReporte).First();
@@ -467,36 +601,36 @@ namespace TaxonomiaWeb.Forms
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    var itemsBmv = from o in listaBmv
-                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                                   select o;
-                    foreach (var subItems in itemsBmv)
-                    {
-                        switch (subItems.AtributoColumna)
+                        var itemsBmv = from o in listaBmv
+                                       where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                       select o;
+                        foreach (var subItems in itemsBmv)
                         {
-                            case AppConsts.COL_DOLARES:
-                                itemAgrupado.Dolares = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
-                                break;
+                            switch (subItems.AtributoColumna)
+                            {
+                                case AppConsts.COL_DOLARES:
+                                    itemAgrupado.Dolares = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
+                                    break;
 
-                            case AppConsts.COL_DOLARESCONTRAVALORPESOS:
-                                itemAgrupado.DolaresContravalorPesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
-                                break;
+                                case AppConsts.COL_DOLARESCONTRAVALORPESOS:
+                                    itemAgrupado.DolaresContravalorPesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
+                                    break;
 
-                            case AppConsts.COL_OTRASMONEDASCONTRAVALORDOLARES:
-                                itemAgrupado.OtrasMonedasContravalorDolares = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
-                                break;
+                                case AppConsts.COL_OTRASMONEDASCONTRAVALORDOLARES:
+                                    itemAgrupado.OtrasMonedasContravalorDolares = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
+                                    break;
 
-                            case AppConsts.COL_OTRASMONEDASCONTRAVALORPESOS:
-                                itemAgrupado.OtrasMonedasContravalorPesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
-                                break;
+                                case AppConsts.COL_OTRASMONEDASCONTRAVALORPESOS:
+                                    itemAgrupado.OtrasMonedasContravalorPesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
+                                    break;
 
-                            case AppConsts.COL_TOTALDEPESOS:
-                                itemAgrupado.TotalDePesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
-                                break;
-                            default:
-                                break;
+                                case AppConsts.COL_TOTALDEPESOS:
+                                    itemAgrupado.TotalDePesos = string.IsNullOrEmpty(subItems.Valor) == true ? 0 : Convert.ToDouble(subItems.Valor);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-                    }
                 }
 
             }
@@ -510,43 +644,65 @@ namespace TaxonomiaWeb.Forms
             ObservableCollection<ReporteDetalle> sortedList = new ObservableCollection<ReporteDetalle>();
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
-                var itemsBmv = from o in listaBmv
-                               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                               select o;
-                foreach (var subItems in itemsBmv)
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    ReporteDetalle rd = new ReporteDetalle();
-                    switch (subItems.AtributoColumna)
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
                     {
-                        case AppConsts.COL_DOLARES:
-                            rd.Valor = Convert.ToString(itemAgrupado.Dolares);
-                            break;
+                        ReporteDetalle rd = new ReporteDetalle();
+                        switch (subItems.AtributoColumna)
+                        {
+                            case AppConsts.COL_DOLARES:
+                                rd.Valor = Convert.ToString(itemAgrupado.Dolares);
+                                break;
 
-                        case AppConsts.COL_DOLARESCONTRAVALORPESOS:
-                            rd.Valor = Convert.ToString(itemAgrupado.DolaresContravalorPesos);
-                            break;
+                            case AppConsts.COL_DOLARESCONTRAVALORPESOS:
+                                rd.Valor = Convert.ToString(itemAgrupado.DolaresContravalorPesos);
+                                break;
 
-                        case AppConsts.COL_OTRASMONEDASCONTRAVALORDOLARES:
-                            rd.Valor = Convert.ToString(itemAgrupado.OtrasMonedasContravalorDolares);
-                            break;
+                            case AppConsts.COL_OTRASMONEDASCONTRAVALORDOLARES:
+                                rd.Valor = Convert.ToString(itemAgrupado.OtrasMonedasContravalorDolares);
+                                break;
 
-                        case AppConsts.COL_OTRASMONEDASCONTRAVALORPESOS:
-                            rd.Valor = Convert.ToString(itemAgrupado.OtrasMonedasContravalorPesos);
-                            break;
+                            case AppConsts.COL_OTRASMONEDASCONTRAVALORPESOS:
+                                rd.Valor = Convert.ToString(itemAgrupado.OtrasMonedasContravalorPesos);
+                                break;
 
-                        case AppConsts.COL_TOTALDEPESOS:
-                            rd.Valor = Convert.ToString(itemAgrupado.TotalDePesos);
-                            break;
-                        default:
-                            break;
+                            case AppConsts.COL_TOTALDEPESOS:
+                                rd.Valor = Convert.ToString(itemAgrupado.TotalDePesos);
+                                break;
+                            default:
+                                break;
+                        }
+                        rd.FormatoCampo = subItems.FormatoCampo;
+                        rd.IdReporte = subItems.IdReporte;
+                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        rd.Estado = true;
+                        sortedList.Add(rd);
                     }
-                    rd.FormatoCampo = subItems.FormatoCampo;
-                    rd.IdReporte = subItems.IdReporte;
-                    rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                    rd.Estado = true;
-                    sortedList.Add(rd);
                 }
-
+            }
+            //Enlazamos los datos que no esten en el DataGrid
+            foreach (var itemAgrupado in listaBmvAgrupadaFueraDeTabla)
+            {
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
+                {
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
+                    {
+                        ReporteDetalle rd = new ReporteDetalle();
+                        rd.Valor = Txt1.Text;
+                        rd.FormatoCampo = subItems.FormatoCampo;
+                        rd.IdReporte = subItems.IdReporte;
+                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        rd.Estado = true;
+                        sortedList.Add(rd);
+                    }
+                }
             }
             return sortedList;
 

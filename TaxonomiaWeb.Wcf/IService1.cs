@@ -98,6 +98,9 @@ namespace TaxonomiaWeb.Wcf
         [OperationContract]
         int GenerarContextos(int idTrimestre, int idAno);
 
+        [OperationContract]
+        List<String> GetPeriodoSinPresentar(int idTrimestre, string contenido);
+
         // TODO: Add your service operations here
     }
 

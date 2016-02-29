@@ -18,6 +18,7 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         {
             this.Periodoes = new HashSet<Periodo>();
             this.Cat_Taxonomia_Columna = new HashSet<Cat_Taxonomia_Columna>();
+            this.Periodo_Sin_Presentar = new HashSet<Periodo_Sin_Presentar>();
         }
     
         public int Id_Validacion_Contexto { get; set; }
@@ -31,5 +32,6 @@ namespace TaxonomiaWeb.Wcf.EntityModel
     
         public virtual ICollection<Periodo> Periodoes { get; set; }
         public virtual ICollection<Cat_Taxonomia_Columna> Cat_Taxonomia_Columna { get; set; }
+        public virtual ICollection<Periodo_Sin_Presentar> Periodo_Sin_Presentar { get; set; }
     }
 }

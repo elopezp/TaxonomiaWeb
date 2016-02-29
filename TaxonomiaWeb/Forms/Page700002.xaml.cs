@@ -27,6 +27,7 @@ namespace TaxonomiaWeb.Forms
         private ObservableCollection<Bmv700002> listaBmv = null;
         private ObservableCollection<Bmv700002> listaBmvAgrupada = null;
         private MainPage mainPage = null;
+        private ObservableCollection<String> listContextoSinPresentar = null;
 
         public Page700002()
         {
@@ -75,8 +76,9 @@ namespace TaxonomiaWeb.Forms
         {
             fillHiddenColumns();
             servBmvXblr = new Service1Client();
-            servBmvXblr.GetBmv700002Completed += servBmvXblr_GetBmv700002Completed;
-            servBmvXblr.GetBmv700002Async(mainPage.IdTrimestre, mainPage.IdAno);
+            servBmvXblr.GetPeriodoSinPresentarCompleted += servBmvXblr_GetPeriodoSinPresentarCompleted;
+            servBmvXblr.GetPeriodoSinPresentarAsync(mainPage.IdTrimestre, "700002");
+     
             //Agregamos los manejadores de eventos del datagrid
             //Se dispara cuando se comienza a editar una celda
             this.DgvTaxo.PreparingCellForEdit += DgvTaxo_PreparingCellForEdit;
@@ -85,6 +87,16 @@ namespace TaxonomiaWeb.Forms
             //Para que con un solo click o con el teclado entre en modo editar
             this.DgvTaxo.CurrentCellChanged += DgvTaxo_CurrentCellChanged;
 
+        }
+
+        void servBmvXblr_GetPeriodoSinPresentarCompleted(object sender, GetPeriodoSinPresentarCompletedEventArgs e)
+        {
+            if (e.Result != null)
+            {
+                listContextoSinPresentar = e.Result;
+            }
+            servBmvXblr.GetBmv700002Completed += servBmvXblr_GetBmv700002Completed;
+            servBmvXblr.GetBmv700002Async(mainPage.IdTrimestre, mainPage.IdAno);
         }
 
 
@@ -139,7 +151,10 @@ namespace TaxonomiaWeb.Forms
                             dgColumn.DisplayIndex = 4;
                             break;
                     }
-
+                    if (listContextoSinPresentar.Contains(e.PropertyName) == true)
+                    {
+                        dgColumn.Visibility = Visibility.Collapsed;
+                    }
                     if (e.PropertyType == typeof(double))
                     {
                         DataGridBoundColumn obj = e.Column as DataGridBoundColumn;
@@ -511,39 +526,44 @@ namespace TaxonomiaWeb.Forms
             ObservableCollection<ReporteDetalle> sortedList = new ObservableCollection<ReporteDetalle>();
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
-                var itemsBmv = from o in listaBmv
-                               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                               select o;
-                foreach (var subItems in itemsBmv)
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    ReporteDetalle rd = new ReporteDetalle();
-                    switch (subItems.AtributoColumna)
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
                     {
-                        case AppConsts.COL_ACUMULADOANOACTUAL:
-                            rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoActual);
-                            break;
+                        if (listContextoSinPresentar != null && listContextoSinPresentar.Contains(subItems.AtributoColumna) == false)
+                        {
+                            ReporteDetalle rd = new ReporteDetalle();
+                            switch (subItems.AtributoColumna)
+                            {
+                                case AppConsts.COL_ACUMULADOANOACTUAL:
+                                    rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoActual);
+                                    break;
 
-                        case AppConsts.COL_ACUMULADOANOANTERIOR:
-                            rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoAnterior);
-                            break;
+                                case AppConsts.COL_ACUMULADOANOANTERIOR:
+                                    rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoAnterior);
+                                    break;
 
-                        case AppConsts.COL_TRIMESTREACTUAL:
-                            rd.Valor = Convert.ToString(itemAgrupado.TrimestreActual);
-                            break;
+                                case AppConsts.COL_TRIMESTREACTUAL:
+                                    rd.Valor = Convert.ToString(itemAgrupado.TrimestreActual);
+                                    break;
 
-                        case AppConsts.COL_TRIMESTREANOANTERIOR:
-                            rd.Valor = Convert.ToString(itemAgrupado.TrimestreAnoAnterior);
-                            break;
-                        default:
-                            break;
+                                case AppConsts.COL_TRIMESTREANOANTERIOR:
+                                    rd.Valor = Convert.ToString(itemAgrupado.TrimestreAnoAnterior);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            rd.FormatoCampo = subItems.FormatoCampo;
+                            rd.IdReporte = subItems.IdReporte;
+                            rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                            rd.Estado = true;
+                            sortedList.Add(rd);
+                        }
                     }
-                    rd.FormatoCampo = subItems.FormatoCampo;
-                    rd.IdReporte = subItems.IdReporte;
-                    rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                    rd.Estado = true;
-                    sortedList.Add(rd);
                 }
-
             }
             return sortedList;
 

@@ -284,6 +284,9 @@
     <None Include="Service References\ServiceBmvXblr\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceBmvXblr\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceBmvXblr\Service13.xsd">
       <SubType>Designer</SubType>
     </None>

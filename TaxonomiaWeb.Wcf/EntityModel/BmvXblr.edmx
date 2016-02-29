@@ -15,8 +15,10 @@
           <EntitySet Name="Cat_Tipo_Formato" EntityType="BmvXblrModel.Store.Cat_Tipo_Formato" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cat_Trimestre" EntityType="BmvXblrModel.Store.Cat_Trimestre" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cat_Validacion_Contexto" EntityType="BmvXblrModel.Store.Cat_Validacion_Contexto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cat_Validacion_Trimestre" EntityType="BmvXblrModel.Store.Cat_Validacion_Trimestre" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contexto" EntityType="BmvXblrModel.Store.Contexto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Periodo" EntityType="BmvXblrModel.Store.Periodo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Periodo_Sin_Presentar" EntityType="BmvXblrModel.Store.Periodo_Sin_Presentar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Taxonomia_Detalle_Suma" EntityType="BmvXblrModel.Store.Taxonomia_Detalle_Suma" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Taxonomia_Reporte" EntityType="BmvXblrModel.Store.Taxonomia_Reporte" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Taxonomia_Reporte_Detalle" EntityType="BmvXblrModel.Store.Taxonomia_Reporte_Detalle" store:Type="Tables" Schema="dbo" />
@@ -27,6 +29,10 @@
           <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" Association="BmvXblrModel.Store.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1">
             <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
             <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cat_Periodo_Cat_Trimestre" Association="BmvXblrModel.Store.FK_Cat_Periodo_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Cat_Validacion_Trimestre" EntitySet="Cat_Validacion_Trimestre" />
           </AssociationSet>
           <AssociationSet Name="FK_Cat_Taxonomia_Columna_Cat_Contenido" Association="BmvXblrModel.Store.FK_Cat_Taxonomia_Columna_Cat_Contenido">
             <End Role="Cat_Contenido" EntitySet="Cat_Contenido" />
@@ -75,6 +81,14 @@
           <AssociationSet Name="FK_Periodo_Cat_Validacion_Contexto" Association="BmvXblrModel.Store.FK_Periodo_Cat_Validacion_Contexto">
             <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
             <End Role="Periodo" EntitySet="Periodo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Trimestre" Association="BmvXblrModel.Store.FK_Periodo_Sin_Presentar_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" Association="BmvXblrModel.Store.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+            <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
           </AssociationSet>
           <AssociationSet Name="FK_Taxonomia_Detalle_Suma_Cat_Contenido" Association="BmvXblrModel.Store.FK_Taxonomia_Detalle_Suma_Cat_Contenido">
             <End Role="Cat_Contenido" EntitySet="Cat_Contenido" />
@@ -208,6 +222,18 @@
           <Property Name="Usuario_Registro" Type="varchar" MaxLength="25" />
           <Property Name="Periodo_No_Requerido" Type="int" />
         </EntityType>
+        <EntityType Name="Cat_Validacion_Trimestre">
+          <Key>
+            <PropertyRef Name="Id_Contexto_Periodo" />
+          </Key>
+          <Property Name="Id_Contexto_Periodo" Type="int" Nullable="false" />
+          <Property Name="Id_Validacion_Contexto" Type="int" />
+          <Property Name="Id_Trimestre" Type="int" />
+          <Property Name="Dia_Ini" Type="char" MaxLength="2" />
+          <Property Name="Mes_Ini" Type="char" MaxLength="2" />
+          <Property Name="Dia_Final" Type="char" MaxLength="2" />
+          <Property Name="Mes_Final" Type="char" MaxLength="2" />
+        </EntityType>
         <EntityType Name="Contexto">
           <Key>
             <PropertyRef Name="Id_Contexto" />
@@ -226,6 +252,14 @@
           <Property Name="Id_Ano" Type="int" />
           <Property Name="Fecha_Inicio" Type="date" />
           <Property Name="Fecha_Fin" Type="date" />
+        </EntityType>
+        <EntityType Name="Periodo_Sin_Presentar">
+          <Key>
+            <PropertyRef Name="Id_Periodo_Sin_Presentar" />
+          </Key>
+          <Property Name="Id_Periodo_Sin_Presentar" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Trimestre" Type="int" />
+          <Property Name="Id_Validacion_Contexto" Type="int" />
         </EntityType>
         <EntityType Name="Taxonomia_Detalle_Suma">
           <Key>
@@ -280,6 +314,18 @@
             </Principal>
             <Dependent Role="Cat_Modelo_Clase">
               <PropertyRef Name="Id_Taxonomia_Detalle_Axis_Y" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cat_Periodo_Cat_Trimestre">
+          <End Role="Cat_Trimestre" Type="BmvXblrModel.Store.Cat_Trimestre" Multiplicity="0..1" />
+          <End Role="Cat_Validacion_Trimestre" Type="BmvXblrModel.Store.Cat_Validacion_Trimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Cat_Validacion_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -423,6 +469,30 @@
               <PropertyRef Name="Id_Validacion_Contexto" />
             </Principal>
             <Dependent Role="Periodo">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Trimestre">
+          <End Role="Cat_Trimestre" Type="BmvXblrModel.Store.Cat_Trimestre" Multiplicity="0..1" />
+          <End Role="Periodo_Sin_Presentar" Type="BmvXblrModel.Store.Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
+              <PropertyRef Name="Id_Trimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+          <End Role="Cat_Validacion_Contexto" Type="BmvXblrModel.Store.Cat_Validacion_Contexto" Multiplicity="0..1" />
+          <End Role="Periodo_Sin_Presentar" Type="BmvXblrModel.Store.Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Validacion_Contexto">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
               <PropertyRef Name="Id_Validacion_Contexto" />
             </Dependent>
           </ReferentialConstraint>
@@ -662,6 +732,20 @@
             <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
           </AssociationSet>
+          <EntitySet Name="Cat_Validacion_Trimestre" EntityType="BmvXblrModel.Cat_Validacion_Trimestre" />
+          <EntitySet Name="Periodo_Sin_Presentar" EntityType="BmvXblrModel.Periodo_Sin_Presentar" />
+          <AssociationSet Name="FK_Cat_Periodo_Cat_Trimestre" Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Cat_Validacion_Trimestre" EntitySet="Cat_Validacion_Trimestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Trimestre" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+            <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Cat_Ano">
           <Key>
@@ -711,6 +795,8 @@
           <Property Type="Int32" Name="Trimestre" />
           <NavigationProperty Name="Periodoes" Relationship="BmvXblrModel.FK_Periodo_Cat_Trimestre" FromRole="Cat_Trimestre" ToRole="Periodo" />
           <NavigationProperty Name="Taxonomia_Reporte_Detalle" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Trimestre" FromRole="Cat_Trimestre" ToRole="Taxonomia_Reporte_Detalle" />
+          <NavigationProperty Name="Cat_Validacion_Trimestre" Relationship="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" FromRole="Cat_Trimestre" ToRole="Cat_Validacion_Trimestre" />
+          <NavigationProperty Name="Periodo_Sin_Presentar" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" FromRole="Cat_Trimestre" ToRole="Periodo_Sin_Presentar" />
         </EntityType>
         <EntityType Name="Cat_Validacion_Contexto">
           <Key>
@@ -726,6 +812,7 @@
           <Property Type="Int32" Name="Periodo_No_Requerido" />
           <NavigationProperty Name="Periodoes" Relationship="BmvXblrModel.FK_Periodo_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Periodo" />
           <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Cat_Taxonomia_Columna" />
+          <NavigationProperty Name="Periodo_Sin_Presentar" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Periodo_Sin_Presentar" />
         </EntityType>
         <EntityType Name="Contexto">
           <Key>
@@ -1141,6 +1228,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cat_Validacion_Trimestre">
+          <Key>
+            <PropertyRef Name="Id_Contexto_Periodo" />
+          </Key>
+          <Property Type="Int32" Name="Id_Contexto_Periodo" Nullable="false" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
+          <Property Type="Int32" Name="Id_Trimestre" />
+          <Property Type="String" Name="Dia_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Mes_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Dia_Final" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Mes_Final" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" FromRole="Cat_Validacion_Trimestre" ToRole="Cat_Trimestre" />
+        </EntityType>
+        <EntityType Name="Periodo_Sin_Presentar">
+          <Key>
+            <PropertyRef Name="Id_Periodo_Sin_Presentar" />
+          </Key>
+          <Property Type="Int32" Name="Id_Periodo_Sin_Presentar" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="Id_Trimestre" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
+          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Trimestre" />
+          <NavigationProperty Name="Cat_Validacion_Contexto" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Validacion_Contexto" />
+        </EntityType>
+        <Association Name="FK_Cat_Periodo_Cat_Trimestre">
+          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Cat_Validacion_Trimestre" Role="Cat_Validacion_Trimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Cat_Validacion_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Trimestre">
+          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
+              <PropertyRef Name="Id_Trimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+          <End Type="BmvXblrModel.Cat_Validacion_Contexto" Role="Cat_Validacion_Contexto" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Validacion_Contexto">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1300,6 +1446,28 @@
                 <ScalarProperty Name="Id_Tipo_Formato" ColumnName="Id_Tipo_Formato" />
                 <ScalarProperty Name="Id_Origen_Elemento" ColumnName="Id_Origen_Elemento" />
                 <ScalarProperty Name="Id_Taxonomia_Detalle" ColumnName="Id_Taxonomia_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cat_Validacion_Trimestre">
+            <EntityTypeMapping TypeName="BmvXblrModel.Cat_Validacion_Trimestre">
+              <MappingFragment StoreEntitySet="Cat_Validacion_Trimestre">
+                <ScalarProperty Name="Mes_Final" ColumnName="Mes_Final" />
+                <ScalarProperty Name="Dia_Final" ColumnName="Dia_Final" />
+                <ScalarProperty Name="Mes_Ini" ColumnName="Mes_Ini" />
+                <ScalarProperty Name="Dia_Ini" ColumnName="Dia_Ini" />
+                <ScalarProperty Name="Id_Trimestre" ColumnName="Id_Trimestre" />
+                <ScalarProperty Name="Id_Validacion_Contexto" ColumnName="Id_Validacion_Contexto" />
+                <ScalarProperty Name="Id_Contexto_Periodo" ColumnName="Id_Contexto_Periodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periodo_Sin_Presentar">
+            <EntityTypeMapping TypeName="BmvXblrModel.Periodo_Sin_Presentar">
+              <MappingFragment StoreEntitySet="Periodo_Sin_Presentar">
+                <ScalarProperty Name="Id_Validacion_Contexto" ColumnName="Id_Validacion_Contexto" />
+                <ScalarProperty Name="Id_Trimestre" ColumnName="Id_Trimestre" />
+                <ScalarProperty Name="Id_Periodo_Sin_Presentar" ColumnName="Id_Periodo_Sin_Presentar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

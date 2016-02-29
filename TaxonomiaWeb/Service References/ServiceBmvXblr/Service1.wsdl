@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model" />
+      <xsd:import schemaLocation="http://localhost:1790/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_GetData_InputMessage">
@@ -175,6 +176,12 @@
   <wsdl:message name="IService1_GenerarContextos_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenerarContextosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetPeriodoSinPresentar_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodoSinPresentar" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPeriodoSinPresentar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeriodoSinPresentarResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -287,6 +294,10 @@
     <wsdl:operation name="GenerarContextos">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GenerarContextos" message="tns:IService1_GenerarContextos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GenerarContextosResponse" message="tns:IService1_GenerarContextos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodoSinPresentar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPeriodoSinPresentar" message="tns:IService1_GetPeriodoSinPresentar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPeriodoSinPresentarResponse" message="tns:IService1_GetPeriodoSinPresentar_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceBinding" type="tns:IService1">
@@ -536,6 +547,15 @@
     </wsdl:operation>
     <wsdl:operation name="GenerarContextos">
       <soap:operation soapAction="http://tempuri.org/IService1/GenerarContextos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPeriodoSinPresentar">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetPeriodoSinPresentar" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

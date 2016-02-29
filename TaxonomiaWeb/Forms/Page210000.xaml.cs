@@ -588,35 +588,37 @@ namespace TaxonomiaWeb.Forms
             ObservableCollection<ReporteDetalle> sortedList = new ObservableCollection<ReporteDetalle>();
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
-                var itemsBmv = from o in listaBmv
-                               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                               select o;
-                foreach (var subItems in itemsBmv)
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    ReporteDetalle rd = new ReporteDetalle();
-                    switch (subItems.AtributoColumna)
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
                     {
-                        case AppConsts.COL_CIERREEJERCICIOANTERIOR:
-                            rd.Valor = Convert.ToString(itemAgrupado.CierreEjercicioAnterior);
-                            break;
+                        ReporteDetalle rd = new ReporteDetalle();
+                        switch (subItems.AtributoColumna)
+                        {
+                            case AppConsts.COL_CIERREEJERCICIOANTERIOR:
+                                rd.Valor = Convert.ToString(itemAgrupado.CierreEjercicioAnterior);
+                                break;
 
-                        case AppConsts.COL_INICIOEJERCICIOANTERIOR:
-                            rd.Valor = Convert.ToString(itemAgrupado.InicioEjercicioAnterior);
-                            break;
+                            case AppConsts.COL_INICIOEJERCICIOANTERIOR:
+                                rd.Valor = Convert.ToString(itemAgrupado.InicioEjercicioAnterior);
+                                break;
 
-                        case AppConsts.COL_TRIMESTREACTUAL:
-                            rd.Valor = Convert.ToString(itemAgrupado.TrimestreActual);
-                            break;
-                        default:
-                            break;
+                            case AppConsts.COL_TRIMESTREACTUAL:
+                                rd.Valor = Convert.ToString(itemAgrupado.TrimestreActual);
+                                break;
+                            default:
+                                break;
+                        }
+                        rd.FormatoCampo = subItems.FormatoCampo;
+                        rd.IdReporte = subItems.IdReporte;
+                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        rd.Estado = true;
+                        sortedList.Add(rd);
                     }
-                    rd.FormatoCampo = subItems.FormatoCampo;
-                    rd.IdReporte = subItems.IdReporte;
-                    rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                    rd.Estado = true;
-                    sortedList.Add(rd);
                 }
-
             }
             return sortedList;
 

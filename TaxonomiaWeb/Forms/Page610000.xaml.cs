@@ -942,12 +942,14 @@ namespace TaxonomiaWeb.Forms
 
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
-                var itemsBmv = from o in listaBmv
-                               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                               select o;
-                foreach (var subItems in itemsBmv)
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-              
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
+                    {
+
                         ReporteDetalle rd = new ReporteDetalle();
                         switch (subItems.AtributoColumna)
                         {
@@ -1055,6 +1057,7 @@ namespace TaxonomiaWeb.Forms
                             rd.Estado = true;
                         }
                         sortedList.Add(rd);
+                    }
                 }
 
             }

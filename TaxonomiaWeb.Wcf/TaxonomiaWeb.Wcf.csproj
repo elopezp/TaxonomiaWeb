@@ -119,10 +119,16 @@
     <Compile Include="EntityModel\Cat_Validacion_Contexto.cs">
       <DependentUpon>BmvXblr.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\Cat_Validacion_Trimestre.cs">
+      <DependentUpon>BmvXblr.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Contexto.cs">
       <DependentUpon>BmvXblr.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Periodo.cs">
+      <DependentUpon>BmvXblr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Periodo_Sin_Presentar.cs">
       <DependentUpon>BmvXblr.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Taxonomia_Detalle_Suma.cs">

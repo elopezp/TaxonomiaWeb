@@ -43,6 +43,11 @@
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle1" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" />
+        <EntityTypeShape EntityType="BmvXblrModel.Cat_Validacion_Trimestre" Width="1.5" PointX="8.2868185975993143" PointY="2.7706289304283582" />
+        <EntityTypeShape EntityType="BmvXblrModel.Periodo_Sin_Presentar" Width="1.5" PointX="11.721489881966956" PointY="18.883560055346955" />
+        <AssociationConnector Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" />
+        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" />
+        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

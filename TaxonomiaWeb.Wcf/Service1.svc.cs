@@ -1504,5 +1504,37 @@ namespace TaxonomiaWeb.Wcf
 
             return taxDet;
         }
+
+
+        public List<string> GetPeriodoSinPresentar(int idTrimestre, string contenido)
+        {
+            List<String> listAtributoColumna = new List<String>();
+            try
+            {
+                using (var context = new BmvXblrEntities())
+                {
+
+                    context.Configuration.LazyLoadingEnabled = false;
+                    var tempList = (from tc in context.Cat_Taxonomia_Columna
+                                         join cc in context.Cat_Contenido on tc.Id_Contenido equals cc.Id_Contenido
+                                         join mc in context.Cat_Modelo_Clase on tc.Id_Modelo_Clase equals mc.Id_Modelo_Clase
+                                         join vc in context.Cat_Validacion_Contexto on tc.Id_Validacion_Contexto equals vc.Id_Validacion_Contexto
+                                         join ps in context.Periodo_Sin_Presentar on vc.Id_Validacion_Contexto equals ps.Id_Validacion_Contexto
+                                         where cc.Contenido.Equals(contenido) && ps.Id_Trimestre == idTrimestre
+                                         select mc.Atributo);
+                    if (tempList != null && tempList.Any() == true)
+                    {
+                        listAtributoColumna =  tempList.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return listAtributoColumna;
+        }
     }
 }

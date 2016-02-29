@@ -570,32 +570,34 @@ namespace TaxonomiaWeb.Forms
             ObservableCollection<ReporteDetalle> sortedList = new ObservableCollection<ReporteDetalle>();
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
-                var itemsBmv = from o in listaBmv
-                               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                               select o;
-                foreach (var subItems in itemsBmv)
+                if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    ReporteDetalle rd = new ReporteDetalle();
-                    switch (subItems.AtributoColumna)
+                    var itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   select o;
+                    foreach (var subItems in itemsBmv)
                     {
-                        case AppConsts.COL_ACUMULADOANOACTUAL:
-                            rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoActual);
-                            break;
+                        ReporteDetalle rd = new ReporteDetalle();
+                        switch (subItems.AtributoColumna)
+                        {
+                            case AppConsts.COL_ACUMULADOANOACTUAL:
+                                rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoActual);
+                                break;
 
-                        case AppConsts.COL_ACUMULADOANOANTERIOR:
-                            rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoAnterior);
-                            break;
+                            case AppConsts.COL_ACUMULADOANOANTERIOR:
+                                rd.Valor = Convert.ToString(itemAgrupado.AcumuladoAnoAnterior);
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
+                        rd.FormatoCampo = subItems.FormatoCampo;
+                        rd.IdReporte = subItems.IdReporte;
+                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        rd.Estado = true;
+                        sortedList.Add(rd);
                     }
-                    rd.FormatoCampo = subItems.FormatoCampo;
-                    rd.IdReporte = subItems.IdReporte;
-                    rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                    rd.Estado = true;
-                    sortedList.Add(rd);
                 }
-
             }
             return sortedList;
 
