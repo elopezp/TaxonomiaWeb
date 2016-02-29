@@ -4,11 +4,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"
     Title="Page700003"
     Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot" >
-        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+        <toolkit:BusyIndicator HorizontalAlignment="Center"   
+                                Name="busyIndicator" IsBusy="False"  BusyContent="Procesando información...">
+            <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
             <Grid  Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -21,5 +24,6 @@
                 <Button x:Name="BtnGuardar" Grid.Row="1" Content="Guardar" Width="100" Height="30" Margin="20,20,20,20" Click="BtnGuardar_Click"></Button>
             </Grid>
         </ScrollViewer>
+        </toolkit:BusyIndicator>
     </Grid>
 </navigation:Page>

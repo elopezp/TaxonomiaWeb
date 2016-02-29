@@ -341,7 +341,7 @@ namespace TaxonomiaWeb.Forms
                 servBmvXblr = new Service1Client();
                 servBmvXblr.SaveBmvReporteCompleted += servBmvXblr_SaveBmvReporteCompleted;
                 servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.IdTrimestre);
-
+                busyIndicator.IsBusy = true;
             }
         }
         #endregion
@@ -424,6 +424,7 @@ namespace TaxonomiaWeb.Forms
 
         void servBmvXblr_SaveBmvReporteCompleted(object sender, SaveBmvReporteCompletedEventArgs e)
         {
+            busyIndicator.IsBusy = false;
             if (e.Error == null)
             {
                 bool res = (bool)e.Result;
