@@ -47,7 +47,7 @@ namespace TaxonomiaWeb.Forms
 
                 if (NavigationContext.QueryString.TryGetValue("trim", out trimestre))
                 {
-                    mainPage.IdTrimestre = Int32.Parse(trimestre);
+                    mainPage.NumTrimestre = Int32.Parse(trimestre);
                 }
                 if (NavigationContext.QueryString.TryGetValue("ejerc", out ano))
                 {
@@ -59,7 +59,7 @@ namespace TaxonomiaWeb.Forms
                 }
                 if (NavigationContext.QueryString.TryGetValue("name", out parameterPageName))
                 {
-                    Uri uri = new Uri(string.Format("/Home?trim={0}&ejerc={1}&comp={2}", mainPage.IdTrimestre.ToString(), mainPage.IdAno.ToString(), mainPage.Compania), UriKind.Relative);
+                    Uri uri = new Uri(string.Format("/Home?trim={0}&ejerc={1}&comp={2}", mainPage.NumTrimestre.ToString(), mainPage.IdAno.ToString(), mainPage.Compania), UriKind.Relative);
                     mainPage.actualizarTituloContenidos(parameterPageName, "Regresar", uri);
                 }
             }
@@ -77,7 +77,7 @@ namespace TaxonomiaWeb.Forms
             fillHiddenColumns();
             servBmvXblr = new Service1Client();
             servBmvXblr.GetBmv700000Completed += servBmvXblr_GetBmv700000Completed;
-            servBmvXblr.GetBmv700000Async(mainPage.IdTrimestre, mainPage.IdAno);
+            servBmvXblr.GetBmv700000Async(mainPage.NumTrimestre, mainPage.IdAno);
             //Agregamos los manejadores de eventos del datagrid
             //Se dispara cuando se comienza a editar una celda
             this.DgvTaxo.PreparingCellForEdit += DgvTaxo_PreparingCellForEdit;
@@ -322,7 +322,7 @@ namespace TaxonomiaWeb.Forms
                 ObservableCollection<ReporteDetalle> sortedList = sortReport(listaBmvAgrupada, listaBmv);
                 servBmvXblr = new Service1Client();
                 servBmvXblr.SaveBmvReporteCompleted += servBmvXblr_SaveBmvReporteCompleted;
-                servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.IdTrimestre);
+                servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.NumTrimestre);
                 busyIndicator.IsBusy = true;
 
             }
@@ -506,6 +506,8 @@ namespace TaxonomiaWeb.Forms
         private ObservableCollection<ReporteDetalle> sortReport(ObservableCollection<Bmv700000> listaBmvAgrupada, ObservableCollection<Bmv700000> listaBmv)
         {
             ObservableCollection<ReporteDetalle> sortedList = new ObservableCollection<ReporteDetalle>();
+            int numTrimestre = mainPage.NumTrimestre;
+            bool isValidoInicioEjercicioAnteriorEstadoSituacionFinanciera = validarInicioEjercicioAnteriorEstadoSituacionFinanciera(numTrimestre, listaBmvAgrupada);
             foreach (var itemAgrupado in listaBmvAgrupada)
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
@@ -532,17 +534,58 @@ namespace TaxonomiaWeb.Forms
                             default:
                                 break;
                         }
-                        rd.FormatoCampo = subItems.FormatoCampo;
-                        rd.IdReporte = subItems.IdReporte;
-                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                        rd.Estado = true;
-                        sortedList.Add(rd);
+                        switch (subItems.AtributoColumna)
+                        {
+                            case AppConsts.COL_CIERREEJERCICIOANTERIOR:
+                            case AppConsts.COL_TRIMESTREACTUAL:
+                                rd.FormatoCampo = subItems.FormatoCampo;
+                                rd.IdReporte = subItems.IdReporte;
+                                rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                                rd.Estado = true;
+                                sortedList.Add(rd);
+                                break;
+                            case AppConsts.COL_INICIOEJERCICIOANTERIOR:
+                                rd.FormatoCampo = subItems.FormatoCampo;
+                                rd.IdReporte = subItems.IdReporte;
+                                rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                                if (isValidoInicioEjercicioAnteriorEstadoSituacionFinanciera == true)
+                                {
+                                    rd.Estado = true;
+                                }
+                                else
+                                {
+                                    rd.Estado = false;
+                                }
+                                sortedList.Add(rd);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
             return sortedList;
 
 
+        }
+
+        //Metodo que sirve para validar el inicio de ejercicio anterior de los estados financieros, si se almacena o no en la base de datos.
+        private bool validarInicioEjercicioAnteriorEstadoSituacionFinanciera(int numTrimestre, ObservableCollection<Bmv700000> listaBmvAgrupada)
+        {
+            switch (numTrimestre)
+            {
+                //Si el trimestre es el segundo se valida la columna de InicioEjercicioAnterior. Si existen valores diferentes de 0 se guarda en la bd, en caso contrario no se guarda ningun valor. 
+                case 2:
+                    var existenValoresDiferenteDeCero = (from l in listaBmvAgrupada
+                                                         where l.InicioEjercicioAnterior != 0
+                                                         select l).Count();
+                    if (existenValoresDiferenteDeCero > 0)
+                        return true;
+                    else
+                        return false;
+                default:
+                    return true;
+            }
         }
 
         private bool validarDatos()

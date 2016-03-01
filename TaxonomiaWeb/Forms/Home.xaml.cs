@@ -38,7 +38,7 @@ namespace TaxonomiaWeb.Forms
             string compania = string.Empty;
             if (NavigationContext.QueryString.TryGetValue("trim", out trimestre))
             {
-                mainPage.IdTrimestre = Int32.Parse(trimestre);
+                mainPage.NumTrimestre = Int32.Parse(trimestre);
             }
             if (NavigationContext.QueryString.TryGetValue("ejerc", out ano))
             {
@@ -88,7 +88,7 @@ namespace TaxonomiaWeb.Forms
         {
             servBmvXblr = new Service1Client();
             servBmvXblr.GenerarContextosCompleted += servBmvXblr_GenerarContextosCompleted;
-            servBmvXblr.GenerarContextosAsync(mainPage.IdTrimestre,mainPage.IdAno);
+            servBmvXblr.GenerarContextosAsync(mainPage.NumTrimestre,mainPage.IdAno);
         }
 
         void servBmvXblr_GenerarContextosCompleted(object sender, GenerarContextosCompletedEventArgs e)
@@ -143,7 +143,7 @@ namespace TaxonomiaWeb.Forms
             {
                 MainPage m = (MainPage)Application.Current.RootVisual;
                 string parameterPageName = formContenido.Descripcion + " - " + formContenido.Contenido;
-                string strUri = string.Format("/Page{0}?name={1}&trim={2}&ejerc={3}&comp={4}", formContenido.Contenido.Replace(" ", "_"), parameterPageName,m.IdTrimestre,m.IdAno,m.Compania);
+                string strUri = string.Format("/Page{0}?name={1}&trim={2}&ejerc={3}&comp={4}", formContenido.Contenido.Replace(" ", "_"), parameterPageName,m.NumTrimestre,m.IdAno,m.Compania);
                 Uri uri = new Uri(strUri, UriKind.Relative);
                 m.navegarPagina(uri);
             }

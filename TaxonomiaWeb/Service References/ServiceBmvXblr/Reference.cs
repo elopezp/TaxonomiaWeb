@@ -1916,6 +1916,8 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         
         private int IdTrimestreField;
         
+        private int NumTrimestreField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Descripcion {
             get {
@@ -1938,6 +1940,19 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 if ((this.IdTrimestreField.Equals(value) != true)) {
                     this.IdTrimestreField = value;
                     this.RaisePropertyChanged("IdTrimestre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumTrimestre {
+            get {
+                return this.NumTrimestreField;
+            }
+            set {
+                if ((this.NumTrimestreField.Equals(value) != true)) {
+                    this.NumTrimestreField = value;
+                    this.RaisePropertyChanged("NumTrimestre");
                 }
             }
         }
@@ -2007,102 +2022,102 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         string EndGetData(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv813000", ReplyAction="http://tempuri.org/IService1/GetBmv813000Response")]
-        System.IAsyncResult BeginGetBmv813000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv813000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv813000> EndGetBmv813000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800600", ReplyAction="http://tempuri.org/IService1/GetBmv800600Response")]
-        System.IAsyncResult BeginGetBmv800600(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800600(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800600> EndGetBmv800600(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800500", ReplyAction="http://tempuri.org/IService1/GetBmv800500Response")]
-        System.IAsyncResult BeginGetBmv800500(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800500(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800500> EndGetBmv800500(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800200", ReplyAction="http://tempuri.org/IService1/GetBmv800200Response")]
-        System.IAsyncResult BeginGetBmv800200(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800200(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800200> EndGetBmv800200(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800100", ReplyAction="http://tempuri.org/IService1/GetBmv800100Response")]
-        System.IAsyncResult BeginGetBmv800100(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800100(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800100> EndGetBmv800100(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800007", ReplyAction="http://tempuri.org/IService1/GetBmv800007Response")]
-        System.IAsyncResult BeginGetBmv800007(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800007(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800007> EndGetBmv800007(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800005", ReplyAction="http://tempuri.org/IService1/GetBmv800005Response")]
-        System.IAsyncResult BeginGetBmv800005(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800005(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800005> EndGetBmv800005(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800003", ReplyAction="http://tempuri.org/IService1/GetBmv800003Response")]
-        System.IAsyncResult BeginGetBmv800003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800003> EndGetBmv800003(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv800001", ReplyAction="http://tempuri.org/IService1/GetBmv800001Response")]
-        System.IAsyncResult BeginGetBmv800001(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv800001(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv800001> EndGetBmv800001(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv700003", ReplyAction="http://tempuri.org/IService1/GetBmv700003Response")]
-        System.IAsyncResult BeginGetBmv700003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv700003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv700003> EndGetBmv700003(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv700002", ReplyAction="http://tempuri.org/IService1/GetBmv700002Response")]
-        System.IAsyncResult BeginGetBmv700002(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv700002(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv700002> EndGetBmv700002(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv700000", ReplyAction="http://tempuri.org/IService1/GetBmv700000Response")]
-        System.IAsyncResult BeginGetBmv700000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv700000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv700000> EndGetBmv700000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv610000", ReplyAction="http://tempuri.org/IService1/GetBmv610000Response")]
-        System.IAsyncResult BeginGetBmv610000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv610000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv610000> EndGetBmv610000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv610000Anterior", ReplyAction="http://tempuri.org/IService1/GetBmv610000AnteriorResponse")]
-        System.IAsyncResult BeginGetBmv610000Anterior(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv610000Anterior(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv610000> EndGetBmv610000Anterior(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv520000", ReplyAction="http://tempuri.org/IService1/GetBmv520000Response")]
-        System.IAsyncResult BeginGetBmv520000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv520000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv520000> EndGetBmv520000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv410000", ReplyAction="http://tempuri.org/IService1/GetBmv410000Response")]
-        System.IAsyncResult BeginGetBmv410000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv410000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv410000> EndGetBmv410000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv310000", ReplyAction="http://tempuri.org/IService1/GetBmv310000Response")]
-        System.IAsyncResult BeginGetBmv310000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv310000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv310000> EndGetBmv310000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv210000", ReplyAction="http://tempuri.org/IService1/GetBmv210000Response")]
-        System.IAsyncResult BeginGetBmv210000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv210000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv210000> EndGetBmv210000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv105000", ReplyAction="http://tempuri.org/IService1/GetBmv105000Response")]
-        System.IAsyncResult BeginGetBmv105000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv105000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv105000> EndGetBmv105000(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetBmv110000", ReplyAction="http://tempuri.org/IService1/GetBmv110000Response")]
-        System.IAsyncResult BeginGetBmv110000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetBmv110000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.Bmv110000> EndGetBmv110000(System.IAsyncResult result);
         
@@ -2137,12 +2152,12 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         System.Collections.ObjectModel.ObservableCollection<TaxonomiaWeb.ServiceBmvXblr.PeriodoAno> EndGetAllYears(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GenerarContextos", ReplyAction="http://tempuri.org/IService1/GenerarContextosResponse")]
-        System.IAsyncResult BeginGenerarContextos(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGenerarContextos(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
         
         int EndGenerarContextos(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetPeriodoSinPresentar", ReplyAction="http://tempuri.org/IService1/GetPeriodoSinPresentarResponse")]
-        System.IAsyncResult BeginGetPeriodoSinPresentar(int idTrimestre, string contenido, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetPeriodoSinPresentar(int numTrimestre, string contenido, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<string> EndGetPeriodoSinPresentar(System.IAsyncResult result);
     }
@@ -3042,8 +3057,8 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv813000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv813000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv813000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv813000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3052,9 +3067,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv813000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv813000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv813000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv813000(System.IAsyncResult result) {
@@ -3070,11 +3085,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv813000Async(int idTrimestre, int idAno) {
-            this.GetBmv813000Async(idTrimestre, idAno, null);
+        public void GetBmv813000Async(int numTrimestre, int idAno) {
+            this.GetBmv813000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv813000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv813000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv813000Delegate == null)) {
                 this.onBeginGetBmv813000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv813000);
             }
@@ -3085,13 +3100,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv813000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv813000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv813000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv813000Delegate, this.onGetBmv813000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800600(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800600(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800600(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800600(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3100,9 +3115,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800600(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800600(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800600(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800600(System.IAsyncResult result) {
@@ -3118,11 +3133,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800600Async(int idTrimestre, int idAno) {
-            this.GetBmv800600Async(idTrimestre, idAno, null);
+        public void GetBmv800600Async(int numTrimestre, int idAno) {
+            this.GetBmv800600Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800600Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800600Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800600Delegate == null)) {
                 this.onBeginGetBmv800600Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800600);
             }
@@ -3133,13 +3148,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800600CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800600Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800600Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800600Delegate, this.onGetBmv800600CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800500(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800500(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800500(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800500(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3148,9 +3163,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800500(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800500(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800500(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800500(System.IAsyncResult result) {
@@ -3166,11 +3181,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800500Async(int idTrimestre, int idAno) {
-            this.GetBmv800500Async(idTrimestre, idAno, null);
+        public void GetBmv800500Async(int numTrimestre, int idAno) {
+            this.GetBmv800500Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800500Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800500Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800500Delegate == null)) {
                 this.onBeginGetBmv800500Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800500);
             }
@@ -3181,13 +3196,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800500CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800500Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800500Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800500Delegate, this.onGetBmv800500CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800200(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800200(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800200(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800200(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3196,9 +3211,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800200(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800200(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800200(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800200(System.IAsyncResult result) {
@@ -3214,11 +3229,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800200Async(int idTrimestre, int idAno) {
-            this.GetBmv800200Async(idTrimestre, idAno, null);
+        public void GetBmv800200Async(int numTrimestre, int idAno) {
+            this.GetBmv800200Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800200Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800200Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800200Delegate == null)) {
                 this.onBeginGetBmv800200Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800200);
             }
@@ -3229,13 +3244,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800200CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800200Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800200Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800200Delegate, this.onGetBmv800200CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800100(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800100(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800100(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800100(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3244,9 +3259,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800100(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800100(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800100(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800100(System.IAsyncResult result) {
@@ -3262,11 +3277,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800100Async(int idTrimestre, int idAno) {
-            this.GetBmv800100Async(idTrimestre, idAno, null);
+        public void GetBmv800100Async(int numTrimestre, int idAno) {
+            this.GetBmv800100Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800100Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800100Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800100Delegate == null)) {
                 this.onBeginGetBmv800100Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800100);
             }
@@ -3277,13 +3292,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800100CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800100Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800100Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800100Delegate, this.onGetBmv800100CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800007(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800007(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800007(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800007(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3292,9 +3307,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800007(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800007(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800007(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800007(System.IAsyncResult result) {
@@ -3310,11 +3325,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800007Async(int idTrimestre, int idAno) {
-            this.GetBmv800007Async(idTrimestre, idAno, null);
+        public void GetBmv800007Async(int numTrimestre, int idAno) {
+            this.GetBmv800007Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800007Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800007Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800007Delegate == null)) {
                 this.onBeginGetBmv800007Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800007);
             }
@@ -3325,13 +3340,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800007CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800007Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800007Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800007Delegate, this.onGetBmv800007CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800005(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800005(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800005(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800005(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3340,9 +3355,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800005(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800005(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800005(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800005(System.IAsyncResult result) {
@@ -3358,11 +3373,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800005Async(int idTrimestre, int idAno) {
-            this.GetBmv800005Async(idTrimestre, idAno, null);
+        public void GetBmv800005Async(int numTrimestre, int idAno) {
+            this.GetBmv800005Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800005Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800005Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800005Delegate == null)) {
                 this.onBeginGetBmv800005Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800005);
             }
@@ -3373,13 +3388,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800005CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800005Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800005Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800005Delegate, this.onGetBmv800005CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800003(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800003(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3388,9 +3403,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800003(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800003(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800003(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800003(System.IAsyncResult result) {
@@ -3406,11 +3421,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800003Async(int idTrimestre, int idAno) {
-            this.GetBmv800003Async(idTrimestre, idAno, null);
+        public void GetBmv800003Async(int numTrimestre, int idAno) {
+            this.GetBmv800003Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800003Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800003Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800003Delegate == null)) {
                 this.onBeginGetBmv800003Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800003);
             }
@@ -3421,13 +3436,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800003CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800003Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800003Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800003Delegate, this.onGetBmv800003CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800001(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv800001(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv800001(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv800001(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3436,9 +3451,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv800001(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800001(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv800001(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv800001(System.IAsyncResult result) {
@@ -3454,11 +3469,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv800001Async(int idTrimestre, int idAno) {
-            this.GetBmv800001Async(idTrimestre, idAno, null);
+        public void GetBmv800001Async(int numTrimestre, int idAno) {
+            this.GetBmv800001Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv800001Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv800001Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv800001Delegate == null)) {
                 this.onBeginGetBmv800001Delegate = new BeginOperationDelegate(this.OnBeginGetBmv800001);
             }
@@ -3469,13 +3484,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv800001CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv800001Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv800001Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv800001Delegate, this.onGetBmv800001CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv700003(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv700003(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3484,9 +3499,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv700003(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700003(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700003(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv700003(System.IAsyncResult result) {
@@ -3502,11 +3517,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv700003Async(int idTrimestre, int idAno) {
-            this.GetBmv700003Async(idTrimestre, idAno, null);
+        public void GetBmv700003Async(int numTrimestre, int idAno) {
+            this.GetBmv700003Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv700003Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv700003Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv700003Delegate == null)) {
                 this.onBeginGetBmv700003Delegate = new BeginOperationDelegate(this.OnBeginGetBmv700003);
             }
@@ -3517,13 +3532,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv700003CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv700003Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv700003Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv700003Delegate, this.onGetBmv700003CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700002(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv700002(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700002(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv700002(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3532,9 +3547,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv700002(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700002(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700002(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv700002(System.IAsyncResult result) {
@@ -3550,11 +3565,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv700002Async(int idTrimestre, int idAno) {
-            this.GetBmv700002Async(idTrimestre, idAno, null);
+        public void GetBmv700002Async(int numTrimestre, int idAno) {
+            this.GetBmv700002Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv700002Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv700002Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv700002Delegate == null)) {
                 this.onBeginGetBmv700002Delegate = new BeginOperationDelegate(this.OnBeginGetBmv700002);
             }
@@ -3565,13 +3580,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv700002CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv700002Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv700002Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv700002Delegate, this.onGetBmv700002CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv700000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv700000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv700000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3580,9 +3595,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv700000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv700000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv700000(System.IAsyncResult result) {
@@ -3598,11 +3613,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv700000Async(int idTrimestre, int idAno) {
-            this.GetBmv700000Async(idTrimestre, idAno, null);
+        public void GetBmv700000Async(int numTrimestre, int idAno) {
+            this.GetBmv700000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv700000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv700000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv700000Delegate == null)) {
                 this.onBeginGetBmv700000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv700000);
             }
@@ -3613,13 +3628,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv700000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv700000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv700000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv700000Delegate, this.onGetBmv700000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv610000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv610000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv610000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv610000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3628,9 +3643,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv610000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv610000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv610000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv610000(System.IAsyncResult result) {
@@ -3646,11 +3661,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv610000Async(int idTrimestre, int idAno) {
-            this.GetBmv610000Async(idTrimestre, idAno, null);
+        public void GetBmv610000Async(int numTrimestre, int idAno) {
+            this.GetBmv610000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv610000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv610000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv610000Delegate == null)) {
                 this.onBeginGetBmv610000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv610000);
             }
@@ -3661,13 +3676,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv610000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv610000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv610000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv610000Delegate, this.onGetBmv610000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv610000Anterior(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv610000Anterior(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv610000Anterior(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv610000Anterior(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3676,9 +3691,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv610000Anterior(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv610000Anterior(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv610000Anterior(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv610000Anterior(System.IAsyncResult result) {
@@ -3694,11 +3709,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv610000AnteriorAsync(int idTrimestre, int idAno) {
-            this.GetBmv610000AnteriorAsync(idTrimestre, idAno, null);
+        public void GetBmv610000AnteriorAsync(int numTrimestre, int idAno) {
+            this.GetBmv610000AnteriorAsync(numTrimestre, idAno, null);
         }
         
-        public void GetBmv610000AnteriorAsync(int idTrimestre, int idAno, object userState) {
+        public void GetBmv610000AnteriorAsync(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv610000AnteriorDelegate == null)) {
                 this.onBeginGetBmv610000AnteriorDelegate = new BeginOperationDelegate(this.OnBeginGetBmv610000Anterior);
             }
@@ -3709,13 +3724,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv610000AnteriorCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv610000AnteriorCompleted);
             }
             base.InvokeAsync(this.onBeginGetBmv610000AnteriorDelegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv610000AnteriorDelegate, this.onGetBmv610000AnteriorCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv520000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv520000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv520000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv520000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3724,9 +3739,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv520000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv520000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv520000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv520000(System.IAsyncResult result) {
@@ -3742,11 +3757,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv520000Async(int idTrimestre, int idAno) {
-            this.GetBmv520000Async(idTrimestre, idAno, null);
+        public void GetBmv520000Async(int numTrimestre, int idAno) {
+            this.GetBmv520000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv520000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv520000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv520000Delegate == null)) {
                 this.onBeginGetBmv520000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv520000);
             }
@@ -3757,13 +3772,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv520000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv520000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv520000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv520000Delegate, this.onGetBmv520000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv410000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv410000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv410000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv410000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3772,9 +3787,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv410000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv410000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv410000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv410000(System.IAsyncResult result) {
@@ -3790,11 +3805,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv410000Async(int idTrimestre, int idAno) {
-            this.GetBmv410000Async(idTrimestre, idAno, null);
+        public void GetBmv410000Async(int numTrimestre, int idAno) {
+            this.GetBmv410000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv410000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv410000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv410000Delegate == null)) {
                 this.onBeginGetBmv410000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv410000);
             }
@@ -3805,13 +3820,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv410000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv410000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv410000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv410000Delegate, this.onGetBmv410000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv310000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv310000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv310000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv310000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3820,9 +3835,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv310000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv310000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv310000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv310000(System.IAsyncResult result) {
@@ -3838,11 +3853,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv310000Async(int idTrimestre, int idAno) {
-            this.GetBmv310000Async(idTrimestre, idAno, null);
+        public void GetBmv310000Async(int numTrimestre, int idAno) {
+            this.GetBmv310000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv310000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv310000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv310000Delegate == null)) {
                 this.onBeginGetBmv310000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv310000);
             }
@@ -3853,13 +3868,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv310000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv310000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv310000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv310000Delegate, this.onGetBmv310000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv210000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv210000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv210000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv210000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3868,9 +3883,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv210000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv210000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv210000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv210000(System.IAsyncResult result) {
@@ -3886,11 +3901,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv210000Async(int idTrimestre, int idAno) {
-            this.GetBmv210000Async(idTrimestre, idAno, null);
+        public void GetBmv210000Async(int numTrimestre, int idAno) {
+            this.GetBmv210000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv210000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv210000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv210000Delegate == null)) {
                 this.onBeginGetBmv210000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv210000);
             }
@@ -3901,13 +3916,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv210000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv210000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv210000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv210000Delegate, this.onGetBmv210000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv105000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv105000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv105000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv105000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3916,9 +3931,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv105000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv105000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv105000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv105000(System.IAsyncResult result) {
@@ -3934,11 +3949,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv105000Async(int idTrimestre, int idAno) {
-            this.GetBmv105000Async(idTrimestre, idAno, null);
+        public void GetBmv105000Async(int numTrimestre, int idAno) {
+            this.GetBmv105000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv105000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv105000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv105000Delegate == null)) {
                 this.onBeginGetBmv105000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv105000);
             }
@@ -3949,13 +3964,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv105000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv105000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv105000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv105000Delegate, this.onGetBmv105000CompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv110000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetBmv110000(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetBmv110000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetBmv110000(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -3964,9 +3979,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetBmv110000(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv110000(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetBmv110000(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGetBmv110000(System.IAsyncResult result) {
@@ -3982,11 +3997,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetBmv110000Async(int idTrimestre, int idAno) {
-            this.GetBmv110000Async(idTrimestre, idAno, null);
+        public void GetBmv110000Async(int numTrimestre, int idAno) {
+            this.GetBmv110000Async(numTrimestre, idAno, null);
         }
         
-        public void GetBmv110000Async(int idTrimestre, int idAno, object userState) {
+        public void GetBmv110000Async(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGetBmv110000Delegate == null)) {
                 this.onBeginGetBmv110000Delegate = new BeginOperationDelegate(this.OnBeginGetBmv110000);
             }
@@ -3997,7 +4012,7 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetBmv110000CompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetBmv110000Completed);
             }
             base.InvokeAsync(this.onBeginGetBmv110000Delegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGetBmv110000Delegate, this.onGetBmv110000CompletedDelegate, userState);
         }
         
@@ -4284,8 +4299,8 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGenerarContextos(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGenerarContextos(idTrimestre, idAno, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGenerarContextos(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGenerarContextos(numTrimestre, idAno, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -4294,9 +4309,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGenerarContextos(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             int idAno = ((int)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGenerarContextos(idTrimestre, idAno, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGenerarContextos(numTrimestre, idAno, callback, asyncState);
         }
         
         private object[] OnEndGenerarContextos(System.IAsyncResult result) {
@@ -4312,11 +4327,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GenerarContextosAsync(int idTrimestre, int idAno) {
-            this.GenerarContextosAsync(idTrimestre, idAno, null);
+        public void GenerarContextosAsync(int numTrimestre, int idAno) {
+            this.GenerarContextosAsync(numTrimestre, idAno, null);
         }
         
-        public void GenerarContextosAsync(int idTrimestre, int idAno, object userState) {
+        public void GenerarContextosAsync(int numTrimestre, int idAno, object userState) {
             if ((this.onBeginGenerarContextosDelegate == null)) {
                 this.onBeginGenerarContextosDelegate = new BeginOperationDelegate(this.OnBeginGenerarContextos);
             }
@@ -4327,13 +4342,13 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGenerarContextosCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGenerarContextosCompleted);
             }
             base.InvokeAsync(this.onBeginGenerarContextosDelegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         idAno}, this.onEndGenerarContextosDelegate, this.onGenerarContextosCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetPeriodoSinPresentar(int idTrimestre, string contenido, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetPeriodoSinPresentar(idTrimestre, contenido, callback, asyncState);
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetPeriodoSinPresentar(int numTrimestre, string contenido, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetPeriodoSinPresentar(numTrimestre, contenido, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -4342,9 +4357,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         private System.IAsyncResult OnBeginGetPeriodoSinPresentar(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int idTrimestre = ((int)(inValues[0]));
+            int numTrimestre = ((int)(inValues[0]));
             string contenido = ((string)(inValues[1]));
-            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetPeriodoSinPresentar(idTrimestre, contenido, callback, asyncState);
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetPeriodoSinPresentar(numTrimestre, contenido, callback, asyncState);
         }
         
         private object[] OnEndGetPeriodoSinPresentar(System.IAsyncResult result) {
@@ -4360,11 +4375,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             }
         }
         
-        public void GetPeriodoSinPresentarAsync(int idTrimestre, string contenido) {
-            this.GetPeriodoSinPresentarAsync(idTrimestre, contenido, null);
+        public void GetPeriodoSinPresentarAsync(int numTrimestre, string contenido) {
+            this.GetPeriodoSinPresentarAsync(numTrimestre, contenido, null);
         }
         
-        public void GetPeriodoSinPresentarAsync(int idTrimestre, string contenido, object userState) {
+        public void GetPeriodoSinPresentarAsync(int numTrimestre, string contenido, object userState) {
             if ((this.onBeginGetPeriodoSinPresentarDelegate == null)) {
                 this.onBeginGetPeriodoSinPresentarDelegate = new BeginOperationDelegate(this.OnBeginGetPeriodoSinPresentar);
             }
@@ -4375,7 +4390,7 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 this.onGetPeriodoSinPresentarCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetPeriodoSinPresentarCompleted);
             }
             base.InvokeAsync(this.onBeginGetPeriodoSinPresentarDelegate, new object[] {
-                        idTrimestre,
+                        numTrimestre,
                         contenido}, this.onEndGetPeriodoSinPresentarDelegate, this.onGetPeriodoSinPresentarCompletedDelegate, userState);
         }
         
@@ -4468,9 +4483,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv813000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv813000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv813000", _args, callback, asyncState);
                 return _result;
@@ -4482,9 +4497,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800600(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800600(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800600", _args, callback, asyncState);
                 return _result;
@@ -4496,9 +4511,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800500(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800500(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800500", _args, callback, asyncState);
                 return _result;
@@ -4510,9 +4525,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800200(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800200(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800200", _args, callback, asyncState);
                 return _result;
@@ -4524,9 +4539,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800100(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800100(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800100", _args, callback, asyncState);
                 return _result;
@@ -4538,9 +4553,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800007(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800007(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800007", _args, callback, asyncState);
                 return _result;
@@ -4552,9 +4567,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800005(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800005(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800005", _args, callback, asyncState);
                 return _result;
@@ -4566,9 +4581,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800003", _args, callback, asyncState);
                 return _result;
@@ -4580,9 +4595,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv800001(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv800001(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv800001", _args, callback, asyncState);
                 return _result;
@@ -4594,9 +4609,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv700003(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv700003(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv700003", _args, callback, asyncState);
                 return _result;
@@ -4608,9 +4623,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv700002(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv700002(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv700002", _args, callback, asyncState);
                 return _result;
@@ -4622,9 +4637,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv700000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv700000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv700000", _args, callback, asyncState);
                 return _result;
@@ -4636,9 +4651,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv610000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv610000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv610000", _args, callback, asyncState);
                 return _result;
@@ -4650,9 +4665,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv610000Anterior(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv610000Anterior(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv610000Anterior", _args, callback, asyncState);
                 return _result;
@@ -4664,9 +4679,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv520000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv520000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv520000", _args, callback, asyncState);
                 return _result;
@@ -4678,9 +4693,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv410000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv410000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv410000", _args, callback, asyncState);
                 return _result;
@@ -4692,9 +4707,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv310000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv310000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv310000", _args, callback, asyncState);
                 return _result;
@@ -4706,9 +4721,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv210000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv210000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv210000", _args, callback, asyncState);
                 return _result;
@@ -4720,9 +4735,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv105000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv105000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv105000", _args, callback, asyncState);
                 return _result;
@@ -4734,9 +4749,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetBmv110000(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetBmv110000(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GetBmv110000", _args, callback, asyncState);
                 return _result;
@@ -4829,9 +4844,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGenerarContextos(int idTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGenerarContextos(int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = idAno;
                 System.IAsyncResult _result = base.BeginInvoke("GenerarContextos", _args, callback, asyncState);
                 return _result;
@@ -4843,9 +4858,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetPeriodoSinPresentar(int idTrimestre, string contenido, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetPeriodoSinPresentar(int numTrimestre, string contenido, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
-                _args[0] = idTrimestre;
+                _args[0] = numTrimestre;
                 _args[1] = contenido;
                 System.IAsyncResult _result = base.BeginInvoke("GetPeriodoSinPresentar", _args, callback, asyncState);
                 return _result;

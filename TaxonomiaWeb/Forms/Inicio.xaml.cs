@@ -97,13 +97,14 @@ namespace TaxonomiaWeb.Forms
                 PeriodoTrimestre predeterminado = new PeriodoTrimestre();
                 predeterminado.Descripcion = "-";
                 predeterminado.IdTrimestre = -1;
+                predeterminado.NumTrimestre = -1;
                 e.Result.Add(predeterminado);
                 CmbTrimestre.ItemsSource = e.Result;
                 CmbTrimestre.DisplayMemberPath = "Descripcion";
-                CmbTrimestre.SelectedValuePath = "IdTrimestre";
+                CmbTrimestre.SelectedValuePath = "NumTrimestre";
                 if (mainPage.IdAno > 0)
                 {
-                    CmbTrimestre.SelectedValue = mainPage.IdTrimestre;
+                    CmbTrimestre.SelectedValue = mainPage.NumTrimestre;
                 }
                 else
                 {

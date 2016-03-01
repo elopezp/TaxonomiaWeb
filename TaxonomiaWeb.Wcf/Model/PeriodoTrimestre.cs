@@ -40,6 +40,22 @@ namespace TaxonomiaWeb.Model
             }
         }
 
+        private int numTrimestre;
+
+        public int NumTrimestre
+        {
+
+            get { return numTrimestre; }
+            set
+            {
+                if (value != numTrimestre)
+                {
+                    numTrimestre = value;
+                    onPropertyChanged(this, "");
+                }
+            }
+        }
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

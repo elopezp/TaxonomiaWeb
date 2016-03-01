@@ -50,7 +50,7 @@ namespace TaxonomiaWeb.Forms
 
                 if (NavigationContext.QueryString.TryGetValue("trim", out trimestre))
                 {
-                    mainPage.IdTrimestre = Int32.Parse(trimestre);
+                    mainPage.NumTrimestre = Int32.Parse(trimestre);
                 }
                 if (NavigationContext.QueryString.TryGetValue("ejerc", out ano))
                 {
@@ -62,7 +62,7 @@ namespace TaxonomiaWeb.Forms
                 }
                 if (NavigationContext.QueryString.TryGetValue("name", out parameterPageName))
                 {
-                    Uri uri = new Uri(string.Format("/Home?trim={0}&ejerc={1}&comp={2}", mainPage.IdTrimestre.ToString(), mainPage.IdAno.ToString(), mainPage.Compania), UriKind.Relative);
+                    Uri uri = new Uri(string.Format("/Home?trim={0}&ejerc={1}&comp={2}", mainPage.NumTrimestre.ToString(), mainPage.IdAno.ToString(), mainPage.Compania), UriKind.Relative);
                     mainPage.actualizarTituloContenidos(parameterPageName, "Regresar", uri);
                 }
             }
@@ -80,7 +80,7 @@ namespace TaxonomiaWeb.Forms
             fillHiddenColumns();
             servBmvXblr = new Service1Client();
             servBmvXblr.GetPeriodoSinPresentarCompleted += servBmvXblr_GetPeriodoSinPresentarCompleted;
-            servBmvXblr.GetPeriodoSinPresentarAsync(mainPage.IdTrimestre, "310000");
+            servBmvXblr.GetPeriodoSinPresentarAsync(mainPage.NumTrimestre, "310000");
             //Agregamos los manejadores de eventos del datagrid
             //Se dispara cuando se comienza a editar una celda
             this.DgvTaxo.PreparingCellForEdit += DgvTaxo_PreparingCellForEdit;
@@ -98,7 +98,7 @@ namespace TaxonomiaWeb.Forms
                 listContextoSinPresentar = e.Result;
             }
             servBmvXblr.GetBmv310000Completed += servBmvXblr_GetBmv310000Completed;
-            servBmvXblr.GetBmv310000Async(mainPage.IdTrimestre, mainPage.IdAno);
+            servBmvXblr.GetBmv310000Async(mainPage.NumTrimestre, mainPage.IdAno);
         }
 
 
@@ -346,7 +346,7 @@ namespace TaxonomiaWeb.Forms
                 ObservableCollection<ReporteDetalle> sortedList = sortReport(listaBmvAgrupada, listaBmv);
                 servBmvXblr = new Service1Client();
                 servBmvXblr.SaveBmvReporteCompleted += servBmvXblr_SaveBmvReporteCompleted;
-                servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.IdTrimestre);
+                servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.NumTrimestre);
                 busyIndicator.IsBusy = true;
             }
         }

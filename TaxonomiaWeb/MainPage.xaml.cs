@@ -71,15 +71,15 @@ namespace TaxonomiaWeb
             ChildWindow errorWin = new ErrorWindow(e.Uri);
             errorWin.Show();
         }
-
         public int IdAno { get; set; }
-        public int IdTrimestre { get; set; }
+        //Numero de trimestre del año. 1,2,3 o 4.
+        public int NumTrimestre { get; set; }
         public string Compania { get; set; }
 
         public void actualizarDatosDeInicio(int idAno, int idTrimestre, string compania)
         {
             IdAno = idAno;
-            IdTrimestre = idTrimestre;
+            NumTrimestre = idTrimestre;
             Compania = compania;
         }
 

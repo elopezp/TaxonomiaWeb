@@ -19,7 +19,7 @@
   <xs:element name="GetBmv813000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -34,7 +34,7 @@
   <xs:element name="GetBmv800600">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -49,7 +49,7 @@
   <xs:element name="GetBmv800500">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -64,7 +64,7 @@
   <xs:element name="GetBmv800200">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -79,7 +79,7 @@
   <xs:element name="GetBmv800100">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -94,7 +94,7 @@
   <xs:element name="GetBmv800007">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -109,7 +109,7 @@
   <xs:element name="GetBmv800005">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -124,7 +124,7 @@
   <xs:element name="GetBmv800003">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -139,7 +139,7 @@
   <xs:element name="GetBmv800001">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -154,7 +154,7 @@
   <xs:element name="GetBmv700003">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -169,7 +169,7 @@
   <xs:element name="GetBmv700002">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -184,7 +184,7 @@
   <xs:element name="GetBmv700000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -199,7 +199,7 @@
   <xs:element name="GetBmv610000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -214,7 +214,7 @@
   <xs:element name="GetBmv610000Anterior">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -229,7 +229,7 @@
   <xs:element name="GetBmv520000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -244,7 +244,7 @@
   <xs:element name="GetBmv410000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -259,7 +259,7 @@
   <xs:element name="GetBmv310000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -274,7 +274,7 @@
   <xs:element name="GetBmv210000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -289,7 +289,7 @@
   <xs:element name="GetBmv105000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -304,7 +304,7 @@
   <xs:element name="GetBmv110000">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -403,7 +403,7 @@
   <xs:element name="GenerarContextos">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="idAno" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -418,7 +418,7 @@
   <xs:element name="GetPeriodoSinPresentar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idTrimestre" type="xs:int" />
+        <xs:element minOccurs="0" name="numTrimestre" type="xs:int" />
         <xs:element minOccurs="0" name="contenido" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

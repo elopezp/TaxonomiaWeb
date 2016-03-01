@@ -23,7 +23,7 @@ namespace TaxonomiaWeb.Wcf
             return string.Format("You entered: {0}", value);
         }
 
-        public int GenerarContextos(int idTrimestre, int idAno)
+        public int GenerarContextos(int numTrimestre, int idAno)
         {
             int cantidadContextosGenerados = 0;
             List<Bmv105000> list = new List<Bmv105000>();
@@ -43,7 +43,8 @@ namespace TaxonomiaWeb.Wcf
                                  join vc in
                                      (from sub in context.Cat_Validacion_Contexto
                                       join p in context.Periodoes on sub.Id_Validacion_Contexto equals p.Id_Validacion_Contexto
-                                      where p.Id_Trimestre == idTrimestre && p.Id_Ano == idAno
+                                      join trim in context.Cat_Trimestre on p.Id_Trimestre equals trim.Id_Trimestre
+                                      where trim.Trimestre == numTrimestre && p.Id_Ano == idAno
                                       select new {Fecha_Inicio = p.Fecha_Inicio,
                                                   Fecha_Fin = p.Fecha_Fin,
                                                   Id_Validacion_Contexto = sub.Id_Validacion_Contexto,
@@ -62,7 +63,7 @@ namespace TaxonomiaWeb.Wcf
                                  from taxdimensionformato in taxdimensionformato_group.DefaultIfEmpty()
                                  from taxAxisPadreCabeceraX in taxAxisPadreCabeceraX_group.DefaultIfEmpty()
                                  from taxAxisPadreCabeceraY in taxAxisPadreCabeceraY_group.DefaultIfEmpty()
-                                 where trd.Id_Trimestre == idTrimestre && trd.Id_Ano == idAno
+                                 where ct.Id_Trimestre == numTrimestre && trd.Id_Ano == idAno
                                  orderby c.Contenido ascending
                                  select new
                                  {
@@ -253,14 +254,14 @@ namespace TaxonomiaWeb.Wcf
         //  return res;
 
         //}
-        public List<Bmv105000> GetBmv105000(int idTrimestre, int idAno)
+        public List<Bmv105000> GetBmv105000(int numTrimestre, int idAno)
         {
             List<Bmv105000> list = new List<Bmv105000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "105000", idTrimestre, idAno);    
+                    var taxDet = GetContent(context, "105000", numTrimestre, idAno);    
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -299,14 +300,14 @@ namespace TaxonomiaWeb.Wcf
 
 
 
-        public List<Bmv110000> GetBmv110000(int idTrimestre, int idAno)
+        public List<Bmv110000> GetBmv110000(int numTrimestre, int idAno)
         {
             List<Bmv110000> list = new List<Bmv110000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "110000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "110000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -341,14 +342,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv210000> GetBmv210000(int idTrimestre, int idAno)
+        public List<Bmv210000> GetBmv210000(int numTrimestre, int idAno)
         {
             List<Bmv210000> list = new List<Bmv210000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "210000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "210000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -383,14 +384,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv310000> GetBmv310000(int idTrimestre, int idAno)
+        public List<Bmv310000> GetBmv310000(int numTrimestre, int idAno)
         {
             List<Bmv310000> list = new List<Bmv310000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "310000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "310000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -425,14 +426,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv410000> GetBmv410000(int idTrimestre, int idAno)
+        public List<Bmv410000> GetBmv410000(int numTrimestre, int idAno)
         {
             List<Bmv410000> list = new List<Bmv410000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "410000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "410000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -467,14 +468,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv520000> GetBmv520000(int idTrimestre, int idAno)
+        public List<Bmv520000> GetBmv520000(int numTrimestre, int idAno)
         {
             List<Bmv520000> list = new List<Bmv520000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "520000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "520000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -510,14 +511,14 @@ namespace TaxonomiaWeb.Wcf
         }
 
 
-        public List<Bmv610000> GetBmv610000(int idTrimestre, int idAno)
+        public List<Bmv610000> GetBmv610000(int numTrimestre, int idAno)
         {
             List<Bmv610000> list = new List<Bmv610000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "610000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "610000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -553,14 +554,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv610000> GetBmv610000Anterior(int idTrimestre, int idAno)
+        public List<Bmv610000> GetBmv610000Anterior(int numTrimestre, int idAno)
         {
             List<Bmv610000> list = new List<Bmv610000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "610000 Anterior", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "610000 Anterior", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -694,7 +695,7 @@ namespace TaxonomiaWeb.Wcf
         }
 
 
-        public bool SaveBmvReporte(List<ReporteDetalle> listBmv, string emisora, int idAno, int idTrimestre)
+        public bool SaveBmvReporte(List<ReporteDetalle> listBmv, string emisora, int idAno, int numTrimestre)
         {
             bool res = false;
             try
@@ -705,8 +706,11 @@ namespace TaxonomiaWeb.Wcf
                     if (listBmv != null && listBmv.Any() == true)
                     {
                         DateTime dtNow = DateTime.Now;
-
-                        if (idAno > 0 && idTrimestre > 0)
+                        context.Configuration.LazyLoadingEnabled = false;
+                        var catTrimestre = (from u in context.Cat_Trimestre
+                                             where u.Trimestre == numTrimestre
+                                             select u).FirstOrDefault();
+                        if (idAno > 0 && catTrimestre != null)
                         {
                             foreach (var bmvItem in listBmv)
                             {
@@ -719,7 +723,7 @@ namespace TaxonomiaWeb.Wcf
                                     {
                                         Taxonomia_Reporte_Detalle trd = new Taxonomia_Reporte_Detalle();
                                         trd.Id_Ano = idAno;
-                                        trd.Id_Trimestre = idTrimestre;
+                                        trd.Id_Trimestre = catTrimestre.Id_Trimestre;
                                         trd.Id_Taxonomia_Reporte = bmvItem.IdReporte;
                                         trd.Valor = bmvItem.Valor;
                                         trd.Fecha_Guardado = dtNow;
@@ -728,7 +732,7 @@ namespace TaxonomiaWeb.Wcf
                                     //En caso contrario actualizamos el registro
                                     else
                                     {
-                                        Taxonomia_Reporte_Detalle trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == idTrimestre);
+                                        Taxonomia_Reporte_Detalle trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == catTrimestre.Id_Trimestre);
                                         if (trd != null)
                                         {
                                             if (bmvItem.Estado == true)
@@ -765,7 +769,7 @@ namespace TaxonomiaWeb.Wcf
             return res;
         }
 
-        public bool SaveDinamicoBmvReporte(List<ReporteDetalle> listBmv, string emisora, int idAno, int idTrimestre)
+        public bool SaveDinamicoBmvReporte(List<ReporteDetalle> listBmv, string emisora, int idAno, int numTrimestre)
         {
             bool res = false;
             try
@@ -776,8 +780,11 @@ namespace TaxonomiaWeb.Wcf
                     if (listBmv != null && listBmv.Any() == true)
                     {
                         DateTime dtNow = DateTime.Now;
-
-                        if (idAno > 0 && idTrimestre > 0)
+                        context.Configuration.LazyLoadingEnabled = false;
+                        var catTrimestre = (from u in context.Cat_Trimestre
+                                            where u.Trimestre == numTrimestre
+                                            select u).FirstOrDefault();
+                        if (idAno > 0 && catTrimestre != null)
                         {
                             foreach (var bmvItem in listBmv)
                             {
@@ -790,7 +797,7 @@ namespace TaxonomiaWeb.Wcf
                                     {
                                         Taxonomia_Reporte_Detalle trd = new Taxonomia_Reporte_Detalle();
                                         trd.Id_Ano = idAno;
-                                        trd.Id_Trimestre = idTrimestre;
+                                        trd.Id_Trimestre = catTrimestre.Id_Trimestre;
                                         trd.Id_Taxonomia_Reporte = bmvItem.IdReporte;
                                         trd.Valor = bmvItem.Valor;
                                         trd.Identificador_Fila = bmvItem.IdentificadorFila;
@@ -800,7 +807,7 @@ namespace TaxonomiaWeb.Wcf
                                     //En caso contrario actualizamos o eliminamos el registro
                                     else
                                     {
-                                        Taxonomia_Reporte_Detalle trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == idTrimestre && bmvItem.IdentificadorFila == c.Identificador_Fila);
+                                        Taxonomia_Reporte_Detalle trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == catTrimestre.Id_Trimestre && bmvItem.IdentificadorFila == c.Identificador_Fila);
                                         if (trd != null) 
                                         {
                                             if(bmvItem.Estado == true)
@@ -841,14 +848,14 @@ namespace TaxonomiaWeb.Wcf
 
 
 
-        public List<Bmv813000> GetBmv813000(int idTrimestre, int idAno)
+        public List<Bmv813000> GetBmv813000(int numTrimestre, int idAno)
         {
             List<Bmv813000> list = new List<Bmv813000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "813000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "813000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -883,14 +890,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800600> GetBmv800600(int idTrimestre, int idAno)
+        public List<Bmv800600> GetBmv800600(int numTrimestre, int idAno)
         {
             List<Bmv800600> list = new List<Bmv800600>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800600", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800600", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -925,14 +932,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800500> GetBmv800500(int idTrimestre, int idAno)
+        public List<Bmv800500> GetBmv800500(int numTrimestre, int idAno)
         {
             List<Bmv800500> list = new List<Bmv800500>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800500", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800500", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -967,14 +974,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800200> GetBmv800200(int idTrimestre, int idAno)
+        public List<Bmv800200> GetBmv800200(int numTrimestre, int idAno)
         {
             List<Bmv800200> list = new List<Bmv800200>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800200", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800200", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1009,14 +1016,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800100> GetBmv800100(int idTrimestre, int idAno)
+        public List<Bmv800100> GetBmv800100(int numTrimestre, int idAno)
         {
             List<Bmv800100> list = new List<Bmv800100>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800100", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800100", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1051,14 +1058,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800007> GetBmv800007(int idTrimestre, int idAno)
+        public List<Bmv800007> GetBmv800007(int numTrimestre, int idAno)
         {
             List<Bmv800007> list = new List<Bmv800007>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800007", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800007", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1093,14 +1100,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800005> GetBmv800005(int idTrimestre, int idAno)
+        public List<Bmv800005> GetBmv800005(int numTrimestre, int idAno)
         {
             List<Bmv800005> list = new List<Bmv800005>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetDynamicContent(context, "800005", idTrimestre, idAno);
+                    var taxDet = GetDynamicContent(context, "800005", numTrimestre, idAno);
                     if (taxDet != null && taxDet.Any() == true)
                     {
 
@@ -1136,14 +1143,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800003> GetBmv800003(int idTrimestre, int idAno)
+        public List<Bmv800003> GetBmv800003(int numTrimestre, int idAno)
         {
             List<Bmv800003> list = new List<Bmv800003>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "800003", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "800003", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1178,14 +1185,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv800001> GetBmv800001(int idTrimestre, int idAno)
+        public List<Bmv800001> GetBmv800001(int numTrimestre, int idAno)
         {
             List<Bmv800001> list = new List<Bmv800001>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetDynamicContent(context, "800001", idTrimestre, idAno);
+                    var taxDet = GetDynamicContent(context, "800001", numTrimestre, idAno);
                     if (taxDet != null && taxDet.Any() == true)
                     {
 
@@ -1231,14 +1238,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv700003> GetBmv700003(int idTrimestre, int idAno)
+        public List<Bmv700003> GetBmv700003(int numTrimestre, int idAno)
         {
             List<Bmv700003> list = new List<Bmv700003>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "700003", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "700003", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1273,14 +1280,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv700002> GetBmv700002(int idTrimestre, int idAno)
+        public List<Bmv700002> GetBmv700002(int numTrimestre, int idAno)
         {
             List<Bmv700002> list = new List<Bmv700002>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "700002", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "700002", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1315,14 +1322,14 @@ namespace TaxonomiaWeb.Wcf
             return list;
         }
 
-        public List<Bmv700000> GetBmv700000(int idTrimestre, int idAno)
+        public List<Bmv700000> GetBmv700000(int numTrimestre, int idAno)
         {
             List<Bmv700000> list = new List<Bmv700000>();
             try
             {
                 using (var context = new BmvXblrEntities())
                 {
-                    var taxDet = GetContent(context, "700000", idTrimestre, idAno);
+                    var taxDet = GetContent(context, "700000", numTrimestre, idAno);
 
                     if (taxDet != null && taxDet.Any() == true)
                     {
@@ -1371,13 +1378,16 @@ namespace TaxonomiaWeb.Wcf
                                        select u);
                         if(tempTrimestre != null && tempTrimestre.Any() == true)
                         {
-                     
-                            list = (from i in tempTrimestre
-                                   select new PeriodoTrimestre 
-                                   { 
-                                       Descripcion = i.Descripcion,
-                                       IdTrimestre = i.Id_Trimestre
-                                   }).ToList();
+
+                            foreach (var p in tempTrimestre)
+                            {
+                                PeriodoTrimestre item = new PeriodoTrimestre();
+                                item.IdTrimestre = p.Id_Trimestre;
+                                item.Descripcion = p.Descripcion;
+                                item.NumTrimestre = p.Trimestre.HasValue == true ? Convert.ToInt32(p.Trimestre.Value) : 0; 
+                                list.Add(item);
+
+                            }
                         }
 
                     }
@@ -1431,7 +1441,9 @@ namespace TaxonomiaWeb.Wcf
                          from tr in tr_group.DefaultIfEmpty()
                          join c in context.Cat_Contenido on tr.Id_Contenido equals c.Id_Contenido into c_group
                          join trd in
-                             (from sub in context.Taxonomia_Reporte_Detalle where sub.Id_Trimestre == idTrimestre && sub.Id_Ano == idAno select sub)
+                             (from sub in context.Taxonomia_Reporte_Detalle
+                              join trim in context.Cat_Trimestre on sub.Id_Trimestre equals trim.Id_Trimestre
+                              where trim.Trimestre == idTrimestre && sub.Id_Ano == idAno select sub)
                          on tr.Id_Taxonomia_Reporte equals trd.Id_Taxonomia_Reporte into trd_group
                          join tc in context.Cat_Taxonomia_Columna on tr.Id_Taxonomia_Columna equals tc.Id_Taxonomia_Columna into tc_group
                          from tc in tc_group.DefaultIfEmpty()
@@ -1463,7 +1475,7 @@ namespace TaxonomiaWeb.Wcf
             return taxDet;
         }
 
-        private IEnumerable<dynamic> GetDynamicContent(BmvXblrEntities context, string contenido, int idTrimestre, int idAno)
+        private IEnumerable<dynamic> GetDynamicContent(BmvXblrEntities context, string contenido, int numTrimestre, int idAno)
         {
             var taxDet = from td in context.Cat_Taxonomia_Detalle
                          join f in context.Cat_Tipo_Formato on td.Id_Tipo_Formato equals f.Id_Tipo_Formato into f_group
@@ -1472,7 +1484,10 @@ namespace TaxonomiaWeb.Wcf
                          from tr in tr_group.DefaultIfEmpty()
                          join c in context.Cat_Contenido on tr.Id_Contenido equals c.Id_Contenido into c_group
                          join trd in
-                             (from sub in context.Taxonomia_Reporte_Detalle where sub.Id_Trimestre == idTrimestre && sub.Id_Ano == idAno select sub)
+                             (from sub in context.Taxonomia_Reporte_Detalle
+                              join trim in context.Cat_Trimestre on sub.Id_Trimestre equals trim.Id_Trimestre
+                              where trim.Trimestre == numTrimestre && sub.Id_Ano == idAno
+                              select sub)
                          on tr.Id_Taxonomia_Reporte equals trd.Id_Taxonomia_Reporte into trd_group
                          join tc in context.Cat_Taxonomia_Columna on tr.Id_Taxonomia_Columna equals tc.Id_Taxonomia_Columna into tc_group
                          from tc in tc_group.DefaultIfEmpty()
@@ -1506,7 +1521,7 @@ namespace TaxonomiaWeb.Wcf
         }
 
 
-        public List<string> GetPeriodoSinPresentar(int idTrimestre, string contenido)
+        public List<string> GetPeriodoSinPresentar(int numTrimestre, string contenido)
         {
             List<String> listAtributoColumna = new List<String>();
             try
@@ -1520,7 +1535,8 @@ namespace TaxonomiaWeb.Wcf
                                          join mc in context.Cat_Modelo_Clase on tc.Id_Modelo_Clase equals mc.Id_Modelo_Clase
                                          join vc in context.Cat_Validacion_Contexto on tc.Id_Validacion_Contexto equals vc.Id_Validacion_Contexto
                                          join ps in context.Periodo_Sin_Presentar on vc.Id_Validacion_Contexto equals ps.Id_Validacion_Contexto
-                                         where cc.Contenido.Equals(contenido) && ps.Id_Trimestre == idTrimestre
+                                         join trim in context.Cat_Trimestre on ps.Id_Trimestre equals trim.Id_Trimestre
+                                         where cc.Contenido.Equals(contenido) && trim.Trimestre == numTrimestre
                                          select mc.Atributo);
                     if (tempList != null && tempList.Any() == true)
                     {

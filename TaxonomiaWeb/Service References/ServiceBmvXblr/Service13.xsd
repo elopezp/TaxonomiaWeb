@@ -446,6 +446,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdTrimestre" type="xs:int" />
+      <xs:element minOccurs="0" name="NumTrimestre" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PeriodoTrimestre" nillable="true" type="tns:PeriodoTrimestre" />

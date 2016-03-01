@@ -18,64 +18,64 @@ namespace TaxonomiaWeb.Wcf
         string GetData(int value);
 
         [OperationContract]
-        List<Bmv813000> GetBmv813000(int idTrimestre, int idAno);
+        List<Bmv813000> GetBmv813000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800600> GetBmv800600(int idTrimestre, int idAno);
+        List<Bmv800600> GetBmv800600(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800500> GetBmv800500(int idTrimestre, int idAno);
+        List<Bmv800500> GetBmv800500(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800200> GetBmv800200(int idTrimestre, int idAno);
+        List<Bmv800200> GetBmv800200(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800100> GetBmv800100(int idTrimestre, int idAno);
+        List<Bmv800100> GetBmv800100(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800007> GetBmv800007(int idTrimestre, int idAno);
+        List<Bmv800007> GetBmv800007(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800005> GetBmv800005(int idTrimestre, int idAno);
+        List<Bmv800005> GetBmv800005(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800003> GetBmv800003(int idTrimestre, int idAno);
+        List<Bmv800003> GetBmv800003(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv800001> GetBmv800001(int idTrimestre, int idAno);
+        List<Bmv800001> GetBmv800001(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv700003> GetBmv700003(int idTrimestre, int idAno);
+        List<Bmv700003> GetBmv700003(int numTrimestre, int idAno);
         
         [OperationContract]
-        List<Bmv700002> GetBmv700002(int idTrimestre, int idAno);
+        List<Bmv700002> GetBmv700002(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv700000> GetBmv700000(int idTrimestre, int idAno);
+        List<Bmv700000> GetBmv700000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv610000> GetBmv610000(int idTrimestre, int idAno);
+        List<Bmv610000> GetBmv610000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv610000> GetBmv610000Anterior(int idTrimestre, int idAno);
+        List<Bmv610000> GetBmv610000Anterior(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv520000> GetBmv520000(int idTrimestre, int idAno);
+        List<Bmv520000> GetBmv520000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv410000> GetBmv410000(int idTrimestre, int idAno);
+        List<Bmv410000> GetBmv410000(int numTrimestre, int idAno);
         
         [OperationContract]
-        List<Bmv310000> GetBmv310000(int idTrimestre, int idAno);
+        List<Bmv310000> GetBmv310000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv210000> GetBmv210000(int idTrimestre, int idAno);
+        List<Bmv210000> GetBmv210000(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<Bmv105000> GetBmv105000(int idTrimestre,int idAno);
+        List<Bmv105000> GetBmv105000(int numTrimestre,int idAno);
 
         [OperationContract]
-        List<Bmv110000> GetBmv110000(int idTrimestre, int idAno);
+        List<Bmv110000> GetBmv110000(int numTrimestre, int idAno);
 
         [OperationContract]
         List<FormContenido> GetAllForms();
@@ -96,10 +96,10 @@ namespace TaxonomiaWeb.Wcf
         List<PeriodoAno> GetAllYears();
 
         [OperationContract]
-        int GenerarContextos(int idTrimestre, int idAno);
+        int GenerarContextos(int numTrimestre, int idAno);
 
         [OperationContract]
-        List<String> GetPeriodoSinPresentar(int idTrimestre, string contenido);
+        List<String> GetPeriodoSinPresentar(int numTrimestre, string contenido);
 
         // TODO: Add your service operations here
     }
