@@ -25,10 +25,10 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public Nullable<int> Id_Taxonomia_Detalle { get; set; }
         public Nullable<int> Id_Validacion_Contexto { get; set; }
     
-        public virtual Cat_Modelo_Clase Cat_Modelo_Clase { get; set; }
         public virtual Cat_Validacion_Contexto Cat_Validacion_Contexto { get; set; }
         public virtual ICollection<Taxonomia_Reporte> Taxonomia_Reporte { get; set; }
         public virtual Cat_Contenido Cat_Contenido { get; set; }
         public virtual Cat_Taxonomia_Detalle Cat_Taxonomia_Detalle { get; set; }
+        public virtual Cat_Modelo_Clase Cat_Modelo_Clase { get; set; }
     }
 }

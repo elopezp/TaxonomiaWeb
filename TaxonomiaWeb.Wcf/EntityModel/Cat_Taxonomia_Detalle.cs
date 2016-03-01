@@ -16,14 +16,14 @@ namespace TaxonomiaWeb.Wcf.EntityModel
     {
         public Cat_Taxonomia_Detalle()
         {
-            this.Cat_Modelo_Clase = new HashSet<Cat_Modelo_Clase>();
-            this.Cat_Modelo_Clase1 = new HashSet<Cat_Modelo_Clase>();
             this.Cat_Taxonomia_Columna = new HashSet<Cat_Taxonomia_Columna>();
             this.Cat_Taxonomia_Detalle1 = new HashSet<Cat_Taxonomia_Detalle>();
             this.Cat_Taxonomia_Detalle11 = new HashSet<Cat_Taxonomia_Detalle>();
             this.Taxonomia_Detalle_Suma = new HashSet<Taxonomia_Detalle_Suma>();
             this.Taxonomia_Detalle_Suma1 = new HashSet<Taxonomia_Detalle_Suma>();
             this.Taxonomia_Reporte = new HashSet<Taxonomia_Reporte>();
+            this.Cat_Modelo_Clase = new HashSet<Cat_Modelo_Clase>();
+            this.Cat_Modelo_Clase1 = new HashSet<Cat_Modelo_Clase>();
         }
     
         public int Id_Taxonomia_Detalle { get; set; }
@@ -42,8 +42,6 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public Nullable<int> Nivel_Sangria { get; set; }
         public Nullable<bool> Campo_Dinamico { get; set; }
     
-        public virtual ICollection<Cat_Modelo_Clase> Cat_Modelo_Clase { get; set; }
-        public virtual ICollection<Cat_Modelo_Clase> Cat_Modelo_Clase1 { get; set; }
         public virtual Cat_Origen_Elemento Cat_Origen_Elemento { get; set; }
         public virtual ICollection<Cat_Taxonomia_Columna> Cat_Taxonomia_Columna { get; set; }
         public virtual ICollection<Cat_Taxonomia_Detalle> Cat_Taxonomia_Detalle1 { get; set; }
@@ -54,5 +52,7 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public virtual ICollection<Taxonomia_Detalle_Suma> Taxonomia_Detalle_Suma { get; set; }
         public virtual ICollection<Taxonomia_Detalle_Suma> Taxonomia_Detalle_Suma1 { get; set; }
         public virtual ICollection<Taxonomia_Reporte> Taxonomia_Reporte { get; set; }
+        public virtual ICollection<Cat_Modelo_Clase> Cat_Modelo_Clase { get; set; }
+        public virtual ICollection<Cat_Modelo_Clase> Cat_Modelo_Clase1 { get; set; }
     }
 }

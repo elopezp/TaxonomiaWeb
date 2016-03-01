@@ -26,7 +26,6 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         }
     
         public DbSet<Cat_Ano> Cat_Ano { get; set; }
-        public DbSet<Cat_Modelo_Clase> Cat_Modelo_Clase { get; set; }
         public DbSet<Cat_Origen_Elemento> Cat_Origen_Elemento { get; set; }
         public DbSet<Cat_Tipo_Formato> Cat_Tipo_Formato { get; set; }
         public DbSet<Cat_Trimestre> Cat_Trimestre { get; set; }
@@ -41,5 +40,6 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public DbSet<Cat_Taxonomia_Detalle> Cat_Taxonomia_Detalle { get; set; }
         public DbSet<Cat_Validacion_Trimestre> Cat_Validacion_Trimestre { get; set; }
         public DbSet<Periodo_Sin_Presentar> Periodo_Sin_Presentar { get; set; }
+        public DbSet<Cat_Modelo_Clase> Cat_Modelo_Clase { get; set; }
     }
 }
