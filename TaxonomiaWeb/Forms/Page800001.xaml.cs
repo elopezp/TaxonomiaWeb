@@ -582,8 +582,8 @@ namespace TaxonomiaWeb.Forms
                 ObservableCollection<ReporteDetalle> sortedList = sortReport(listaBmvAgrupada, listaBmv);
                 servBmvXblr = new Service1Client();
                 servBmvXblr.SaveDinamicoBmvReporteCompleted += servBmvXblr_SaveDinamicoBmvReporteAsync;
-                servBmvXblr.SaveDinamicoBmvReporteAsync(sortedList, mainPage.Compania, mainPage.IdAno, mainPage.NumTrimestre);
-                busyIndicator.IsBusy = true;
+                //servBmvXblr.SaveDinamicoBmvReporteAsync(sortedList, mainPage.Compania, mainPage.IdAno, mainPage.NumTrimestre);
+                //busyIndicator.IsBusy = true;
             }
         }
         #endregion
@@ -1128,10 +1128,6 @@ namespace TaxonomiaWeb.Forms
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA)
-                    {
-                        string str = "";
-                    }
                     //Actualizamos los registros qeu ya estaban
                     var itemsBmv = from o in listaBmv
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && o.IdentificadorFila == itemAgrupado.IdentificadorFila
@@ -1220,7 +1216,7 @@ namespace TaxonomiaWeb.Forms
                                 rd.IdReporteDetalle = subItems.IdReporteDetalle;
                                 rd.IdentificadorFila = subItems.IdentificadorFila;
                                 rd.Estado = true;
-                             
+
                                 if (itemAgrupado.IdentificadorFila != IDENTIFICADOR_FILA_SUMA)
                                 {
                                     sortedList.Add(rd);
@@ -1264,86 +1260,118 @@ namespace TaxonomiaWeb.Forms
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
                                    group o by o.IdReporte into groups
                                    select groups.First();
+
                         foreach (var subItems in itemsBmv)
                         {
-                            ReporteDetalle rd = new ReporteDetalle();
+                            string valor = string.Empty;
                             switch (subItems.AtributoColumna)
                             {
                                 case AppConsts.COL_INSTITUCION:
-                                    rd.Valor = Convert.ToString(itemAgrupado.Institucion);
+                                    valor = Convert.ToString(itemAgrupado.Institucion);
                                     break;
 
                                 case AppConsts.COL_INSTITUCIONEXTRANJERA:
-                                    rd.Valor = Convert.ToString(itemAgrupado.InstitucionExtranjera);
+                                    valor = Convert.ToString(itemAgrupado.InstitucionExtranjera);
                                     break;
 
                                 case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.FechaDeFirmaContrato);
+                                    valor = Convert.ToString(itemAgrupado.FechaDeFirmaContrato);
                                     break;
 
                                 case AppConsts.COL_FECHADEVENCIMIENTO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.FechaDeVencimiento);
+                                    valor = Convert.ToString(itemAgrupado.FechaDeVencimiento);
                                     break;
 
                                 case AppConsts.COL_TASADEINTERESYOSOBRETASA:
-                                    rd.Valor = Convert.ToString(itemAgrupado.TasaDeInteresYOSobreTasa);
+                                    valor = Convert.ToString(itemAgrupado.TasaDeInteresYOSobreTasa);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALANOACTUAL:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalAnoActual);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalAnoActual);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALHASTA1ANO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta1Ano);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta1Ano);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta2Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta2Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta3Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta3Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta4Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta4Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta5AnosOMas);
+                                    valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta5AnosOMas);
                                     break;
 
                                 case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraAnoActual);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraAnoActual);
                                     break;
 
                                 case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta1Ano);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta1Ano);
                                     break;
                                 case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta2Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta2Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta3Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta3Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta4Anos);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta4Anos);
                                     break;
 
                                 case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta5AnosOMas);
+                                    valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta5AnosOMas);
                                     break;
                                 default:
                                     break;
                             }
+
+                            ReporteDetalle rd = new ReporteDetalle();
+                            rd.Valor = valor;
                             rd.FormatoCampo = subItems.FormatoCampo;
                             rd.IdReporte = subItems.IdReporte;
                             rd.IdReporteDetalle = null;
                             rd.IdentificadorFila = itemAgrupado.IdentificadorFila;
                             rd.Estado = true;
-                            sortedList.Add(rd);
+
+                            if (itemAgrupado.IdentificadorFila != IDENTIFICADOR_FILA_SUMA)
+                            {
+                                sortedList.Add(rd);
+                            }
+                            //Agregamos los registros totales pero solo los miembros moneda nacional y moneda extranjera.
+                            else if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA)
+                            {
+                                switch (subItems.AtributoColumna)
+                                {
+                                    case AppConsts.COL_MONEDANACIONALANOACTUAL:
+                                    case AppConsts.COL_MONEDANACIONALHASTA1ANO:
+                                    case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
+                                    case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
+                                    case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
+                                    case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
+                                    case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
+                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
+                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
+                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
+                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
+                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
+                                        sortedList.Add(rd);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                
                         }
 
 
