@@ -17,6 +17,7 @@ namespace TaxonomiaWeb.Wcf
     {
 
         private BmvXblrEntities context;
+        private const int IDENTIFICADOR_FILA_SUMA = -1;
 
         public string GetData(int value)
         {
@@ -1486,7 +1487,7 @@ namespace TaxonomiaWeb.Wcf
                          join trd in
                              (from sub in context.Taxonomia_Reporte_Detalle
                               join trim in context.Cat_Trimestre on sub.Id_Trimestre equals trim.Id_Trimestre
-                              where trim.Trimestre == numTrimestre && sub.Id_Ano == idAno
+                              where trim.Trimestre == numTrimestre && sub.Id_Ano == idAno 
                               select sub)
                          on tr.Id_Taxonomia_Reporte equals trd.Id_Taxonomia_Reporte into trd_group
                          join tc in context.Cat_Taxonomia_Columna on tr.Id_Taxonomia_Columna equals tc.Id_Taxonomia_Columna into tc_group
@@ -1514,7 +1515,7 @@ namespace TaxonomiaWeb.Wcf
                              Valor = trd.Valor,
                              Nivel_Sangria = td.Nivel_Sangria,
                              Campo_Dinamico = td.Campo_Dinamico.HasValue ? td.Campo_Dinamico.Value : false,
-                             Identificador_Fila = trd.Identificador_Fila.HasValue ? trd.Identificador_Fila.Value : 1
+                             Identificador_Fila = trd.Identificador_Fila
                          };
 
             return taxDet;

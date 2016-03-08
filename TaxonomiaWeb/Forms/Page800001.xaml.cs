@@ -341,14 +341,14 @@ namespace TaxonomiaWeb.Forms
                         {
                             cellElement.SizeChanged += CellElement_SizeChanged;
                         }
-                        if (row.Lectura == true )
+                        if (row.Lectura == true)
                         {
                             //Ocultamos las celdas donde no se debe de editar nada
                             if (cellElement.GetType() == typeof(CheckBox))
                             {
                                 CheckBox ch = (CheckBox)cellElement;
                                 ch.IsEnabled = false;
-                                
+
                             }
                             dgCell.IsEnabled = false;
                             dgCell.Foreground = new SolidColorBrush(Colors.Transparent);
@@ -582,8 +582,8 @@ namespace TaxonomiaWeb.Forms
                 ObservableCollection<ReporteDetalle> sortedList = sortReport(listaBmvAgrupada, listaBmv);
                 servBmvXblr = new Service1Client();
                 servBmvXblr.SaveDinamicoBmvReporteCompleted += servBmvXblr_SaveDinamicoBmvReporteAsync;
-                //servBmvXblr.SaveDinamicoBmvReporteAsync(sortedList, mainPage.Compania, mainPage.IdAno, mainPage.NumTrimestre);
-                //busyIndicator.IsBusy = true;
+                servBmvXblr.SaveDinamicoBmvReporteAsync(sortedList, mainPage.Compania, mainPage.IdAno, mainPage.NumTrimestre);
+                busyIndicator.IsBusy = true;
             }
         }
         #endregion
@@ -663,6 +663,10 @@ namespace TaxonomiaWeb.Forms
                                  select o;
                 if (tieneTotal.Any() == false)
                 {
+                    foreach (var item in listaBmvAgrupada.Where(w => w.CampoDinamico == true))
+                    {
+                        item.IdentificadorFila = 1;
+                    }
                     listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmvAgrupada);
                 }
                 //Añanadimos el prefijo total en la descripcion
@@ -757,7 +761,7 @@ namespace TaxonomiaWeb.Forms
                         bmvTotal.IdReporteDetalle = null;
                         bmvTotal.IdTaxonomiaDetalle = bmvCopia.IdTaxonomiaDetalle;
                         //Necesario para que distingamos que es un campo de tipo suma
-                        bmvTotal.IdentificadorFila = IDENTIFICADOR_FILA_SUMA; ;
+                        bmvTotal.IdentificadorFila = IDENTIFICADOR_FILA_SUMA; 
                         bmvTotal.Lectura = false;
                         bmvTotal.Orden = bmvCopia.Orden;
                         bmvTotal.Valor = "";
@@ -1128,135 +1132,181 @@ namespace TaxonomiaWeb.Forms
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    //Actualizamos los registros qeu ya estaban
-                    var itemsBmv = from o in listaBmv
+
+                    if (itemAgrupado.Institucion != null && itemAgrupado.Institucion.Equals("pru") == true)
+                    {
+                        string s = "";
+                        s = "sad";
+                    }
+
+                    ////Actualizamos los registros qeu ya estaban
+                    //var itemsBmv = from o in listaBmv
+                    //               where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && o.IdentificadorFila == itemAgrupado.IdentificadorFila
+                    //               select o;
+                    //if (itemsBmv.Any() == true)
+                    //{
+                    //    foreach (var subItems in itemsBmv)
+                    //    {
+                    //        string valor = string.Empty;
+                    //        switch (subItems.AtributoColumna)
+                    //        {
+                    //            case AppConsts.COL_INSTITUCION:
+                    //                valor = Convert.ToString(itemAgrupado.Institucion);
+                    //                break;
+
+                    //            case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                    //                valor = Convert.ToString(itemAgrupado.InstitucionExtranjera);
+                    //                break;
+
+                    //            case AppConsts.COL_FECHADEFIRMACONTRATO:
+                    //                valor = Convert.ToString(itemAgrupado.FechaDeFirmaContrato);
+                    //                break;
+
+                    //            case AppConsts.COL_FECHADEVENCIMIENTO:
+                    //                valor = Convert.ToString(itemAgrupado.FechaDeVencimiento);
+                    //                break;
+
+                    //            case AppConsts.COL_TASADEINTERESYOSOBRETASA:
+                    //                valor = Convert.ToString(itemAgrupado.TasaDeInteresYOSobreTasa);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALANOACTUAL:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalAnoActual);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALHASTA1ANO:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta1Ano);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta2Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta3Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta4Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta5AnosOMas);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraAnoActual);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta1Ano);
+                    //                break;
+                    //            case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta2Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta3Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta4Anos);
+                    //                break;
+
+                    //            case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
+                    //                valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta5AnosOMas);
+                    //                break;
+                    //            default:
+                    //                break;
+                    //        }
+
+                    //        ReporteDetalle rd = new ReporteDetalle();
+                    //        rd.Valor = valor;
+                    //        rd.FormatoCampo = subItems.FormatoCampo;
+                    //        rd.IdReporte = subItems.IdReporte;
+                    //        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                    //        rd.IdentificadorFila = subItems.IdentificadorFila;
+                    //        rd.Estado = true;
+
+                    //        //Agregamos los registros totales pero solo los miembros moneda nacional y moneda extranjera.
+                    //        //Incluyendo los tipos totales.
+                    //        if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA || (listTotal != null && listTotal.ContainsKey(itemAgrupado.IdTaxonomiaDetalle) == true))
+                    //        {
+                    //            switch (subItems.AtributoColumna)
+                    //            {
+                    //                case AppConsts.COL_MONEDANACIONALANOACTUAL:
+                    //                case AppConsts.COL_MONEDANACIONALHASTA1ANO:
+                    //                case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
+                    //                case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
+                    //                case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
+                    //                case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
+                    //                case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
+                    //                    sortedList.Add(rd);
+                    //                    break;
+                    //                case AppConsts.COL_INSTITUCION:
+                    //                    rd.Valor = "TOTAL";
+                    //                    sortedList.Add(rd);
+                    //                    break;
+                    //                default:
+                    //                    break;
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            //Verificamos los campos si contiene información en intitución.  
+                    //            //Para los campos que el campo institución tenga datos se almacena en bd.
+                    //            if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false)
+                    //            {
+                    //                sortedList.Add(rd);
+                    //            }
+                    //            //En caso contrario se elimina de la bd.
+                    //            else
+                    //            {
+                    //                if (subItems.IdReporteDetalle != null)
+                    //                {
+                    //                    rd.Estado = false;
+                    //                    sortedList.Add(rd);
+                    //                }
+                    //                else
+                    //                {
+                    //                    string d = "";
+                    //                    d = "";
+                    //                }
+
+                    //            }
+                    //        }
+                    //    }
+
+                    //}
+                    //if (itemsBmv.Any() == false)
+                    //{
+                        
+                        int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
+                        if (idFila == 1 && itemAgrupado.IdReporteDetalle == null)
+                        { 
+                            var itemsBmv = from o in listaBmv
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && o.IdentificadorFila == itemAgrupado.IdentificadorFila
                                    select o;
-                    if (itemsBmv.Any() == true)
-                    {
-                        foreach (var subItems in itemsBmv)
-                        {
-                                string valor = string.Empty;
-                                switch (subItems.AtributoColumna)
-                                {
-                                    case AppConsts.COL_INSTITUCION:
-                                        valor = Convert.ToString(itemAgrupado.Institucion);
-                                        break;
+                            if (itemsBmv.Any() == true && itemsBmv.Count() != 4)
+                            {
+ 
+                            }
 
-                                    case AppConsts.COL_INSTITUCIONEXTRANJERA:
-                                        valor = Convert.ToString(itemAgrupado.InstitucionExtranjera);
-                                        break;
-
-                                    case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                        valor = Convert.ToString(itemAgrupado.FechaDeFirmaContrato);
-                                        break;
-
-                                    case AppConsts.COL_FECHADEVENCIMIENTO:
-                                        valor = Convert.ToString(itemAgrupado.FechaDeVencimiento);
-                                        break;
-
-                                    case AppConsts.COL_TASADEINTERESYOSOBRETASA:
-                                        valor = Convert.ToString(itemAgrupado.TasaDeInteresYOSobreTasa);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALANOACTUAL:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalAnoActual);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALHASTA1ANO:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta1Ano);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta2Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta3Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta4Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaNacionalHasta5AnosOMas);
-                                        break;
-
-                                    case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraAnoActual);
-                                        break;
-
-                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta1Ano);
-                                        break;
-                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta2Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta3Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta4Anos);
-                                        break;
-
-                                    case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
-                                        valor = Convert.ToString(itemAgrupado.MonedaExtranjeraHasta5AnosOMas);
-                                        break;
-                                    default:
-                                        break;
-                                }
-
-                                ReporteDetalle rd = new ReporteDetalle();
-                                rd.Valor = valor;
-                                rd.FormatoCampo = subItems.FormatoCampo;
-                                rd.IdReporte = subItems.IdReporte;
-                                rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                                rd.IdentificadorFila = subItems.IdentificadorFila;
-                                rd.Estado = true;
-
-                                if (itemAgrupado.IdentificadorFila != IDENTIFICADOR_FILA_SUMA)
-                                {
-                                    sortedList.Add(rd);
-                                }
-                                //Agregamos los registros totales pero solo los miembros moneda nacional y moneda extranjera.
-                                else if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA)
-                                {
-                                    switch (subItems.AtributoColumna)
-                                    {
-                                        case AppConsts.COL_MONEDANACIONALANOACTUAL:
-                                        case AppConsts.COL_MONEDANACIONALHASTA1ANO:
-                                        case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
-                                        case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
-                                        case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
-                                        case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
-                                        case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
-                                        case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
-                                        case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
-                                        case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
-                                        case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
-                                        case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
-                                            sortedList.Add(rd);
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
                         }
-
-                    }
-                    //Sino existen, quiere decir que so nuevos
-                    else if (itemsBmv.Any() == false)
-                    {
-                        int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
                         if (idFila != IDENTIFICADOR_FILA_SUMA)
                         {
-                            var maxvalue = listaBmvAgrupada.OrderByDescending(i => i.IdentificadorFila).FirstOrDefault();
-                            itemAgrupado.IdentificadorFila = maxvalue != null ? (maxvalue.IdentificadorFila + 1) : 1;
+                            if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false)
+                            {
+                                var maxvalue = listaBmvAgrupada.OrderByDescending(i => i.IdentificadorFila).FirstOrDefault();
+                                itemAgrupado.IdentificadorFila = maxvalue != null ? (maxvalue.IdentificadorFila + 1) : 1;
+                            }
                         }
-                        itemsBmv = from o in listaBmv
+                        var itemsBmv = from o in listaBmv
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
                                    group o by o.IdReporte into groups
                                    select groups.First();
@@ -1340,16 +1390,13 @@ namespace TaxonomiaWeb.Forms
                             rd.Valor = valor;
                             rd.FormatoCampo = subItems.FormatoCampo;
                             rd.IdReporte = subItems.IdReporte;
-                            rd.IdReporteDetalle = null;
+                            rd.IdReporteDetalle = subItems.IdReporteDetalle != null ? subItems.IdReporteDetalle : null;
                             rd.IdentificadorFila = itemAgrupado.IdentificadorFila;
                             rd.Estado = true;
 
-                            if (itemAgrupado.IdentificadorFila != IDENTIFICADOR_FILA_SUMA)
-                            {
-                                sortedList.Add(rd);
-                            }
                             //Agregamos los registros totales pero solo los miembros moneda nacional y moneda extranjera.
-                            else if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA)
+                            //Incluyendo los tipos totales.
+                            if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA || (listTotal != null && listTotal.ContainsKey(itemAgrupado.IdTaxonomiaDetalle) == true))
                             {
                                 switch (subItems.AtributoColumna)
                                 {
@@ -1367,15 +1414,43 @@ namespace TaxonomiaWeb.Forms
                                     case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
                                         sortedList.Add(rd);
                                         break;
+                                    case AppConsts.COL_INSTITUCION:
+                                        rd.Valor = "TOTAL";
+                                        sortedList.Add(rd);
+                                        break;
                                     default:
                                         break;
                                 }
                             }
-                
+                            else
+                            {
+                                //Verificamos los campos si contiene información en intitución.  
+                                //Para los campos que el campo institución tenga datos se almacena en bd.
+                                if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false)
+                                {
+                                    sortedList.Add(rd);
+                                }
+                                //En caso contrario se elimina de la bd.
+                                else
+                                {
+                                    if (subItems.IdReporteDetalle != null)
+                                    {
+                                        rd.Estado = false;
+                                        sortedList.Add(rd);
+                                    }
+                                    else
+                                    {
+                                        string d = "";
+                                        d = "";
+                                    }
+
+                                }
+                            }
+
                         }
 
 
-                    }
+                    //}
                 }
 
             }
