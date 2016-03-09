@@ -677,8 +677,8 @@ namespace TaxonomiaWeb.Forms
                         int idFila = item.IdentificadorFila.HasValue == true ? item.IdentificadorFila.Value : 0;
                         if (idFila == IDENTIFICADOR_FILA_SUMA)
                         {
-
                             item.Descripcion = getTituloTotalDescripcion(item.Descripcion);
+                            item.Institucion = "";
                             item.CampoDinamico = false;
                         }
                     }
@@ -1289,13 +1289,6 @@ namespace TaxonomiaWeb.Forms
                         int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
                         if (idFila == 1 && itemAgrupado.IdReporteDetalle == null)
                         { 
-                            var itemsBmv = from o in listaBmv
-                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && o.IdentificadorFila == itemAgrupado.IdentificadorFila
-                                   select o;
-                            if (itemsBmv.Any() == true && itemsBmv.Count() != 4)
-                            {
- 
-                            }
 
                         }
                         if (idFila != IDENTIFICADOR_FILA_SUMA)
