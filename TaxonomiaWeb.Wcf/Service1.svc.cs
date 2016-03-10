@@ -808,7 +808,15 @@ namespace TaxonomiaWeb.Wcf
                                     //En caso contrario actualizamos o eliminamos el registro
                                     else
                                     {
-                                        Taxonomia_Reporte_Detalle trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == catTrimestre.Id_Trimestre && bmvItem.IdentificadorFila == c.Identificador_Fila);
+                                        Taxonomia_Reporte_Detalle trd = null;
+                                        if (bmvItem.IdentificadorFila.HasValue == true)
+                                        {
+                                            trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == catTrimestre.Id_Trimestre && bmvItem.IdentificadorFila == c.Identificador_Fila);
+                                        }
+                                        else
+                                        {
+                                            trd = context.Taxonomia_Reporte_Detalle.FirstOrDefault(c => c.Id_Taxonomia_Reporte_Detalle == bmvItem.IdReporteDetalle && c.Id_Ano == idAno && c.Id_Trimestre == catTrimestre.Id_Trimestre);
+                                        }
                                         if (trd != null) 
                                         {
                                             if(bmvItem.Estado == true)

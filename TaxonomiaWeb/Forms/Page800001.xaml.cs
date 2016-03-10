@@ -30,6 +30,7 @@ namespace TaxonomiaWeb.Forms
         private ObservableCollection<Bmv800001> listaBmvElementosEliminados = null;
         private ObservableCollection<BmvDetalleSuma> listBmvSuma = null;
         private const int IDENTIFICADOR_FILA_SUMA = -1;
+        private const string TOTAL_INSTITUCION = "TOTAL";
         private MainPage mainPage = null;
 
         public Page800001()
@@ -78,6 +79,10 @@ namespace TaxonomiaWeb.Forms
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (listaBmvElementosEliminados == null)
+            {
+                listaBmvElementosEliminados = new ObservableCollection<Bmv800001>();
+            }
             fillHiddenColumns();
             servBmvXblr = new Service1Client();
             servBmvXblr.GetBmv800001Completed += servBmvXblr_GetBmv800001Completed;
@@ -327,12 +332,17 @@ namespace TaxonomiaWeb.Forms
             {
                 DataGridRow dgr = e.Row;
                 System.Reflection.PropertyInfo[] listProp = typeof(Bmv800001).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                Bmv800001 row = dgr.DataContext as Bmv800001;
+                if (row.IdTaxonomiaDetalle== 149)
+                {
+                    string l = "";
+                    l = "";
+                }
                 foreach (var prop in listProp)
                 {
                     DataGridColumn column = DgvTaxo.Columns.SingleOrDefault(x => Regex.Replace(x.Header == null ? "" : x.Header.ToString(), @"\s+", "").Equals(prop.Name));
                     if (column != null)
                     {
-                        Bmv800001 row = dgr.DataContext as Bmv800001;
                         FrameworkElement cellElement = column.GetCellContent(dgr);
                         FrameworkElement eleCell = Utilerias.GetElementParent(cellElement, typeof(DataGridCell));
                         DataGridCell dgCell = (DataGridCell)eleCell;
@@ -359,6 +369,8 @@ namespace TaxonomiaWeb.Forms
                             dgCell.IsEnabled = true;
                             dgCell.Foreground = new SolidColorBrush(Colors.Black);
                             dgCell.Opacity = 1;
+
+
                         }
 
                     }
@@ -366,7 +378,6 @@ namespace TaxonomiaWeb.Forms
                 DataGridColumn columnDesc = DgvTaxo.Columns.SingleOrDefault(x => Regex.Replace(x.Header == null ? "" : x.Header.ToString(), @"\s+", "").Equals(AppConsts.COL_DESCRIPCION));
                 if (columnDesc != null)
                 {
-                    Bmv800001 row = dgr.DataContext as Bmv800001;
                     FrameworkElement cellElement = columnDesc.GetCellContent(dgr);
                     FrameworkElement eleCell = Utilerias.GetElementParent(cellElement, typeof(DataGridCell));
                     DataGridCell dgCell = (DataGridCell)eleCell;
@@ -379,6 +390,7 @@ namespace TaxonomiaWeb.Forms
                     //Agregamos en cursiva los totales
                     else if ((listTotal != null && listTotal.ContainsKey(row.IdTaxonomiaDetalle) == true))
                     {
+                        row.Institucion = "";
                         dgCell.FontStyle = FontStyles.Italic;
                     }
 
@@ -493,46 +505,14 @@ namespace TaxonomiaWeb.Forms
             if (ctl != null)
             {
                 var row = ctl.DataContext as Bmv800001;
-                var bmv = new Bmv800001();
-                if (row != null)
+                var bmv = copyBaseEntity(row);
+                var dataGridRow = DataGridRow.GetRowContainingElement(sender as FrameworkElement);
+                int index = dataGridRow.GetIndex();
+                if (listaBmvAgrupada != null)
                 {
-                    bmv.FechaDeFirmaContrato = "";
-                    bmv.FechaDeVencimiento = "";
-                    bmv.Institucion = "";
-                    bmv.InstitucionExtranjera = false;
-                    bmv.MonedaExtranjeraAnoActual = 0;
-                    bmv.MonedaExtranjeraHasta1Ano = 0;
-                    bmv.MonedaExtranjeraHasta2Anos = 0;
-                    bmv.MonedaExtranjeraHasta3Anos = 0;
-                    bmv.MonedaExtranjeraHasta4Anos = 0;
-                    bmv.MonedaExtranjeraHasta5AnosOMas = 0;
-                    bmv.MonedaNacionalAnoActual = 0;
-                    bmv.MonedaNacionalHasta1Ano = 0;
-                    bmv.MonedaNacionalHasta2Anos = 0;
-                    bmv.MonedaNacionalHasta3Anos = 0;
-                    bmv.MonedaNacionalHasta4Anos = 0;
-                    bmv.MonedaNacionalHasta5AnosOMas = 0;
-                    bmv.TasaDeInteresYOSobreTasa = 0;
-                    bmv.AtributoColumna = row.AtributoColumna;
-                    bmv.CampoDinamico = row.CampoDinamico;
-                    bmv.Contenido = row.Contenido;
-                    bmv.Descripcion = row.Descripcion;
-                    bmv.FormatoCampo = row.FormatoCampo;
-                    bmv.IdReporte = row.IdReporte;
-                    bmv.IdReporteDetalle = null;
-                    bmv.IdTaxonomiaDetalle = row.IdTaxonomiaDetalle;
-                    bmv.Lectura = row.Lectura;
-                    bmv.Orden = row.Orden;
-                    bmv.Valor = row.Valor;
-
-                    var dataGridRow = DataGridRow.GetRowContainingElement(sender as FrameworkElement);
-                    int index = dataGridRow.GetIndex();
-                    if (listaBmvAgrupada != null)
-                    {
-                        //Agregamos el evento de cuadno la celda cambia y lo agregamos al datagrid
-                        bmv.PropertyChanged += new PropertyChangedEventHandler(bmv_PropertyChanged);
-                        listaBmvAgrupada.Insert(index + 1, bmv);
-                    }
+                   //Agregamos el evento de cuadno la celda cambia y lo agregamos al datagrid
+                   bmv.PropertyChanged += new PropertyChangedEventHandler(bmv_PropertyChanged);
+                   listaBmvAgrupada.Insert(index + 1, bmv);
                 }
             }
         }
@@ -556,10 +536,7 @@ namespace TaxonomiaWeb.Forms
                         }
                         else
                         {
-                            if (listaBmvElementosEliminados == null)
-                            {
-                                listaBmvElementosEliminados = new ObservableCollection<Bmv800001>();
-                            }
+                
                             listaBmvElementosEliminados.Add(row);
                             listaBmvAgrupada.RemoveAt(index);
                             actualizarRegistroTotalCampoDinamico(row);
@@ -658,29 +635,8 @@ namespace TaxonomiaWeb.Forms
             {
                 listaBmv = e.Result;
                 listaBmvAgrupada = bindAndGroupList(listaBmv);
-                listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmv);
-                //Verificamos si contiene total los registros
-                //var tieneTotal = from o in listaBmvAgrupada
-                //                 where o.IdentificadorFila == IDENTIFICADOR_FILA_SUMA
-                //                 select o;
-                //if (tieneTotal.Any() == false)
-                //{
-                //    listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmvAgrupada);
-                //}
-                ////Añanadimos el prefijo total en la descripcion
-                //else
-                //{
-                //    foreach (var item in listaBmvAgrupada)
-                //    {
-                //        int idFila = item.IdentificadorFila.HasValue == true ? item.IdentificadorFila.Value : 0;
-                //        if (idFila == IDENTIFICADOR_FILA_SUMA)
-                //        {
+                listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmvAgrupada);
 
-                //            item.Descripcion = getTituloTotalDescripcion(item.Descripcion);
-                //            item.CampoDinamico = false;
-                //        }
-                //    }
-                //}
                 var orderby = listaBmvAgrupada.OrderBy(x => x.Orden).ThenByDescending(x => x.IdentificadorFila);
                 listaBmvAgrupada = new ObservableCollection<Bmv800001>(orderby);
                 foreach (var item in listaBmvAgrupada)
@@ -726,12 +682,6 @@ namespace TaxonomiaWeb.Forms
                 foreach (var itemAgrupado in tempListaBmvAgrupada)
                 {
 
-                    if (itemAgrupado.IdTaxonomiaDetalle == 149 || itemAgrupado.IdTaxonomiaDetalle == 164)
-                    {
-                        string df = "";
-                        df = "";
-
-                    }
                     var itemsBmv = from o in listaBmvAgrupada
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && string.IsNullOrEmpty(o.FormatoCampo) == false && o.CampoDinamico == true
                                    && o.IdentificadorFila != IDENTIFICADOR_FILA_SUMA
@@ -799,7 +749,22 @@ namespace TaxonomiaWeb.Forms
                     }
                     else
                     {
-                        listaBmvAgrupadaConTotales.Add(itemAgrupado);
+                        //Si ya contiene totales de la bd pero no tiene registro predeterminado se crea uno.
+                        if (isTieneTotal == true)
+                        {
+                            var bmvCopia = copyBaseEntity(bmvTotal);
+                            bmvCopia.IdentificadorFila = 0;
+                            listaBmvAgrupadaConTotales.Add(bmvCopia);
+                            bmvTotal.Descripcion = getTituloTotalDescripcion(bmvTotal.Descripcion);
+                            bmvTotal.Institucion = "";
+                            bmvTotal.CampoDinamico = false;
+                            listaBmvAgrupadaConTotales.Add(bmvTotal);
+                        }
+                        //Si no tiene totales es otro registro que no es campo dinamico, por lo tanto se agrega.
+                        else
+                        {
+                            listaBmvAgrupadaConTotales.Add(itemAgrupado);
+                        }
                     }
                 }
             }
@@ -1181,8 +1146,18 @@ namespace TaxonomiaWeb.Forms
 
             foreach (var itemAgrupado in listaBmvAgrupada.ToList())
             {
+                if (itemAgrupado.IdTaxonomiaDetalle == 153)
+                {
+                    string l = "";
+                    l = "";
+                }
                 if (itemAgrupado.CampoDinamico == true && string.IsNullOrEmpty(itemAgrupado.Institucion) == true)
                 {
+                    //En caso de que ya exista en la bd, se agrega en lista de eliminados para borrarlo por completo. 
+                    if (itemAgrupado.IdReporteDetalle != null)
+                    {
+                        listaBmvElementosEliminados.Add(itemAgrupado);
+                    }
                     listaBmvAgrupada.Remove(itemAgrupado);
                 }
             }
@@ -1193,26 +1168,32 @@ namespace TaxonomiaWeb.Forms
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
 
-                    if (itemAgrupado.IdentificadorFila != IDENTIFICADOR_FILA_SUMA && itemAgrupado.CampoDinamico == true)
-                    {
-                        string s = "";
-                        s = "";
-                    }
                     int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
                     if (idFila != IDENTIFICADOR_FILA_SUMA)
                     {
-                        if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false)
+                        if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false && itemAgrupado.IdReporteDetalle == null)
                         {
                             var maxvalue = listaBmvAgrupada.Where(x => x.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle).OrderByDescending(i => i.IdentificadorFila).FirstOrDefault();
                             itemAgrupado.IdentificadorFila = maxvalue != null ? (maxvalue.IdentificadorFila + 1) : 1;
                         }
 
                     }
-
-                    var itemsBmv = from o in listaBmv
-                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
-                                   group o by o.IdReporte into groups
-                                   select groups.First();
+                    IEnumerable<Bmv800001> itemsBmv = null;
+                    if (itemAgrupado.IdentificadorFila.HasValue == true)
+                    {
+                        itemsBmv = from o in listaBmv
+                                       where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                       && o.IdentificadorFila == itemAgrupado.IdentificadorFila
+                                       group o by o.IdReporte into groups
+                                       select groups.First();
+                    }
+                    else
+                    {
+                         itemsBmv = from o in listaBmv
+                                       where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                       group o by o.IdReporte into groups
+                                       select groups.First();
+                    }
 
                     foreach (var subItems in itemsBmv)
                     {
@@ -1293,48 +1274,30 @@ namespace TaxonomiaWeb.Forms
                         rd.Valor = valor;
                         rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
-                        rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        if (itemAgrupado.IdReporteDetalle != null)
+                        {
+                            rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        }
+                        else 
+                        {
+                            rd.IdReporteDetalle = itemAgrupado.IdReporteDetalle;
+                        }
                         rd.IdentificadorFila = itemAgrupado.IdentificadorFila;
                         rd.Estado = true;
-                        sortedList.Add(rd);
                         ////Agregamos los registros totales pero solo los miembros moneda nacional y moneda extranjera.
                         ////Incluyendo los tipos totales.
-                        //if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA || (listTotal != null && listTotal.ContainsKey(itemAgrupado.IdTaxonomiaDetalle) == true))
-                        //{
-                        //    switch (subItems.AtributoColumna)
-                        //    {
-                        //        case AppConsts.COL_MONEDANACIONALANOACTUAL:
-                        //        case AppConsts.COL_MONEDANACIONALHASTA1ANO:
-                        //        case AppConsts.COL_MONEDANACIONALHASTA2ANOS:
-                        //        case AppConsts.COL_MONEDANACIONALHASTA3ANOS:
-                        //        case AppConsts.COL_MONEDANACIONALHASTA4ANOS:
-                        //        case AppConsts.COL_MONEDANACIONALHASTA5ANOSOMAS:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAANOACTUAL:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAHASTA1ANO:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAHASTA2ANOS:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAHASTA3ANOS:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAHASTA4ANOS:
-                        //        case AppConsts.COL_MONEDAEXTRANJERAHASTA5ANOSOMAS:
-                        //            sortedList.Add(rd);
-                        //            break;
-                        //        case AppConsts.COL_INSTITUCION:
-                        //            rd.Valor = "TOTAL";
-                        //            sortedList.Add(rd);
-                        //            break;
-                        //        default:
-                        //            sortedList.Add(rd);
-                        //            break;
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    //Verificamos los campos si contiene información en intitución.  
-                        //    //Para los campos que el campo institución tenga datos se almacena en bd.
-                        //    if (string.IsNullOrEmpty(itemAgrupado.Institucion) == false)
-                        //    {
-                        //        sortedList.Add(rd);
-                        //    }
-                        //}
+                        if (itemAgrupado.IdentificadorFila == IDENTIFICADOR_FILA_SUMA || (listTotal != null && listTotal.ContainsKey(itemAgrupado.IdTaxonomiaDetalle) == true))
+                        {
+                            switch (subItems.AtributoColumna)
+                            {
+                                case AppConsts.COL_INSTITUCION:
+                                    rd.Valor = TOTAL_INSTITUCION;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        sortedList.Add(rd);
 
                     }
                 }
@@ -1439,6 +1402,43 @@ namespace TaxonomiaWeb.Forms
 
             return sortedList;
 
+        }
+
+        private Bmv800001 copyBaseEntity(Bmv800001 bmv)
+        {
+                var entity = new Bmv800001();
+                if (bmv != null)
+                {
+                    entity.FechaDeFirmaContrato = "";
+                    entity.FechaDeVencimiento = "";
+                    entity.Institucion = "";
+                    entity.InstitucionExtranjera = false;
+                    entity.MonedaExtranjeraAnoActual = 0;
+                    entity.MonedaExtranjeraHasta1Ano = 0;
+                    entity.MonedaExtranjeraHasta2Anos = 0;
+                    entity.MonedaExtranjeraHasta3Anos = 0;
+                    entity.MonedaExtranjeraHasta4Anos = 0;
+                    entity.MonedaExtranjeraHasta5AnosOMas = 0;
+                    entity.MonedaNacionalAnoActual = 0;
+                    entity.MonedaNacionalHasta1Ano = 0;
+                    entity.MonedaNacionalHasta2Anos = 0;
+                    entity.MonedaNacionalHasta3Anos = 0;
+                    entity.MonedaNacionalHasta4Anos = 0;
+                    entity.MonedaNacionalHasta5AnosOMas = 0;
+                    entity.TasaDeInteresYOSobreTasa = 0;
+                    entity.AtributoColumna = bmv.AtributoColumna;
+                    entity.CampoDinamico = bmv.CampoDinamico;
+                    entity.Contenido = bmv.Contenido;
+                    entity.Descripcion = bmv.Descripcion;
+                    entity.FormatoCampo = bmv.FormatoCampo;
+                    entity.IdReporte = bmv.IdReporte;
+                    entity.IdTaxonomiaDetalle = bmv.IdTaxonomiaDetalle;
+                    entity.Lectura = bmv.Lectura;
+                    entity.Orden = bmv.Orden;
+                    entity.Valor = "";
+                    entity.IdReporteDetalle = null;
+                }
+                return entity;
         }
 
         private bool validarDatos()
