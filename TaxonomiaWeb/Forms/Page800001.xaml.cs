@@ -1146,11 +1146,6 @@ namespace TaxonomiaWeb.Forms
 
             foreach (var itemAgrupado in listaBmvAgrupada.ToList())
             {
-                if (itemAgrupado.IdTaxonomiaDetalle == 153)
-                {
-                    string l = "";
-                    l = "";
-                }
                 if (itemAgrupado.CampoDinamico == true && string.IsNullOrEmpty(itemAgrupado.Institucion) == true)
                 {
                     //En caso de que ya exista en la bd, se agrega en lista de eliminados para borrarlo por completo. 
@@ -1167,7 +1162,6 @@ namespace TaxonomiaWeb.Forms
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-
                     int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
                     if (idFila != IDENTIFICADOR_FILA_SUMA)
                     {
@@ -1179,9 +1173,9 @@ namespace TaxonomiaWeb.Forms
 
                     }
                     IEnumerable<Bmv800001> itemsBmv = null;
-                    if (itemAgrupado.IdentificadorFila.HasValue == true)
+                    if (itemAgrupado.IdentificadorFila.HasValue == true && itemAgrupado.IdReporteDetalle != null)
                     {
-                        itemsBmv = from o in listaBmv
+                            itemsBmv = from o in listaBmv
                                        where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
                                        && o.IdentificadorFila == itemAgrupado.IdentificadorFila
                                        group o by o.IdReporte into groups
