@@ -15,7 +15,6 @@ using System.Collections.ObjectModel;
 using System.Reflection;
 using TaxonomiaWeb.Utils;
 using System.Text.RegularExpressions;
-using System.Runtime.InteropServices.Automation;
 using System.IO;
 using System.Windows.Data;
 using System.Text;
