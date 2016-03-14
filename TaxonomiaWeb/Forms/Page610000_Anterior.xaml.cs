@@ -87,10 +87,112 @@ namespace TaxonomiaWeb.Forms
             //Para que con un solo click o con el teclado entre en modo editar
             this.DgvTaxo.CurrentCellChanged += DgvTaxo_CurrentCellChanged;
 
+            this.DgvTaxo.LayoutUpdated += DgvTaxo_LayoutUpdated;
         }
 
 
         #region Eventos del Datagrid
+
+        void DgvTaxo_LayoutUpdated(object sender, EventArgs e)
+        {
+            DataGrid grid = this.DgvTaxo;
+            if (grid != null)
+            {
+                grid.FrozenColumnCount = 1;
+                ObservableCollection<DataGridColumn> listColumns = grid.Columns;
+                foreach (var item in listColumns)
+                {
+
+                    string headerName = Regex.Replace(item.Header == null ? "" : item.Header.ToString(), @"\s+", "");
+                    //Orden de la columnas mostradas
+                    switch (headerName)
+                    {
+                        case AppConsts.COL_DESCRIPCION:
+                            item.DisplayIndex = 0;
+                            break;
+                        case AppConsts.COL_CAPITALSOCIAL:
+                            item.DisplayIndex = 1;
+                            break;
+                        case AppConsts.COL_PRIMAENEMISIONDEACCIONES:
+                            item.DisplayIndex = 2;
+                            break;
+                        case AppConsts.COL_ACCIONESENTESORERIA:
+                            item.DisplayIndex = 3;
+                            break;
+                        case AppConsts.COL_UTILIDADESACUMULADAS:
+                            item.DisplayIndex = 4;
+                            break;
+                        case AppConsts.COL_SUPERAVITDEREVALUACION:
+                            item.DisplayIndex = 5;
+                            break;
+                        case AppConsts.COL_EFECTOPORCONVERSION:
+                            item.DisplayIndex = 6;
+                            break;
+                        case AppConsts.COL_COBERTURASDEFLUJOSDEEFECTIVO:
+                            item.DisplayIndex = 7;
+                            break;
+                        case AppConsts.COL_UTILIDADPERDIDAENINSTRUMENTOSDECOBERTURAQUECUBRENINVERSIONESENINSTRUMENTOSDECAPITAL:
+                            item.DisplayIndex = 8;
+                            break;
+                        case AppConsts.COL_VARIACIONENELVALORTEMPORALDELASOPCIONES:
+                            item.DisplayIndex = 9;
+                            break;
+                        case AppConsts.COL_VARIACIONENELVALORDECONTRATOSAFUTURO:
+                            item.DisplayIndex = 10;
+                            break;
+                        case AppConsts.COL_VARIACIONENELVALORDEMÁRGENESCONBASEENMONEDAEXTRANJERA:
+                            item.DisplayIndex = 11;
+                            break;
+                        case AppConsts.COL_UTILIDADPERDIDAPORCAMBIOSENVALORRAZONABLEDEACTIVOSFINANCIEROSDISPONIBLESPARALAVENTA:
+                            item.DisplayIndex = 12;
+                            break;
+                        case AppConsts.COL_PAGOSBASADOSENACCIONES:
+                            item.DisplayIndex = 13;
+                            break;
+                        case AppConsts.COL_NUEVASMEDICIONESDEPLANESDEBENEFICIOSDEFINIDOS:
+                            item.DisplayIndex = 14;
+                            break;
+                        case AppConsts.COL_IMPORTESRECONOCIDOSENOTRORESULTADOINTEGRALYACUMULADOSENELCAPITALCONTABLERELATIVOSAACTIVOSNOCORRIENTESOGRUPOSDEACTIVOSPARASUDISPOSICIONMANTENIDOSPARALAVENTA:
+                            item.DisplayIndex = 15;
+                            break;
+                        case AppConsts.COL_UTILIDADPERDIDAPORINVERSIONESENINSTRUMENTOSDECAPITAL:
+                            item.DisplayIndex = 16;
+                            break;
+                        case AppConsts.COL_RESERVAPARACAMBIOSENELVALORRAZONABLEDEPASIVOSFINANCIEROSATRIBUIBLESACAMBIOSENELRIESGODECREDITODEPASIVO:
+                            item.DisplayIndex = 17;
+                            break;
+                        case AppConsts.COL_RESERVAPARACATASTROFES:
+                            item.DisplayIndex = 18;
+                            break;
+                        case AppConsts.COL_RESERVAPARAESTABILIZACION:
+                            item.DisplayIndex = 19;
+                            break;
+                        case AppConsts.COL_RESERVADECOMPONENTESDEPARTICIPACIONDISCRECIONAL:
+                            item.DisplayIndex = 20;
+                            break;
+                        case AppConsts.COL_OTROSRESULTADOSINTEGRALES:
+                            item.DisplayIndex = 21;
+                            break;
+                        case AppConsts.COL_OTROSRESULTADOSINTEGRALESACUMULADOS:
+                            item.DisplayIndex = 22;
+                            break;
+                        case AppConsts.COL_CAPITALCONTABLEDELAPARTICIPACIONCONTROLADORA:
+                            item.DisplayIndex = 23;
+                            break;
+                        case AppConsts.COL_PARTICIPACIONNOCONTROLADORA:
+                            item.DisplayIndex = 24;
+                            break;
+                        case AppConsts.COL_CAPITALCONTABLE:
+                            item.DisplayIndex = 25;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
 
         private void DgvTaxo_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -116,111 +218,84 @@ namespace TaxonomiaWeb.Forms
                     switch (e.PropertyName)
                     {
                         case AppConsts.COL_DESCRIPCION:
-
                             dgColumn.Width = DataGridLength.SizeToCells;
-                            dgColumn.DisplayIndex = 0;
                             break;
                         case AppConsts.COL_CAPITALSOCIAL:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 1;
                             break;
                         case AppConsts.COL_PRIMAENEMISIONDEACCIONES:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 2;
                             break;
                         case AppConsts.COL_ACCIONESENTESORERIA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 3;
                             break;
                         case AppConsts.COL_UTILIDADESACUMULADAS:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 4;
                             break;
                         case AppConsts.COL_SUPERAVITDEREVALUACION:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 5;
                             break;
                         case AppConsts.COL_EFECTOPORCONVERSION:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 6;
                             break;
                         case AppConsts.COL_COBERTURASDEFLUJOSDEEFECTIVO:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 7;
                             break;
                         case AppConsts.COL_UTILIDADPERDIDAENINSTRUMENTOSDECOBERTURAQUECUBRENINVERSIONESENINSTRUMENTOSDECAPITAL:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 8;
                             break;
                         case AppConsts.COL_VARIACIONENELVALORTEMPORALDELASOPCIONES:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 1;
                             break;
                         case AppConsts.COL_VARIACIONENELVALORDECONTRATOSAFUTURO:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 9;
                             break;
                         case AppConsts.COL_VARIACIONENELVALORDEMÁRGENESCONBASEENMONEDAEXTRANJERA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 10;
                             break;
                         case AppConsts.COL_UTILIDADPERDIDAPORCAMBIOSENVALORRAZONABLEDEACTIVOSFINANCIEROSDISPONIBLESPARALAVENTA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 11;
                             break;
                         case AppConsts.COL_PAGOSBASADOSENACCIONES:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 12;
                             break;
                         case AppConsts.COL_NUEVASMEDICIONESDEPLANESDEBENEFICIOSDEFINIDOS:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 13;
                             break;
                         case AppConsts.COL_IMPORTESRECONOCIDOSENOTRORESULTADOINTEGRALYACUMULADOSENELCAPITALCONTABLERELATIVOSAACTIVOSNOCORRIENTESOGRUPOSDEACTIVOSPARASUDISPOSICIONMANTENIDOSPARALAVENTA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 14;
                             break;
                         case AppConsts.COL_UTILIDADPERDIDAPORINVERSIONESENINSTRUMENTOSDECAPITAL:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 15;
                             break;
                         case AppConsts.COL_RESERVAPARACAMBIOSENELVALORRAZONABLEDEPASIVOSFINANCIEROSATRIBUIBLESACAMBIOSENELRIESGODECREDITODEPASIVO:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 16;
                             break;
                         case AppConsts.COL_RESERVAPARACATASTROFES:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 17;
                             break;
                         case AppConsts.COL_RESERVAPARAESTABILIZACION:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 18;
                             break;
                         case AppConsts.COL_RESERVADECOMPONENTESDEPARTICIPACIONDISCRECIONAL:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 19;
                             break;
                         case AppConsts.COL_OTROSRESULTADOSINTEGRALES:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 20;
                             break;
                         case AppConsts.COL_OTROSRESULTADOSINTEGRALESACUMULADOS:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 21;
                             break;
                         case AppConsts.COL_CAPITALCONTABLEDELAPARTICIPACIONCONTROLADORA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 22;
                             break;
                         case AppConsts.COL_PARTICIPACIONNOCONTROLADORA:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 23;
                             break;
                         case AppConsts.COL_CAPITALCONTABLE:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 24;
                             break;
-                      
+
 
                     }
 
@@ -543,6 +618,16 @@ namespace TaxonomiaWeb.Forms
             System.Reflection.PropertyInfo[] listProp = typeof(Bmv610000).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             if (result != null)
             {
+                //Suma de totales por columna dentro de la misma fila
+                result.OtrosResultadosIntegralesAcumulados = result.SuperavitDeRevaluacion + result.EfectoPorConversion + result.CoberturasDeFlujosDeEfectivo +
+                    result.UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital + result.VariacionEnElValorTemporalDeLasOpciones + result.VariacionEnElValorDeContratosAFuturo +
+                    result.VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera + result.UtilidadPerdidaPorCambiosEnValorRazonableDeActivosFinancierosDisponiblesParaLaVenta + result.PagosBasadosEnAcciones +
+                    result.NuevasMedicionesDePlanesDeBeneficiosDefinidos + result.ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta +
+                    result.UtilidadPerdidaPorInversionesEnInstrumentosDeCapital + result.ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo +
+                    result.ReservaParaCatastrofes + result.ReservaParaEstabilizacion + result.ReservaDeComponentesDeParticipacionDiscrecional + result.OtrosResultadosIntegrales;
+                result.CapitalContableDeLaParticipacionControladora = result.CapitalSocial + result.PrimaEnEmisionDeAcciones + result.AccionesEnTesoreria + result.UtilidadesAcumuladas + result.OtrosResultadosIntegralesAcumulados;
+                result.CapitalContable = result.CapitalContableDeLaParticipacionControladora + result.ParticipacionNoControladora;
+
                 foreach (KeyValuePair<int, List<int>> value in listTotal)
                 {
                     List<int> list = value.Value as List<int>;
