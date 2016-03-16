@@ -383,26 +383,7 @@ namespace TaxonomiaWeb.Forms
             if (ctl != null)
             {
                 var row = ctl.DataContext as Bmv800005;
-                var bmv = new Bmv800005();
-                if (row != null)
-                {
-                    bmv.IngresosDeSubsidiariasEnElExtranjero = 0;
-                    bmv.IngresosNacionales = 0;
-                    bmv.IngresosPorExportacion = 0;
-                    bmv.IngresosTotales = 0;
-                    bmv.PrincipalesMarcas = "";
-                    bmv.PrincipalesProductosOLineaDeProductos = "";
-                    bmv.AtributoColumna = row.AtributoColumna;
-                    bmv.CampoDinamico = row.CampoDinamico;
-                    bmv.Contenido = row.Contenido;
-                    bmv.Descripcion = row.Descripcion;
-                    bmv.FormatoCampo = row.FormatoCampo;
-                    bmv.IdReporte = row.IdReporte;
-                    bmv.IdReporteDetalle = null;
-                    bmv.IdTaxonomiaDetalle = row.IdTaxonomiaDetalle;
-                    bmv.Lectura = row.Lectura;
-                    bmv.Orden = row.Orden;
-                    bmv.Valor = row.Valor;
+                var bmv = copyBaseEntity(row);
                     var dataGridRow = DataGridRow.GetRowContainingElement(sender as FrameworkElement);
                     int index = dataGridRow.GetIndex();
                     if (listaBmvAgrupada != null)
@@ -411,7 +392,6 @@ namespace TaxonomiaWeb.Forms
                         bmv.PropertyChanged += new PropertyChangedEventHandler(bmv_PropertyChanged);
                         listaBmvAgrupada.Insert(index + 1, bmv);
                     }
-                }
             }
         }
 
@@ -463,6 +443,18 @@ namespace TaxonomiaWeb.Forms
                 servBmvXblr.SaveDinamicoBmvReporteCompleted += servBmvXblr_SaveDinamicoBmvReporteAsync;
                 servBmvXblr.SaveDinamicoBmvReporteAsync(sortedList, mainPage.Compania, mainPage.IdAno, mainPage.NumTrimestre);
                 busyIndicator.IsBusy = true;
+            }
+        }
+        void BtnExportarExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string nameFile = Utilerias.ExportarDataGrid(DgvTaxo);
+            if (nameFile != null && nameFile.Length > 0)
+            {
+                MessageBox.Show(string.Format("Archivo {0} exportado correctamente", nameFile));
+            }
+            else if (nameFile == null)
+            {
+                MessageBox.Show("Hubo un error al exportar el reporte");
             }
         }
         #endregion
@@ -536,30 +528,10 @@ namespace TaxonomiaWeb.Forms
             {
                 listaBmv = e.Result;
                 listaBmvAgrupada = bindAndGroupList(listaBmv);
+                listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmvAgrupada);
 
-                //Verificamos si contiene total los registros
-                var tieneTotal = from o in listaBmvAgrupada
-                                 where o.IdentificadorFila == IDENTIFICADOR_FILA_SUMA
-                                 select o;
-                if (tieneTotal.Any() == false)
-                {
-                    listaBmvAgrupada = generarTotalesCamposDinamicos(listaBmvAgrupada);
-                }
-                //Añanadimos el prefijo total en la descripcion
-                else
-                {
-                    foreach (var item in listaBmvAgrupada)
-                    {
-                        int idFila = item.IdentificadorFila.HasValue == true ? item.IdentificadorFila.Value : 0;
-                        if (idFila == IDENTIFICADOR_FILA_SUMA)
-                        {
-                            item.Descripcion = getTituloTotalDescripcion(item.Descripcion);
-                            item.CampoDinamico = false;
-                        }
-                    }
-                }
-                //var orderby = listaBmvAgrupada.OrderBy(x => x.Orden).ThenByDescending(x => x.IdentificadorFila);
-                //listaBmvAgrupada = new ObservableCollection<Bmv800005>(orderby);
+                var orderby = listaBmvAgrupada.OrderBy(x => x.Orden).ThenByDescending(x => x.IdentificadorFila);
+                listaBmvAgrupada = new ObservableCollection<Bmv800005>(orderby);
                 foreach (var item in listaBmvAgrupada)
                 {
                     item.PropertyChanged += new PropertyChangedEventHandler(bmv_PropertyChanged);
@@ -576,7 +548,7 @@ namespace TaxonomiaWeb.Forms
 
         private ObservableCollection<Bmv800005> generarTotalesCamposDinamicos(ObservableCollection<Bmv800005> listaBmvAgrupada)
         {
-            ObservableCollection<Bmv800005> listaBmvAgrupadaConTotales = new ObservableCollection<Bmv800005>();
+           ObservableCollection<Bmv800005> listaBmvAgrupadaConTotales = new ObservableCollection<Bmv800005>();
 
             var tempListaBmvAgrupada = from element in listaBmv
                                        group element by element.IdTaxonomiaDetalle into groups
@@ -585,15 +557,30 @@ namespace TaxonomiaWeb.Forms
             {
                 foreach (var itemAgrupado in tempListaBmvAgrupada)
                 {
+
                     var itemsBmv = from o in listaBmvAgrupada
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && string.IsNullOrEmpty(o.FormatoCampo) == false && o.CampoDinamico == true
+                                   && o.IdentificadorFila != IDENTIFICADOR_FILA_SUMA
                                    group o by o.IdentificadorFila into groups
                                    select groups.First();
+                    var bmvTotal = (from o in listaBmvAgrupada
+                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && string.IsNullOrEmpty(o.FormatoCampo) == false && o.CampoDinamico == true
+                                    && o.IdentificadorFila == IDENTIFICADOR_FILA_SUMA
+                                    group o by o.IdentificadorFila into groups
+                                    select groups.First()).SingleOrDefault();
+
+                    bool isTieneTotal = bmvTotal != null ? true : false;
                     if (itemsBmv != null && itemsBmv.Any() == true)
                     {
+                        if (bmvTotal != null)
+                        {
+                            bmvTotal.Descripcion = getTituloTotalDescripcion(bmvTotal.Descripcion);
+                            bmvTotal.CampoDinamico = false;
+                        }
+                        else
+                        {
                         //Obtenemos cualquier registro para hacer una copia del nuevo registro
                         var bmvCopia = itemsBmv.FirstOrDefault();
-                        var bmvTotal = new Bmv800005();
                         bmvTotal.IngresosDeSubsidiariasEnElExtranjero = itemsBmv.Sum(c => c.IngresosDeSubsidiariasEnElExtranjero);
                         bmvTotal.IngresosNacionales = itemsBmv.Sum(c => c.IngresosNacionales);
                         bmvTotal.IngresosPorExportacion = itemsBmv.Sum(c => c.IngresosPorExportacion);
@@ -613,16 +600,34 @@ namespace TaxonomiaWeb.Forms
                         bmvTotal.Lectura = false;
                         bmvTotal.Orden = bmvCopia.Orden;
                         bmvTotal.Valor = "";
+                        }
                         foreach (var item in itemsBmv)
                         {
+                            if (isTieneTotal == false)
+                            {
+                                item.IdentificadorFila = 0;
+                            }
                             listaBmvAgrupadaConTotales.Add(item);
                         }
                         listaBmvAgrupadaConTotales.Add(bmvTotal);
-
                     }
                     else
                     {
-                        listaBmvAgrupadaConTotales.Add(itemAgrupado);
+                        //Si ya contiene totales de la bd pero no tiene registro predeterminado se crea uno.
+                        if (isTieneTotal == true)
+                        {
+                            var bmvCopia = copyBaseEntity(bmvTotal);
+                            bmvCopia.IdentificadorFila = 0;
+                            listaBmvAgrupadaConTotales.Add(bmvCopia);
+                            bmvTotal.Descripcion = getTituloTotalDescripcion(bmvTotal.Descripcion);
+                            bmvTotal.CampoDinamico = false;
+                            listaBmvAgrupadaConTotales.Add(bmvTotal);
+                        }
+                        //Si no tiene totales es otro registro que no es campo dinamico, por lo tanto se agrega.
+                        else
+                        {
+                            listaBmvAgrupadaConTotales.Add(itemAgrupado);
+                        }
                     }
                 }
             }
@@ -664,7 +669,9 @@ namespace TaxonomiaWeb.Forms
             System.Reflection.PropertyInfo[] listProp = typeof(Bmv800005).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             if (result != null)
             {
+                result.IngresosTotales = result.IngresosNacionales + result.IngresosPorExportacion + result.IngresosDeSubsidiariasEnElExtranjero;
                 actualizarRegistroTotalCampoDinamico(result);
+
                 if (listTotal != null)
                 {
                     foreach (KeyValuePair<int, List<int>> value in listTotal)
@@ -830,110 +837,82 @@ namespace TaxonomiaWeb.Forms
             {
                 if (string.IsNullOrEmpty(itemAgrupado.FormatoCampo) == false)
                 {
-                    //Actualizamos los registros qeu ya estaban
-                    var itemsBmv = from o in listaBmv
-                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle && o.IdentificadorFila == itemAgrupado.IdentificadorFila
-                                   select o;
-                    if (itemsBmv.Any() == true)
+                    int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
+                    if (idFila != IDENTIFICADOR_FILA_SUMA)
                     {
-                        foreach (var subItems in itemsBmv)
+                        if (itemAgrupado.IdReporteDetalle == null)
                         {
-                            ReporteDetalle rd = new ReporteDetalle();
-                            switch (subItems.AtributoColumna)
-                            {
-                                case AppConsts.COL_PRINCIPALESMARCAS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.PrincipalesMarcas);
-                                    break;
-
-                                case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.PrincipalesProductosOLineaDeProductos);
-                                    break;
-
-                                case AppConsts.COL_INGRESOSNACIONALES:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosNacionales);
-                                    break;
-
-                                case AppConsts.COL_INGRESOSPOREXPORTACION:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosPorExportacion);
-                                    break;
-
-                                case AppConsts.COL_INGRESOSDESUBSIDIARIASENELEXTRANJERO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosDeSubsidiariasEnElExtranjero);
-                                    break;
-
-                                case AppConsts.COL_INGRESOSTOTALES:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosTotales);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            rd.FormatoCampo = subItems.FormatoCampo;
-                            rd.IdReporte = subItems.IdReporte;
-                            rd.IdReporteDetalle = subItems.IdReporteDetalle;
-                            rd.IdentificadorFila = subItems.IdentificadorFila;
-                            rd.Estado = true;
-                            sortedList.Add(rd);
+                            var maxvalue = listaBmvAgrupada.Where(x => x.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle).OrderByDescending(i => i.IdentificadorFila).FirstOrDefault();
+                            itemAgrupado.IdentificadorFila = maxvalue != null ? (maxvalue.IdentificadorFila + 1) : 1;
                         }
 
                     }
-
-                    //Sino existen, quiere decir que so nuevos
-                    else if (itemsBmv.Any() == false)
+                    IEnumerable<Bmv800005> itemsBmv = null;
+                    if (itemAgrupado.IdentificadorFila.HasValue == true && itemAgrupado.IdReporteDetalle != null)
                     {
-                        int idFila = itemAgrupado.IdentificadorFila.HasValue == true ? itemAgrupado.IdentificadorFila.Value : 0;
-                        if (idFila != IDENTIFICADOR_FILA_SUMA)
-                        {
-                            var maxvalue = listaBmvAgrupada.OrderByDescending(i => i.IdentificadorFila).FirstOrDefault();
-                            itemAgrupado.IdentificadorFila = maxvalue != null ? (maxvalue.IdentificadorFila + 1) : 1;
-                        }
+                        itemsBmv = from o in listaBmv
+                                   where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
+                                   && o.IdentificadorFila == itemAgrupado.IdentificadorFila
+                                   group o by o.IdReporte into groups
+                                   select groups.First();
+                    }
+                    else
+                    {
                         itemsBmv = from o in listaBmv
                                    where o.IdTaxonomiaDetalle == itemAgrupado.IdTaxonomiaDetalle
                                    group o by o.IdReporte into groups
                                    select groups.First();
-                        foreach (var subItems in itemsBmv)
+                    }
+                    foreach (var subItems in itemsBmv)
+                    {
+                        string valor = string.Empty;
+                        switch (subItems.AtributoColumna)
                         {
-                            ReporteDetalle rd = new ReporteDetalle();
-                            switch (subItems.AtributoColumna)
-                            {
-                                case AppConsts.COL_PRINCIPALESMARCAS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.PrincipalesMarcas);
-                                    break;
+                            case AppConsts.COL_PRINCIPALESMARCAS:
+                                valor = Convert.ToString(itemAgrupado.PrincipalesMarcas);
+                                break;
 
-                                case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
-                                    rd.Valor = Convert.ToString(itemAgrupado.PrincipalesProductosOLineaDeProductos);
-                                    break;
+                            case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
+                                valor = Convert.ToString(itemAgrupado.PrincipalesProductosOLineaDeProductos);
+                                break;
 
-                                case AppConsts.COL_INGRESOSNACIONALES:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosNacionales);
-                                    break;
+                            case AppConsts.COL_INGRESOSNACIONALES:
+                                valor = Convert.ToString(itemAgrupado.IngresosNacionales);
+                                break;
 
-                                case AppConsts.COL_INGRESOSPOREXPORTACION:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosPorExportacion);
-                                    break;
+                            case AppConsts.COL_INGRESOSPOREXPORTACION:
+                                valor = Convert.ToString(itemAgrupado.IngresosPorExportacion);
+                                break;
 
-                                case AppConsts.COL_INGRESOSDESUBSIDIARIASENELEXTRANJERO:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosDeSubsidiariasEnElExtranjero);
-                                    break;
+                            case AppConsts.COL_INGRESOSDESUBSIDIARIASENELEXTRANJERO:
+                                valor = Convert.ToString(itemAgrupado.IngresosDeSubsidiariasEnElExtranjero);
+                                break;
 
-                                case AppConsts.COL_INGRESOSTOTALES:
-                                    rd.Valor = Convert.ToString(itemAgrupado.IngresosTotales);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            rd.FormatoCampo = subItems.FormatoCampo;
-                            rd.IdReporte = subItems.IdReporte;
-                            rd.IdReporteDetalle = null;
-                            rd.IdentificadorFila = itemAgrupado.IdentificadorFila;
-                            rd.Estado = true;
-                            sortedList.Add(rd);
+                            case AppConsts.COL_INGRESOSTOTALES:
+                                valor = Convert.ToString(itemAgrupado.IngresosTotales);
+                                break;
+                            default:
+                                break;
                         }
-
-
+                        ReporteDetalle rd = new ReporteDetalle();
+                        rd.Valor = valor;
+                        rd.FormatoCampo = subItems.FormatoCampo;
+                        rd.IdReporte = subItems.IdReporte;
+                        if (itemAgrupado.IdReporteDetalle != null)
+                        {
+                            rd.IdReporteDetalle = subItems.IdReporteDetalle;
+                        }
+                        else
+                        {
+                            rd.IdReporteDetalle = itemAgrupado.IdReporteDetalle;
+                        }
+                        rd.IdentificadorFila = itemAgrupado.IdentificadorFila;
+                        rd.Estado = true;
+                        sortedList.Add(rd);
                     }
                 }
-
             }
+
 
             //Por ultimo anadimos los registros eliminados
             if (listaBmvElementosEliminados != null && listaBmvElementosEliminados.Any() == true)
@@ -991,6 +970,32 @@ namespace TaxonomiaWeb.Forms
 
             return sortedList;
 
+        }
+
+        private Bmv800005 copyBaseEntity(Bmv800005 bmv)
+        {
+            var entity = new Bmv800005();
+            if (bmv != null)
+            {
+                entity.IngresosDeSubsidiariasEnElExtranjero = 0;
+                entity.IngresosNacionales = 0;
+                entity.IngresosPorExportacion = 0;
+                entity.IngresosTotales = 0;
+                entity.PrincipalesMarcas = "";
+                entity.PrincipalesProductosOLineaDeProductos = "";
+                entity.AtributoColumna = bmv.AtributoColumna;
+                entity.CampoDinamico = bmv.CampoDinamico;
+                entity.Contenido = bmv.Contenido;
+                entity.Descripcion = bmv.Descripcion;
+                entity.FormatoCampo = bmv.FormatoCampo;
+                entity.IdReporte = bmv.IdReporte;
+                entity.IdTaxonomiaDetalle = bmv.IdTaxonomiaDetalle;
+                entity.Lectura = bmv.Lectura;
+                entity.Orden = bmv.Orden;
+                entity.Valor = "";
+                entity.IdReporteDetalle = null;
+            }
+            return entity;
         }
 
         private bool validarDatos()

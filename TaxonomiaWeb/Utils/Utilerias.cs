@@ -82,7 +82,7 @@ namespace TaxonomiaWeb.Utils
             string nameFile = null;
             try
             {
-                SaveFileDialog objSFD = new SaveFileDialog() { DefaultExt = "xls", Filter = "CSV Files (*.csv)|*.csv|Excel XML (*.xml)|*.xml|Excel Spreadsheets (*.xls)|*.xls |All files (*.*)|*.*", FilterIndex = 1 };
+                SaveFileDialog objSFD = new SaveFileDialog() { DefaultExt = "xls", Filter = "Excel Spreadsheets (*.xls)|*.xls |All files (*.*)|*.*", FilterIndex = 1 };
 
                 if (objSFD.ShowDialog() == true)
                 {
@@ -105,7 +105,11 @@ namespace TaxonomiaWeb.Utils
                                 int index = dgcol.DisplayIndex;
                                 if (index > -1)
                                 {
-                                    lstFields.Insert(index, FormatField(dgcol.Header.ToString(), strFormat));
+                                    string header = dgcol.Header == null ? "" : dgcol.Header.ToString();
+                                    if (string.IsNullOrEmpty(header) == false)
+                                    {
+                                        lstFields.Insert(index, FormatField(header, strFormat));
+                                    }
                                 }
                             }
                         }
@@ -113,7 +117,7 @@ namespace TaxonomiaWeb.Utils
                     }
                     foreach (object data in dGrid.ItemsSource)
                     {
-                        lstFields.Clear();
+                        lstFields = new string[countColumns].ToList();
                         foreach (DataGridColumn col in dGrid.Columns)
                         {
                             if (col.Visibility == Visibility.Visible)
@@ -145,11 +149,16 @@ namespace TaxonomiaWeb.Utils
                                         if (pi != null)
                                         {
                                             strValue = pi.GetValue(data, null) != null ? pi.GetValue(data, null).ToString() : "";
+                                            if (strValue.Contains("Bmv800005") == true)
+                                            {
+                                                string l = "";
+                                                l = "";
+                                            }
                                         }
                                     }
                                     if (objBinding.Converter != null)
                                     {
-                                        if (strValue != "")
+                                        if (strValue.Equals("") == false)
                                             strValue = objBinding.Converter.Convert(strValue, typeof(string), objBinding.ConverterParameter, objBinding.ConverterCulture).ToString();
                                         else
                                             strValue = objBinding.Converter.Convert(data, typeof(string), objBinding.ConverterParameter, objBinding.ConverterCulture).ToString();
@@ -158,7 +167,12 @@ namespace TaxonomiaWeb.Utils
                                 int index = col.DisplayIndex;
                                 if (index > -1)
                                 {
-                                    lstFields.Add(FormatField(strValue, strFormat));
+                                    string header = col.Header == null ? "" : col.Header.ToString();
+                                    if (string.IsNullOrEmpty(header) == false)
+                                    {
+                                
+                                        lstFields.Insert(index, FormatField(strValue, strFormat));
+                                    }
                                 }
 
                             }

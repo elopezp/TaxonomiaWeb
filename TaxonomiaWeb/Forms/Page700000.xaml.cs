@@ -327,6 +327,18 @@ namespace TaxonomiaWeb.Forms
 
             }
         }
+        void BtnExportarExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string nameFile = Utilerias.ExportarDataGrid(DgvTaxo);
+            if (nameFile != null && nameFile.Length > 0)
+            {
+                MessageBox.Show(string.Format("Archivo {0} exportado correctamente", nameFile));
+            }
+            else if (nameFile == null)
+            {
+                MessageBox.Show("Hubo un error al exportar el reporte");
+            }
+        }
         #endregion
         #region Funciones de cada celda
         private bool IsNumberKey(Key inKey)

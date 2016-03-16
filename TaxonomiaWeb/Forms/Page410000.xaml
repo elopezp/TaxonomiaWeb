@@ -12,18 +12,22 @@
         <toolkit:BusyIndicator HorizontalAlignment="Center"   
                                 Name="busyIndicator" IsBusy="False"  BusyContent="Procesando información...">
             <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
-            <Grid  Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-                </sdk:DataGrid>
+                    <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                    </sdk:DataGrid>
+                    <StackPanel x:Name="ButtonsPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                        <Button x:Name="BtnGuardar"  Content="Guardar" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGuardar_Click"></Button>
+                        <Button x:Name="BtnExportarExcel"  Content="Exportar Excel" Width="100" Height="30" Margin="10,10,10,10" Click="BtnExportarExcel_Click" ></Button>
+                    </StackPanel>
 
-                <Button x:Name="BtnGuardar" Grid.Row="1" Content="Guardar" Width="100" Height="30" Margin="20,20,20,20" Click="BtnGuardar_Click"></Button>
-            </Grid>
-        </ScrollViewer>
+
+                </Grid>
+            </ScrollViewer>
         </toolkit:BusyIndicator>
     </Grid>
 </navigation:Page>
