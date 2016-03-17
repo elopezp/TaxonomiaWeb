@@ -581,6 +581,7 @@ namespace TaxonomiaWeb.Forms
                         {
                         //Obtenemos cualquier registro para hacer una copia del nuevo registro
                         var bmvCopia = itemsBmv.FirstOrDefault();
+                        bmvTotal = new Bmv800005();
                         bmvTotal.IngresosDeSubsidiariasEnElExtranjero = itemsBmv.Sum(c => c.IngresosDeSubsidiariasEnElExtranjero);
                         bmvTotal.IngresosNacionales = itemsBmv.Sum(c => c.IngresosNacionales);
                         bmvTotal.IngresosPorExportacion = itemsBmv.Sum(c => c.IngresosPorExportacion);

@@ -160,8 +160,8 @@ namespace TaxonomiaWeb.Utils
                                     {
                                         if (strValue.Equals("") == false)
                                             strValue = objBinding.Converter.Convert(strValue, typeof(string), objBinding.ConverterParameter, objBinding.ConverterCulture).ToString();
-                                        else
-                                            strValue = objBinding.Converter.Convert(data, typeof(string), objBinding.ConverterParameter, objBinding.ConverterCulture).ToString();
+                                        //else
+                                          //  strValue = objBinding.Converter.Convert(data, typeof(string), objBinding.ConverterParameter, objBinding.ConverterCulture).ToString();
                                     }
                                 }
                                 int index = col.DisplayIndex;
