@@ -109,6 +109,7 @@ namespace TaxonomiaWeb.Forms
                     {
                         case AppConsts.COL_DESCRIPCION:
                             item.DisplayIndex = 0;
+                            item.MaxWidth = 600;
                             break;
                         case AppConsts.COL_CAPITALSOCIAL:
                             item.DisplayIndex = 1;

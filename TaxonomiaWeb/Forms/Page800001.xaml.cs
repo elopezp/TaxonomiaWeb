@@ -104,7 +104,7 @@ namespace TaxonomiaWeb.Forms
             DataGrid grid = this.DgvTaxo;
             if (grid != null)
             {
-                grid.FrozenColumnCount = 2;
+                grid.FrozenColumnCount = 3;
                 ObservableCollection<DataGridColumn> listColumns = grid.Columns;
                 foreach (var item in listColumns)
                 {
@@ -114,7 +114,7 @@ namespace TaxonomiaWeb.Forms
                     switch (headerName)
                     {
                         case AppConsts.COL_DESCRIPCION:
-
+                            item.MaxWidth = 600;
                             item.DisplayIndex = 2;
                             break;
 

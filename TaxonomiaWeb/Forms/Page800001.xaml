@@ -17,14 +17,13 @@
     <Grid x:Name="LayoutRoot" >
         <toolkit:BusyIndicator HorizontalAlignment="Center"   
                                 Name="busyIndicator" IsBusy="False"  BusyContent="Procesando información...">
-            <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
                 <Grid  Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                    <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" MaxHeight="600" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTemplateColumn DisplayIndex="0"  Width="SizeToCells" Header="">
                                 <sdk:DataGridTemplateColumn.CellTemplate>
@@ -50,7 +49,6 @@
 
 
                 </Grid>
-            </ScrollViewer>
         </toolkit:BusyIndicator>
     </Grid>
 </navigation:Page>
