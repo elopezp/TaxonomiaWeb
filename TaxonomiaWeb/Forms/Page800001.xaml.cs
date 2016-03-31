@@ -114,7 +114,6 @@ namespace TaxonomiaWeb.Forms
                     switch (headerName)
                     {
                         case AppConsts.COL_DESCRIPCION:
-                            item.MaxWidth = 600;
                             item.DisplayIndex = 2;
                             break;
 
@@ -218,7 +217,7 @@ namespace TaxonomiaWeb.Forms
                     switch (e.PropertyName)
                     {
                         case AppConsts.COL_DESCRIPCION:
-
+                            dgColumn.MaxWidth = AppConsts.MAXWIDTH_COL_DESCRIPCION;
                             dgColumn.Width = DataGridLength.SizeToCells;
                             break;
 

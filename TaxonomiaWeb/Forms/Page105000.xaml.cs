@@ -116,7 +116,7 @@ namespace TaxonomiaWeb.Forms
                     switch (e.PropertyName)
                     {
                         case AppConsts.COL_DESCRIPCION:
-                            dgColumn.MaxWidth = 600;
+                            dgColumn.MaxWidth = AppConsts.MAXWIDTH_COL_DESCRIPCION;
                             dgColumn.DisplayIndex = 0;
                             break;
 
