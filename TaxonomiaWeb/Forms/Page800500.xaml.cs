@@ -279,6 +279,7 @@ namespace TaxonomiaWeb.Forms
                 }
                 else
                 {
+                    SharedEvents se = new SharedEvents();
                     //Dependiendo del formato de captura se aplica la plantilla
                     switch (row.FormatoCampo)
                     {
@@ -290,11 +291,14 @@ namespace TaxonomiaWeb.Forms
                             break;
                         case AppConsts.FORMAT_X:
                         case AppConsts.FORMAT_X_NEGATIVE:
-                        case AppConsts.FORMAT_XXX:
                         case AppConsts.FORMAT_SHARES:
                         case AppConsts.FORMAT_SUM:
-                            textBox.KeyDown += NumericOnCellKeyDown;
-                            textBox.TextChanged += NumericOnCellTextChanged;
+                            textBox.KeyDown += se.NumericOnCellKeyDown;
+                            textBox.TextChanged += se.NumericOnCellTextChanged;
+                            break;
+                        case AppConsts.FORMAT_XXX:
+                            textBox.KeyDown += se.NumericDecimalOnCellKeyDown;
+                            textBox.TextChanged += se.NumericDecimalOnCellTextChanged;
                             break;
                         default:
                             break;
@@ -345,68 +349,7 @@ namespace TaxonomiaWeb.Forms
         }
 
         #endregion
-        #region Funciones de cada celda
-        private bool IsNumberKey(Key inKey)
-        {
-
-            if (inKey < Key.D0 || inKey > Key.D9)
-            {
-                if (inKey < Key.NumPad0 || inKey > Key.NumPad9)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool IsActionKey(Key inKey)
-        {
-            return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down || inKey == Key.Subtract;
-        }
-
-        private string LeaveOnlyNumbers(String inString)
-        {
-            String tmp = inString;
-            foreach (char c in inString.ToCharArray())
-            {
-                if (IsDigit(c) == false && c.Equals("-") == true)
-                {
-                    tmp = tmp.Replace(c.ToString(), "");
-                }
-            }
-            return tmp;
-        }
-
-
-        public bool IsDigit(char c)
-        {
-            return (c >= '0' && c <= '9');
-        }
-
-        protected void NumericOnCellKeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (Keyboard.Modifiers == ModifierKeys.Shift)
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = IsNumberKey(e.Key) == false && IsActionKey(e.Key) == false;
-            }
-
-        }
-
-        protected void NumericOnCellTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string value = LeaveOnlyNumbers(txt.Text);
-            int n;
-            bool isNumeric = int.TryParse(value, out n);
-            txt.Text = isNumeric ? Convert.ToString(n) : value;
-        }
-        #endregion
-
+       
 
         #region Llamadas a servicios asincronos WCF
         void servBmvXblr_GetBmv800500Completed(object sender, GetBmv800500CompletedEventArgs e)

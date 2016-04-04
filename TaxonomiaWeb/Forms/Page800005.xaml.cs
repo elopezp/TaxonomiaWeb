@@ -333,6 +333,7 @@ namespace TaxonomiaWeb.Forms
                 {
                     DataGridColumn dgc = DgvTaxo.CurrentColumn;
                     string headerName = Regex.Replace(dgc.Header == null ? "" : dgc.Header.ToString(), @"\s+", "");
+                    SharedEvents se = new SharedEvents();
                     //Dependiendo del formato de captura se aplica la plantilla
                     switch (row.FormatoCampo)
                     {
@@ -353,8 +354,20 @@ namespace TaxonomiaWeb.Forms
                                 case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
                                     break;
                                 default:
-                                    textBox.KeyDown += NumericOnCellKeyDown;
-                                    textBox.TextChanged += NumericOnCellTextChanged;
+                                    switch (row.FormatoCampo)
+                                    {
+                                        case AppConsts.FORMAT_X:
+                                        case AppConsts.FORMAT_X_NEGATIVE:
+                                        case AppConsts.FORMAT_SHARES:
+                                        case AppConsts.FORMAT_SUM:
+                                            textBox.KeyDown += se.NumericOnCellKeyDown;
+                                            textBox.TextChanged += se.NumericOnCellTextChanged;
+                                            break;
+                                        case AppConsts.FORMAT_XXX:
+                                            textBox.KeyDown += se.NumericDecimalOnCellKeyDown;
+                                            textBox.TextChanged += se.NumericDecimalOnCellTextChanged;
+                                            break;
+                                    }
                                     break;
                             }
                             break;
@@ -456,68 +469,6 @@ namespace TaxonomiaWeb.Forms
             }
         }
         #endregion
-        #region Funciones de cada celda
-        private bool IsNumberKey(Key inKey)
-        {
-
-            if (inKey < Key.D0 || inKey > Key.D9)
-            {
-                if (inKey < Key.NumPad0 || inKey > Key.NumPad9)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool IsActionKey(Key inKey)
-        {
-            return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down || inKey == Key.Subtract;
-        }
-
-        private string LeaveOnlyNumbers(String inString)
-        {
-            String tmp = inString;
-            foreach (char c in inString.ToCharArray())
-            {
-                if (IsDigit(c) == false && c.Equals("-") == true)
-                {
-                    tmp = tmp.Replace(c.ToString(), "");
-                }
-            }
-            return tmp;
-        }
-
-
-        public bool IsDigit(char c)
-        {
-            return (c >= '0' && c <= '9');
-        }
-
-        protected void NumericOnCellKeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (Keyboard.Modifiers == ModifierKeys.Shift)
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = IsNumberKey(e.Key) == false && IsActionKey(e.Key) == false;
-            }
-
-        }
-
-        protected void NumericOnCellTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string value = LeaveOnlyNumbers(txt.Text);
-            int n;
-            bool isNumeric = int.TryParse(value, out n);
-            txt.Text = isNumeric ? Convert.ToString(n) : value;
-        }
-        #endregion
-
 
         #region Llamadas a servicios asincronos WCF
         void servBmvXblr_GetBmv800005Completed(object sender, GetBmv800005CompletedEventArgs e)
@@ -687,12 +638,12 @@ namespace TaxonomiaWeb.Forms
                                     var filteredList = from o in listaBmvAgrupada
                                                        where list.Contains(o.IdTaxonomiaDetalle)
                                                        select o;
-                                    long subtotalPositivo = 0;
-                                    long subtotalNegativo = 0;
+                                    double subtotalPositivo = 0;
+                                    double subtotalNegativo = 0;
                                     if (filteredList != null)
                                     {
-                                        subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.IngresosNacionales));
-                                        subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.IngresosNacionales));
+                                        subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.IngresosNacionales));
+                                        subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.IngresosNacionales));
                                         //Actualizamos el campo
                                         foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                         {

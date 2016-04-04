@@ -436,6 +436,7 @@ namespace TaxonomiaWeb.Forms
                 }
                 else
                 {
+                    SharedEvents se = new SharedEvents();
                     //Dependiendo del formato de captura se aplica la plantilla
                     switch (row.FormatoCampo)
                     {
@@ -447,11 +448,14 @@ namespace TaxonomiaWeb.Forms
                             break;
                         case AppConsts.FORMAT_X:
                         case AppConsts.FORMAT_X_NEGATIVE:
-                        case AppConsts.FORMAT_XXX:
                         case AppConsts.FORMAT_SHARES:
                         case AppConsts.FORMAT_SUM:
-                            textBox.KeyDown += NumericOnCellKeyDown;
-                            textBox.TextChanged += NumericOnCellTextChanged;
+                            textBox.KeyDown += se.NumericOnCellKeyDown;
+                            textBox.TextChanged += se.NumericOnCellTextChanged;
+                            break;
+                        case AppConsts.FORMAT_XXX:
+                            textBox.KeyDown += se.NumericDecimalOnCellKeyDown;
+                            textBox.TextChanged += se.NumericDecimalOnCellTextChanged;
                             break;
                         default:
                             break;
@@ -502,68 +506,6 @@ namespace TaxonomiaWeb.Forms
             }
         }
         #endregion
-        #region Funciones de cada celda
-        private bool IsNumberKey(Key inKey)
-        {
-
-            if (inKey < Key.D0 || inKey > Key.D9)
-            {
-                if (inKey < Key.NumPad0 || inKey > Key.NumPad9)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool IsActionKey(Key inKey)
-        {
-            return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down || inKey == Key.Subtract;
-        }
-
-        private string LeaveOnlyNumbers(String inString)
-        {
-            String tmp = inString;
-            foreach (char c in inString.ToCharArray())
-            {
-                if (IsDigit(c) == false && c.Equals("-") == true)
-                {
-                    tmp = tmp.Replace(c.ToString(), "");
-                }
-            }
-            return tmp;
-        }
-
-
-        public bool IsDigit(char c)
-        {
-            return (c >= '0' && c <= '9');
-        }
-
-        protected void NumericOnCellKeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (Keyboard.Modifiers == ModifierKeys.Shift)
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = IsNumberKey(e.Key) == false && IsActionKey(e.Key) == false;
-            }
-
-        }
-
-        protected void NumericOnCellTextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            string value = LeaveOnlyNumbers(txt.Text);
-            int n;
-            bool isNumeric = int.TryParse(value, out n);
-            txt.Text = isNumeric ? Convert.ToString(n) : value;
-        }
-        #endregion
-
 
         #region Llamadas a servicios asincronos WCF
         void servBmvXblr_GetBmv610000AnteriorCompleted(object sender, GetBmv610000AnteriorCompletedEventArgs e)
@@ -654,12 +596,12 @@ namespace TaxonomiaWeb.Forms
                                 var filteredList = from o in listaBmvAgrupada
                                                    where list.Contains(o.IdTaxonomiaDetalle)
                                                    select o;
-                                long subtotalPositivo = 0;
-                                long subtotalNegativo = 0;
+                                double subtotalPositivo = 0;
+                                double subtotalNegativo = 0;
                                 if (filteredList != null)
                                 {
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.AccionesEnTesoreria));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.AccionesEnTesoreria));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.AccionesEnTesoreria));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.AccionesEnTesoreria));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -667,8 +609,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.CapitalContable));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.CapitalContable));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.CapitalContable));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.CapitalContable));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -676,8 +618,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.CapitalContableDeLaParticipacionControladora));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.CapitalContableDeLaParticipacionControladora));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.CapitalContableDeLaParticipacionControladora));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.CapitalContableDeLaParticipacionControladora));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -685,8 +627,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.CapitalSocial));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.CapitalSocial));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.CapitalSocial));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.CapitalSocial));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -694,8 +636,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.CoberturasDeFlujosDeEfectivo));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.CoberturasDeFlujosDeEfectivo));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.CoberturasDeFlujosDeEfectivo));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.CoberturasDeFlujosDeEfectivo));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -703,8 +645,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.EfectoPorConversion));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.EfectoPorConversion));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.EfectoPorConversion));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.EfectoPorConversion));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -712,8 +654,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ImportesReconocidosEnOtroResultadoIntegralYAcumuladosEnElCapitalContableRelativosAActivosNoCorrientesOGruposDeActivosParaSuDisposicionMantenidosParaLaVenta));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -721,8 +663,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.NuevasMedicionesDePlanesDeBeneficiosDefinidos));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.NuevasMedicionesDePlanesDeBeneficiosDefinidos));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.NuevasMedicionesDePlanesDeBeneficiosDefinidos));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.NuevasMedicionesDePlanesDeBeneficiosDefinidos));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -730,8 +672,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.OtrosResultadosIntegrales));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.OtrosResultadosIntegrales));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.OtrosResultadosIntegrales));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.OtrosResultadosIntegrales));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -739,8 +681,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.OtrosResultadosIntegralesAcumulados));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.OtrosResultadosIntegralesAcumulados));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.OtrosResultadosIntegralesAcumulados));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.OtrosResultadosIntegralesAcumulados));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -748,8 +690,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.PagosBasadosEnAcciones));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.PagosBasadosEnAcciones));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.PagosBasadosEnAcciones));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.PagosBasadosEnAcciones));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -757,8 +699,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ParticipacionNoControladora));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ParticipacionNoControladora));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ParticipacionNoControladora));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ParticipacionNoControladora));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -766,8 +708,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.PrimaEnEmisionDeAcciones));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.PrimaEnEmisionDeAcciones));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.PrimaEnEmisionDeAcciones));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.PrimaEnEmisionDeAcciones));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -775,8 +717,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ReservaDeComponentesDeParticipacionDiscrecional));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ReservaDeComponentesDeParticipacionDiscrecional));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ReservaDeComponentesDeParticipacionDiscrecional));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ReservaDeComponentesDeParticipacionDiscrecional));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -784,8 +726,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ReservaParaCambiosEnElValorRazonableDePasivosFinancierosAtribuiblesACambiosEnElRiesgoDeCreditoDePasivo));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -793,8 +735,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ReservaParaCatastrofes));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ReservaParaCatastrofes));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ReservaParaCatastrofes));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ReservaParaCatastrofes));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -802,8 +744,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.ReservaParaEstabilizacion));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.ReservaParaEstabilizacion));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.ReservaParaEstabilizacion));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.ReservaParaEstabilizacion));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -811,8 +753,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.SuperavitDeRevaluacion));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.SuperavitDeRevaluacion));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.SuperavitDeRevaluacion));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.SuperavitDeRevaluacion));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -820,8 +762,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.UtilidadesAcumuladas));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.UtilidadesAcumuladas));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.UtilidadesAcumuladas));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.UtilidadesAcumuladas));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -829,8 +771,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.UtilidadPerdidaEnInstrumentosDeCoberturaQueCubrenInversionesEnInstrumentosDeCapital));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -838,8 +780,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.UtilidadPerdidaPorInversionesEnInstrumentosDeCapital));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.UtilidadPerdidaPorInversionesEnInstrumentosDeCapital));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.UtilidadPerdidaPorInversionesEnInstrumentosDeCapital));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.UtilidadPerdidaPorInversionesEnInstrumentosDeCapital));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -847,8 +789,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.VariacionEnElValorDeContratosAFuturo));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.VariacionEnElValorDeContratosAFuturo));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.VariacionEnElValorDeContratosAFuturo));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.VariacionEnElValorDeContratosAFuturo));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -856,8 +798,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.VariacionEnElValorDeMárgenesConBaseEnMonedaExtranjera));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
@@ -865,8 +807,8 @@ namespace TaxonomiaWeb.Forms
                                     }
                                     subtotalPositivo = 0;
                                     subtotalNegativo = 0;
-                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToInt32(x.VariacionEnElValorTemporalDeLasOpciones));
-                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToInt32(x.VariacionEnElValorTemporalDeLasOpciones));
+                                    subtotalPositivo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == false).Sum(x => Convert.ToDouble(x.VariacionEnElValorTemporalDeLasOpciones));
+                                    subtotalNegativo = filteredList.Where(x => x.FormatoCampo.Equals(AppConsts.FORMAT_X_NEGATIVE) == true).Sum(x => Convert.ToDouble(x.VariacionEnElValorTemporalDeLasOpciones));
                                     //Actualizamos el campo
                                     foreach (var u in listaBmv.Where(u => u.IdTaxonomiaDetalle == value.Key))
                                     {
