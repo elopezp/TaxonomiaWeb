@@ -118,29 +118,9 @@ namespace TaxonomiaWeb.Forms
                             dgColumn.DisplayIndex = 0;
                             break;
 
-                        case AppConsts.COL_PRINCIPALESMARCAS:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
+                        case AppConsts.COL_TRIMESTREACTUAL:
+                            dgColumn.Width = new DataGridLength(500, DataGridLengthUnitType.Pixel);
                             dgColumn.DisplayIndex = 1;
-                            break;
-                        case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 2;
-                            break;
-                        case AppConsts.COL_INGRESOSNACIONALES:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 3;
-                            break;
-                        case AppConsts.COL_INGRESOSPOREXPORTACION:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 4;
-                            break;
-                        case AppConsts.COL_INGRESOSDESUBSIDIARIASENELEXTRANJERO:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 5;
-                            break;
-                        case AppConsts.COL_INGRESOSTOTALES:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 6;
                             break;
                     }
 
@@ -247,7 +227,6 @@ namespace TaxonomiaWeb.Forms
                 //Fore recalculating row height
                 try
                 {
-                    dataGrid.RowHeight = 0;
                     row.InvalidateMeasure();
                     row.Measure(row.RenderSize);
                 }

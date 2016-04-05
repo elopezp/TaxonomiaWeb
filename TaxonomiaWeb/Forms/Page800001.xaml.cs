@@ -332,11 +332,6 @@ namespace TaxonomiaWeb.Forms
                 DataGridRow dgr = e.Row;
                 System.Reflection.PropertyInfo[] listProp = typeof(Bmv800001).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
                 Bmv800001 row = dgr.DataContext as Bmv800001;
-                if (row.IdTaxonomiaDetalle== 149)
-                {
-                    string l = "";
-                    l = "";
-                }
                 foreach (var prop in listProp)
                 {
                     DataGridColumn column = DgvTaxo.Columns.SingleOrDefault(x => Regex.Replace(x.Header == null ? "" : x.Header.ToString(), @"\s+", "").Equals(prop.Name));
@@ -414,7 +409,6 @@ namespace TaxonomiaWeb.Forms
                 //Fore recalculating row height
                 try
                 {
-                    dataGrid.RowHeight = 0;
                     row.InvalidateMeasure();
                     row.Measure(row.RenderSize);
                 }

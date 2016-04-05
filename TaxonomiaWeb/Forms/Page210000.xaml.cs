@@ -242,7 +242,6 @@ namespace TaxonomiaWeb.Forms
                 //Fore recalculating row height
                 try
                 {
-                    dataGrid.RowHeight = 0;
                     row.InvalidateMeasure();
                     row.Measure(row.RenderSize);
                 }

@@ -189,6 +189,11 @@ namespace TaxonomiaWeb.Forms
                         FrameworkElement cellElement = column.GetCellContent(dgr);
                         FrameworkElement eleCell = GetElementParent(cellElement, typeof(DataGridCell));
                         DataGridCell dgCell = (DataGridCell)eleCell;
+                        //Necesario para ajustar los renglones de cada celda y no crezcan estas mismas.
+                        if (cellElement != null)
+                        {
+                            cellElement.SizeChanged += CellElement_SizeChanged;
+                        }
                         if (row.Lectura == true)
                         {
                             //Ocultamos las celdas donde no se debe de editar nada
@@ -234,6 +239,33 @@ namespace TaxonomiaWeb.Forms
 
             }
         }
+
+        private void CellElement_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            //Fix issue: DataGrid Row Auto-Resize only grows row height but won't shrink
+            var dataGrid = Utilerias.GetParentOf<DataGrid>((FrameworkElement)sender);
+            if (dataGrid != null && double.IsNaN(dataGrid.RowHeight))
+            {
+                var row = DataGridRow.GetRowContainingElement((FrameworkElement)sender);
+
+                //Fore recalculating row height
+                try
+                {
+                    row.InvalidateMeasure();
+                    row.Measure(row.RenderSize);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    //Restore RowHeight
+                    dataGrid.RowHeight = double.NaN;
+                }
+            }
+        }
+
 
 
         /// <summary>
