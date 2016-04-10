@@ -150,11 +150,6 @@ namespace TaxonomiaWeb.Utils
                                         if (pi != null)
                                         {
                                             strValue = pi.GetValue(data, null) != null ? pi.GetValue(data, null).ToString() : "";
-                                            if (strValue.Contains("Bmv800005") == true)
-                                            {
-                                                string l = "";
-                                                l = "";
-                                            }
                                         }
                                     }
                                     if (objBinding.Converter != null)

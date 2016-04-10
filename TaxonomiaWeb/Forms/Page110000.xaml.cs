@@ -281,6 +281,10 @@ namespace TaxonomiaWeb.Forms
                             textBox.KeyDown += se.NumericDecimalOnCellKeyDown;
                             textBox.TextChanged += se.NumericDecimalOnCellTextChanged;
                             break;
+                        case AppConsts.FORMAT_BOOLEAN:
+                            textBox.KeyDown += se.BooleanOnCellKeyDown;
+                            textBox.TextChanged += se.BooleanOnCellTextChanged;
+                            break;
                         default:
                             break;
 
@@ -417,7 +421,32 @@ namespace TaxonomiaWeb.Forms
                         switch (subItems.AtributoColumna)
                         {
                             case AppConsts.COL_TRIMESTREACTUAL:
-                                itemAgrupado.TrimestreActual = Convert.ToString(subItems.Valor);
+                                switch (subItems.FormatoCampo)
+                                {
+                                    case AppConsts.FORMAT_BOOLEAN:
+                                       bool res = false;
+                                       bool isBoolean = Boolean.TryParse(subItems.Valor,out res);
+                                       if (isBoolean)
+                                       {
+                                           if (res == true)
+                                           {
+                                               itemAgrupado.TrimestreActual = "SI";
+                                           }
+                                           else
+                                           {
+                                               itemAgrupado.TrimestreActual = "NO";
+                                           }
+                                       }
+                                       else
+                                       {
+                                          itemAgrupado.TrimestreActual = Convert.ToString(subItems.Valor);
+                                       }
+                                        break;
+                                    default:
+                                        itemAgrupado.TrimestreActual = Convert.ToString(subItems.Valor);
+                                        break;
+                                }
+                             
                                 break;
                             default:
                                 break;
@@ -456,7 +485,25 @@ namespace TaxonomiaWeb.Forms
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
                         rd.Estado = true;
-                        sortedList.Add(rd);
+                        switch (subItems.FormatoCampo)
+                        {
+                            case AppConsts.FORMAT_BOOLEAN:
+                                if (rd.Valor.Equals("SI"))
+                                {
+                                    rd.Valor = "true";
+                                }
+                                else if (rd.Valor.Equals("NO"))
+                                {
+                                    rd.Valor = "false";
+                                }
+                                sortedList.Add(rd);
+                                break;
+                            default:
+                                sortedList.Add(rd);
+                            break;
+                        }
+
+                       
                     }
                 }
             }

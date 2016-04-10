@@ -90,6 +90,7 @@ namespace TaxonomiaWeb.Utils
         public const string FORMAT_AXIS_IMPLICIT_MEMBER = "axis_implicit_member";
         public const string FORMAT_MEMBER = "member";
         public const string FORMAT_LINE_ITEMS = "line_items";
+        public const string FORMAT_BOOLEAN = "boolean";
 
         public const int MAXWIDTH_COL_DESCRIPCION = 600;
 

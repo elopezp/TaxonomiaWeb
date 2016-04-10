@@ -29,6 +29,15 @@ namespace TaxonomiaWeb.Utils
             return true;
         }
 
+        private bool IsBooleanKey(Key inKey)
+        {
+
+            if (inKey == Key.S || inKey == Key.I || inKey == Key.N || inKey == Key.O)
+            {
+                return true;
+            }
+            return false;
+        }
         private bool IsActionKey(Key inKey)
         {
             return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down || inKey == Key.Subtract;
@@ -38,6 +47,11 @@ namespace TaxonomiaWeb.Utils
         {
             //PlatformKeyCode = para el valor . en Windows es 190 en Mac es 47
             return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down || inKey == Key.Subtract || inKey == Key.Decimal || platformKeyCode == 190 || platformKeyCode == 47;
+        }
+
+        private bool IsBooleanActionKey(Key inKey)
+        {
+            return inKey == Key.Enter || inKey == Key.Delete || inKey == Key.Back || inKey == Key.Tab || Keyboard.Modifiers.HasFlag(ModifierKeys.Alt) || inKey == Key.Left || inKey == Key.Right || inKey == Key.Up || inKey == Key.Down;
         }
 
         private string LeaveOnlyNumbers(String inString)
@@ -97,6 +111,66 @@ namespace TaxonomiaWeb.Utils
             return tmp;
         }
 
+        private string LeaveOnlyBoolean(String inString)
+        {
+            String tmp = inString;
+
+            if (tmp.ToUpper().StartsWith("S") || tmp.ToUpper().StartsWith("N"))
+            {
+                if (tmp.Length == 1)
+                {
+                    if (tmp.ToUpper().Contains("S"))
+                    {
+                        tmp = "SI";
+                    }
+                    else if (tmp.ToUpper().Contains("N"))
+                    {
+                        tmp = "NO";
+                    }
+                    return tmp;
+                }
+                else if (tmp.Length == 2 && tmp.ToUpper().Contains("S"))
+                {
+                    if (tmp.ToUpper().EndsWith("I"))
+                    {
+                        return tmp;
+                    }
+                    else 
+                    {
+                        tmp = tmp.Remove(1, 1);
+                    }
+                 
+                }
+                else if (tmp.Length == 2 && tmp.ToUpper().Contains("N"))
+                {
+                    if (tmp.ToUpper().EndsWith("O"))
+                    {
+                        return tmp;
+                    }
+                    else
+                    {
+                        tmp = tmp.Remove(1, 1);
+                    }
+
+                }
+                else 
+                {
+                    if (tmp.Length > 0)
+                    {
+                        tmp = tmp.Remove(0, 1);
+                    }
+                }
+            }
+            else
+            {
+                if (tmp.Length > 0)
+                {
+                    tmp = tmp.Remove(0, 1);
+                }
+            }
+            return tmp;
+        }
+
 
         private bool IsDigit(char c)
         {
@@ -147,6 +221,29 @@ namespace TaxonomiaWeb.Utils
             int n;
             bool isNumeric = int.TryParse(value, out n);
             txt.Text = isNumeric ? Convert.ToString(n) : value;
+        }
+
+        public void BooleanOnCellKeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (Keyboard.Modifiers == ModifierKeys.Shift)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = IsBooleanKey(e.Key) == false && IsBooleanActionKey(e.Key) == false;
+            }
+
+        }
+
+        public void BooleanOnCellTextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            string value = LeaveOnlyBoolean(txt.Text);
+            //int n;
+            //bool isNumeric = int.TryParse(value, out n);
+            txt.Text = value;
         }
         #endregion
     }
