@@ -627,9 +627,9 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
     [System.Runtime.Serialization.DataContractAttribute(Name="Bmv800001", Namespace="http://schemas.datacontract.org/2004/07/TaxonomiaWeb.Model")]
     public partial class Bmv800001 : TaxonomiaWeb.ServiceBmvXblr.BmvBase {
         
-        private string FechaDeFirmaContratoField;
+        private System.Nullable<System.DateTime> FechaDeFirmaContratoField;
         
-        private string FechaDeVencimientoField;
+        private System.Nullable<System.DateTime> FechaDeVencimientoField;
         
         private string InstitucionField;
         
@@ -662,12 +662,12 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         private double TasaDeInteresYOSobreTasaField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FechaDeFirmaContrato {
+        public System.Nullable<System.DateTime> FechaDeFirmaContrato {
             get {
                 return this.FechaDeFirmaContratoField;
             }
             set {
-                if ((object.ReferenceEquals(this.FechaDeFirmaContratoField, value) != true)) {
+                if ((this.FechaDeFirmaContratoField.Equals(value) != true)) {
                     this.FechaDeFirmaContratoField = value;
                     this.RaisePropertyChanged("FechaDeFirmaContrato");
                 }
@@ -675,12 +675,12 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FechaDeVencimiento {
+        public System.Nullable<System.DateTime> FechaDeVencimiento {
             get {
                 return this.FechaDeVencimientoField;
             }
             set {
-                if ((object.ReferenceEquals(this.FechaDeVencimientoField, value) != true)) {
+                if ((this.FechaDeVencimientoField.Equals(value) != true)) {
                     this.FechaDeVencimientoField = value;
                     this.RaisePropertyChanged("FechaDeVencimiento");
                 }

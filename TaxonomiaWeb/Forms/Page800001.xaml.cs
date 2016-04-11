@@ -299,7 +299,7 @@ namespace TaxonomiaWeb.Forms
                         }
                     }
 
-                    if (e.PropertyType == typeof(DateTime))
+                    if (e.PropertyType == typeof(DateTime?))
                     {
                         DataGridBoundColumn obj = e.Column as DataGridBoundColumn;
                         if (obj != null && obj.Binding != null)
@@ -678,8 +678,8 @@ namespace TaxonomiaWeb.Forms
                             bmvTotal.MonedaNacionalHasta3Anos = itemsBmv.Sum(c => c.MonedaNacionalHasta3Anos); ;
                             bmvTotal.MonedaNacionalHasta4Anos = itemsBmv.Sum(c => c.MonedaNacionalHasta4Anos); ;
                             bmvTotal.MonedaNacionalHasta5AnosOMas = itemsBmv.Sum(c => c.MonedaNacionalHasta5AnosOMas);
-                            bmvTotal.FechaDeFirmaContrato = "";
-                            bmvTotal.FechaDeVencimiento = "";
+                            bmvTotal.FechaDeFirmaContrato = null;
+                            bmvTotal.FechaDeVencimiento = null;
                             bmvTotal.Institucion = "";
                             bmvTotal.InstitucionExtranjera = false;
                             bmvTotal.AtributoColumna = bmvCopia.AtributoColumna;
@@ -1005,11 +1005,30 @@ namespace TaxonomiaWeb.Forms
                                 break;
 
                             case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                itemAgrupado.FechaDeFirmaContrato = string.IsNullOrEmpty(subItems.Valor) == true ? "" : subItems.Valor;
+                                DateTime dteResFirmaContrato = new DateTime(2015,10,23);
+                                bool isDateTimeFirmaContrato = DateTime.TryParse(string.IsNullOrEmpty(subItems.Valor) == true ? "" : subItems.Valor, out dteResFirmaContrato);
+                                if (isDateTimeFirmaContrato)
+                                {
+                                    itemAgrupado.FechaDeFirmaContrato = dteResFirmaContrato;
+                                }
+                                else 
+                                {
+                                    itemAgrupado.FechaDeFirmaContrato = null;
+                                }
+                               
                                 break;
 
                             case AppConsts.COL_FECHADEVENCIMIENTO:
-                                itemAgrupado.FechaDeVencimiento = string.IsNullOrEmpty(subItems.Valor) == true ? "" : subItems.Valor;
+                                DateTime dteResFechaVencimiento = new DateTime(2015,10,23);
+                                bool isDateTimeFechaVencimiento = DateTime.TryParse(string.IsNullOrEmpty(subItems.Valor) == true ? "" : subItems.Valor, out dteResFechaVencimiento);
+                                if (isDateTimeFechaVencimiento)
+                                {
+                                    itemAgrupado.FechaDeVencimiento = dteResFechaVencimiento;
+                                }
+                                else
+                                {
+                                    itemAgrupado.FechaDeVencimiento = null;
+                                }
                                 break;
 
                             case AppConsts.COL_TASADEINTERESYOSOBRETASA:
@@ -1083,8 +1102,8 @@ namespace TaxonomiaWeb.Forms
             foreach (var itemAgrupado in listaBmvAgrupada.Where(x => x.CampoDinamico == true && string.IsNullOrEmpty(x.Institucion) == true))
             {
                 //En caso en que la institucion venga vacio actualizamos sus valores
-                itemAgrupado.FechaDeFirmaContrato = "";
-                itemAgrupado.FechaDeVencimiento = "";
+                itemAgrupado.FechaDeFirmaContrato = null;
+                itemAgrupado.FechaDeVencimiento = null;
                 itemAgrupado.Institucion = "";
                 itemAgrupado.InstitucionExtranjera = false;
                 itemAgrupado.MonedaExtranjeraAnoActual = 0;
@@ -1162,11 +1181,11 @@ namespace TaxonomiaWeb.Forms
                                 break;
 
                             case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                valor = Convert.ToString(itemAgrupado.FechaDeFirmaContrato);
+                                valor = itemAgrupado.FechaDeFirmaContrato == null ? "" : itemAgrupado.FechaDeFirmaContrato.Value.ToString("dd/MM/yyyy");
                                 break;
 
                             case AppConsts.COL_FECHADEVENCIMIENTO:
-                                valor = Convert.ToString(itemAgrupado.FechaDeVencimiento);
+                                valor = itemAgrupado.FechaDeVencimiento == null ? "" : itemAgrupado.FechaDeVencimiento.Value.ToString("dd/MM/yyyy");
                                 break;
 
                             case AppConsts.COL_TASADEINTERESYOSOBRETASA:
@@ -1281,11 +1300,11 @@ namespace TaxonomiaWeb.Forms
                                     break;
 
                                 case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                    rd.Valor = Convert.ToString(itemEliminado.FechaDeFirmaContrato);
+                                    rd.Valor = itemEliminado.FechaDeFirmaContrato == null ? "" : itemEliminado.FechaDeFirmaContrato.Value.ToString("dd/MM/yyyy");
                                     break;
 
                                 case AppConsts.COL_FECHADEVENCIMIENTO:
-                                    rd.Valor = Convert.ToString(itemEliminado.FechaDeVencimiento);
+                                    rd.Valor = itemEliminado.FechaDeVencimiento == null ? "" : itemEliminado.FechaDeVencimiento.Value.ToString("dd/MM/yyyy");
                                     break;
 
                                 case AppConsts.COL_TASADEINTERESYOSOBRETASA:
@@ -1362,8 +1381,8 @@ namespace TaxonomiaWeb.Forms
                 var entity = new Bmv800001();
                 if (bmv != null)
                 {
-                    entity.FechaDeFirmaContrato = "";
-                    entity.FechaDeVencimiento = "";
+                    entity.FechaDeFirmaContrato = null;
+                    entity.FechaDeVencimiento = null;
                     entity.Institucion = "";
                     entity.InstitucionExtranjera = false;
                     entity.MonedaExtranjeraAnoActual = 0;

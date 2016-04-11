@@ -36,9 +36,9 @@ namespace TaxonomiaWeb.Model
             }
         }
 
-        private string fechaDeFirmaContrato;
+        private DateTime? fechaDeFirmaContrato;
 
-        public string FechaDeFirmaContrato
+        public DateTime? FechaDeFirmaContrato
         {
             get { return fechaDeFirmaContrato; }
             set
@@ -51,9 +51,9 @@ namespace TaxonomiaWeb.Model
             }
         }
 
-        private string fechaDeVencimiento;
+        private DateTime? fechaDeVencimiento;
 
-        public string FechaDeVencimiento
+        public DateTime? FechaDeVencimiento
         {
             get { return fechaDeVencimiento; }
             set

@@ -170,8 +170,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BmvBase">
         <xs:sequence>
-          <xs:element minOccurs="0" name="FechaDeFirmaContrato" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="FechaDeVencimiento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FechaDeFirmaContrato" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaDeVencimiento" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Institucion" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="InstitucionExtranjera" type="xs:boolean" />
           <xs:element minOccurs="0" name="MonedaExtranjeraAnoActual" type="xs:double" />

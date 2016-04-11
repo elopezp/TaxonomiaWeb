@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using TaxonomiaWeb.Forms;
+using System.Threading;
+using System.Windows.Markup;
 
 namespace TaxonomiaWeb
 {
@@ -28,7 +30,14 @@ namespace TaxonomiaWeb
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //this.RootVisual = new Control105000();
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-mx");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-mx");
+
             this.RootVisual = new MainPage();
+            if (this.RootVisual != null)
+            {
+                ((MainPage)this.RootVisual).Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
+            }
         }
 
         private void Application_Exit(object sender, EventArgs e)
