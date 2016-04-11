@@ -48,7 +48,7 @@ namespace TaxonomiaWeb.Utils
         public const string COL_ANOACTUAL = "AnoActual";
         public const string COL_ANOANTERIOR = "AnoAnterior";
         public const string COL_INSTITUCION = "Institucion";
-        public const string COL_INSTITUCIONEXTRANJERA = "InstitucionExtranjera";
+        public const string COL_INSTITUCIONEXTRANJERASINO = "InstitucionExtranjeraSiNo";
         public const string COL_FECHADEFIRMACONTRATO = "FechaDeFirmaContrato";
         public const string COL_FECHADEVENCIMIENTO = "FechaDeVencimiento";
         public const string COL_TASADEINTERESYOSOBRETASA = "TasaDeInteresYOSobreTasa";

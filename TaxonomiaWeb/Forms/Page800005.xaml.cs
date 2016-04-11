@@ -97,6 +97,7 @@ namespace TaxonomiaWeb.Forms
             DataGrid grid = this.DgvTaxo;
             if (grid != null)
             {
+                grid.FrozenColumnCount = 3;
                 ObservableCollection<DataGridColumn> listColumns = grid.Columns;
                 foreach (var item in listColumns)
                 {
@@ -152,7 +153,7 @@ namespace TaxonomiaWeb.Forms
                 if (dgColumn != null)
                 {
                     DataGrid grid = sender as DataGrid;
-                    grid.FrozenColumnCount = 3;
+                   
                     Style elementStyle = new Style(typeof(TextBlock));
                     elementStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
                     Style editingElmentStyle = new Style(typeof(TextBox));
@@ -170,11 +171,11 @@ namespace TaxonomiaWeb.Forms
                             break;
 
                         case AppConsts.COL_PRINCIPALESMARCAS:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
+                            dgColumn.Width = new DataGridLength(250, DataGridLengthUnitType.Pixel);
                             break;
 
                         case AppConsts.COL_PRINCIPALESPRODUCTOSOLINEADEPRODUCTOS:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
+                            dgColumn.Width = new DataGridLength(250, DataGridLengthUnitType.Pixel);
                             break;
 
                         case AppConsts.COL_INGRESOSNACIONALES:

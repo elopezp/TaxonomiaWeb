@@ -23,7 +23,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" MaxHeight="600" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" MaxHeight="650" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTemplateColumn DisplayIndex="0"  Width="SizeToCells">
                                 <sdk:DataGridTemplateColumn.CellTemplate>

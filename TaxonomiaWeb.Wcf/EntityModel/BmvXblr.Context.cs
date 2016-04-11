@@ -37,9 +37,11 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public DbSet<Taxonomia_Reporte_Detalle> Taxonomia_Reporte_Detalle { get; set; }
         public DbSet<Cat_Taxonomia_Columna> Cat_Taxonomia_Columna { get; set; }
         public DbSet<Cat_Contenido> Cat_Contenido { get; set; }
-        public DbSet<Cat_Taxonomia_Detalle> Cat_Taxonomia_Detalle { get; set; }
         public DbSet<Cat_Validacion_Trimestre> Cat_Validacion_Trimestre { get; set; }
         public DbSet<Periodo_Sin_Presentar> Periodo_Sin_Presentar { get; set; }
         public DbSet<Cat_Modelo_Clase> Cat_Modelo_Clase { get; set; }
+        public DbSet<Cat_Taxonomia_Detalle> Cat_Taxonomia_Detalle { get; set; }
+        public DbSet<XBRL_Contexto> XBRL_Contexto { get; set; }
+        public DbSet<XBRL_Detalle> XBRL_Detalle { get; set; }
     }
 }

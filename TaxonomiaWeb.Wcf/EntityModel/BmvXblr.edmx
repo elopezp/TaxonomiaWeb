@@ -22,6 +22,8 @@
           <EntitySet Name="Taxonomia_Detalle_Suma" EntityType="BmvXblrModel.Store.Taxonomia_Detalle_Suma" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Taxonomia_Reporte" EntityType="BmvXblrModel.Store.Taxonomia_Reporte" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Taxonomia_Reporte_Detalle" EntityType="BmvXblrModel.Store.Taxonomia_Reporte_Detalle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="XBRL_Contexto" EntityType="BmvXblrModel.Store.XBRL_Contexto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="XBRL_Detalle" EntityType="BmvXblrModel.Store.XBRL_Detalle" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" Association="BmvXblrModel.Store.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
             <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
             <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
@@ -114,6 +116,10 @@
             <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
           </AssociationSet>
+          <AssociationSet Name="FK_Taxonomia_Reporte_Cat_Validacion_Contexto" Association="BmvXblrModel.Store.FK_Taxonomia_Reporte_Cat_Validacion_Contexto">
+            <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
+            <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
+          </AssociationSet>
           <AssociationSet Name="FK_Taxonomia_Reporte_Detalle_Cat_Ano" Association="BmvXblrModel.Store.FK_Taxonomia_Reporte_Detalle_Cat_Ano">
             <End Role="Cat_Ano" EntitySet="Cat_Ano" />
             <End Role="Taxonomia_Reporte_Detalle" EntitySet="Taxonomia_Reporte_Detalle" />
@@ -186,7 +192,6 @@
           <Property Name="Formato" Type="varchar" MaxLength="25" />
           <Property Name="Orden" Type="int" />
           <Property Name="Descripcion" Type="varchar(max)" />
-          <Property Name="Prefijo" Type="varchar" MaxLength="30" />
           <Property Name="Nombre_esquema" Type="varchar(max)" />
           <Property Name="Referencia_Tiempo" Type="varchar" MaxLength="25" />
           <Property Name="Fecha_Registro" Type="datetime" />
@@ -278,6 +283,7 @@
           <Property Name="Id_Taxonomia_Detalle" Type="int" />
           <Property Name="Id_Taxonomia_Columna" Type="int" />
           <Property Name="Id_Contenido" Type="int" />
+          <Property Name="Id_Validacion_Contexto" Type="int" />
         </EntityType>
         <EntityType Name="Taxonomia_Reporte_Detalle">
           <Key>
@@ -292,6 +298,60 @@
           <Property Name="Identificador_Fila" Type="int" />
           <Property Name="Fecha_Guardado" Type="datetime" />
           <Property Name="Fecha_Ultima_Actualizacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="XBRL_Contexto">
+          <Key>
+            <PropertyRef Name="Id_Ano" />
+            <PropertyRef Name="Id_Trimestre" />
+            <PropertyRef Name="Id_XBRL_Contexto" />
+          </Key>
+          <Property Name="Id_Ano" Type="int" Nullable="false" />
+          <Property Name="Id_Trimestre" Type="int" Nullable="false" />
+          <Property Name="Id_XBRL_Contexto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenciaTiempo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prefijo" Type="nvarchar" MaxLength="30" />
+          <Property Name="EsquemaX" Type="nvarchar(max)" />
+          <Property Name="EsquemaY" Type="nvarchar(max)" />
+          <Property Name="EsquemaCabeceraX" Type="nvarchar(max)" />
+          <Property Name="EsquemaCabeceraY" Type="nvarchar(max)" />
+          <Property Name="Nombre_Esquema" Type="nvarchar(max)" />
+          <Property Name="TypedMember" Type="nvarchar(max)" />
+          <Property Name="TypedMember_Valor" Type="nvarchar(max)" />
+          <Property Name="TypedMember2" Type="nvarchar(max)" />
+          <Property Name="TypedMember2_Valor" Type="nvarchar(max)" />
+          <Property Name="Identificador_Fila" Type="int" />
+          <Property Name="FechaInicial" Type="varchar" MaxLength="10" />
+          <Property Name="FechaFinal" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="XBRL_Detalle">
+          <Key>
+            <PropertyRef Name="Id_ano" />
+            <PropertyRef Name="Id_trimestre" />
+            <PropertyRef Name="Id_XBRL_Contexto" />
+            <PropertyRef Name="Id_XBRL_Detalle" />
+          </Key>
+          <Property Name="Id_ano" Type="int" Nullable="false" />
+          <Property Name="Id_trimestre" Type="int" Nullable="false" />
+          <Property Name="Id_XBRL_Contexto" Type="int" Nullable="false" />
+          <Property Name="Id_XBRL_Detalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_contenido" Type="int" />
+          <Property Name="Contenido" Type="nchar" MaxLength="20" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Formato" Type="nvarchar" MaxLength="25" />
+          <Property Name="Referencia_Tiempo" Type="varchar" MaxLength="25" />
+          <Property Name="Prefijo" Type="varchar" MaxLength="30" />
+          <Property Name="Atributo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Valor" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Nombre_esquema" Type="varchar(max)" />
+          <Property Name="EsquemaX" Type="varchar(max)" />
+          <Property Name="EsquemaY" Type="varchar(max)" />
+          <Property Name="EsquemaXCabecera" Type="varchar(max)" />
+          <Property Name="EsquemaYCabecera" Type="varchar(max)" />
+          <Property Name="Identificador_Fila" Type="int" />
+          <Property Name="Id_Validacion_Contexto" Type="int" />
+          <Property Name="Fecha_inicial" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fecha_final" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
           <End Role="Cat_Taxonomia_Detalle" Type="BmvXblrModel.Store.Cat_Taxonomia_Detalle" Multiplicity="0..1" />
@@ -569,6 +629,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Taxonomia_Reporte_Cat_Validacion_Contexto">
+          <End Role="Cat_Validacion_Contexto" Type="BmvXblrModel.Store.Cat_Validacion_Contexto" Multiplicity="0..1" />
+          <End Role="Taxonomia_Reporte" Type="BmvXblrModel.Store.Taxonomia_Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Validacion_Contexto">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Principal>
+            <Dependent Role="Taxonomia_Reporte">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Taxonomia_Reporte_Detalle_Cat_Ano">
           <End Role="Cat_Ano" Type="BmvXblrModel.Store.Cat_Ano" Multiplicity="0..1" />
           <End Role="Taxonomia_Reporte_Detalle" Type="BmvXblrModel.Store.Taxonomia_Reporte_Detalle" Multiplicity="*" />
@@ -674,7 +746,6 @@
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
           </AssociationSet>
           <EntitySet Name="Cat_Contenido" EntityType="BmvXblrModel.Cat_Contenido" />
-          <EntitySet Name="Cat_Taxonomia_Detalle" EntityType="BmvXblrModel.Cat_Taxonomia_Detalle" />
           <AssociationSet Name="FK_Cat_Taxonomia_Columna_Cat_Contenido" Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Contenido">
             <End Role="Cat_Contenido" EntitySet="Cat_Contenido" />
             <End Role="Cat_Taxonomia_Columna" EntitySet="Cat_Taxonomia_Columna" />
@@ -686,6 +757,36 @@
           <AssociationSet Name="FK_Taxonomia_Reporte_Cat_Contenido" Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Contenido">
             <End Role="Cat_Contenido" EntitySet="Cat_Contenido" />
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
+          </AssociationSet>
+          <EntitySet Name="Cat_Validacion_Trimestre" EntityType="BmvXblrModel.Cat_Validacion_Trimestre" />
+          <EntitySet Name="Periodo_Sin_Presentar" EntityType="BmvXblrModel.Periodo_Sin_Presentar" />
+          <AssociationSet Name="FK_Cat_Periodo_Cat_Trimestre" Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Cat_Validacion_Trimestre" EntitySet="Cat_Validacion_Trimestre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Trimestre" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre">
+            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+            <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
+            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
+          </AssociationSet>
+          <EntitySet Name="Cat_Modelo_Clase" EntityType="BmvXblrModel.Cat_Modelo_Clase" />
+          <AssociationSet Name="FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase">
+            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
+            <End Role="Cat_Taxonomia_Columna" EntitySet="Cat_Taxonomia_Columna" />
+          </AssociationSet>
+          <EntitySet Name="Cat_Taxonomia_Detalle" EntityType="BmvXblrModel.Cat_Taxonomia_Detalle" />
+          <EntitySet Name="XBRL_Contexto" EntityType="BmvXblrModel.XBRL_Contexto" />
+          <EntitySet Name="XBRL_Detalle" EntityType="BmvXblrModel.XBRL_Detalle" />
+          <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
+            <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
+            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1">
+            <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
+            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
           </AssociationSet>
           <AssociationSet Name="FK_Cat_Taxonomia_Detalle_Cat_Origen_Elemento" Association="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Origen_Elemento">
             <End Role="Cat_Origen_Elemento" EntitySet="Cat_Origen_Elemento" />
@@ -719,32 +820,9 @@
             <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
           </AssociationSet>
-          <EntitySet Name="Cat_Validacion_Trimestre" EntityType="BmvXblrModel.Cat_Validacion_Trimestre" />
-          <EntitySet Name="Periodo_Sin_Presentar" EntityType="BmvXblrModel.Periodo_Sin_Presentar" />
-          <AssociationSet Name="FK_Cat_Periodo_Cat_Trimestre" Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre">
-            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
-            <End Role="Cat_Validacion_Trimestre" EntitySet="Cat_Validacion_Trimestre" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Trimestre" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre">
-            <End Role="Cat_Trimestre" EntitySet="Cat_Trimestre" />
-            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+          <AssociationSet Name="FK_Taxonomia_Reporte_Cat_Validacion_Contexto" Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Validacion_Contexto">
             <End Role="Cat_Validacion_Contexto" EntitySet="Cat_Validacion_Contexto" />
-            <End Role="Periodo_Sin_Presentar" EntitySet="Periodo_Sin_Presentar" />
-          </AssociationSet>
-          <EntitySet Name="Cat_Modelo_Clase" EntityType="BmvXblrModel.Cat_Modelo_Clase" />
-          <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
-            <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
-            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1">
-            <End Role="Cat_Taxonomia_Detalle" EntitySet="Cat_Taxonomia_Detalle" />
-            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase">
-            <End Role="Cat_Modelo_Clase" EntitySet="Cat_Modelo_Clase" />
-            <End Role="Cat_Taxonomia_Columna" EntitySet="Cat_Taxonomia_Columna" />
+            <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Cat_Ano">
@@ -801,6 +879,7 @@
           <NavigationProperty Name="Periodoes" Relationship="BmvXblrModel.FK_Periodo_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Periodo" />
           <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Cat_Taxonomia_Columna" />
           <NavigationProperty Name="Periodo_Sin_Presentar" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Periodo_Sin_Presentar" />
+          <NavigationProperty Name="Taxonomia_Reporte" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Validacion_Contexto" FromRole="Cat_Validacion_Contexto" ToRole="Taxonomia_Reporte" />
         </EntityType>
         <EntityType Name="Contexto">
           <Key>
@@ -850,7 +929,9 @@
           <NavigationProperty Name="Taxonomia_Reporte_Detalle" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Taxonomia_Reporte" FromRole="Taxonomia_Reporte" ToRole="Taxonomia_Reporte_Detalle" />
           <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Columna" FromRole="Taxonomia_Reporte" ToRole="Cat_Taxonomia_Columna" />
           <NavigationProperty Name="Cat_Contenido" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Contenido" FromRole="Taxonomia_Reporte" ToRole="Cat_Contenido" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
           <NavigationProperty Name="Cat_Taxonomia_Detalle" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" FromRole="Taxonomia_Reporte" ToRole="Cat_Taxonomia_Detalle" />
+          <NavigationProperty Name="Cat_Validacion_Contexto" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Validacion_Contexto" FromRole="Taxonomia_Reporte" ToRole="Cat_Validacion_Contexto" />
         </EntityType>
         <Association Name="FK_Periodo_Cat_Ano">
           <End Type="BmvXblrModel.Cat_Ano" Role="Cat_Ano" Multiplicity="0..1" />
@@ -978,8 +1059,8 @@
           <NavigationProperty Name="Cat_Validacion_Contexto" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto" FromRole="Cat_Taxonomia_Columna" ToRole="Cat_Validacion_Contexto" />
           <NavigationProperty Name="Taxonomia_Reporte" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Columna" FromRole="Cat_Taxonomia_Columna" ToRole="Taxonomia_Reporte" />
           <NavigationProperty Name="Cat_Contenido" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Contenido" FromRole="Cat_Taxonomia_Columna" ToRole="Cat_Contenido" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Columna" ToRole="Cat_Taxonomia_Detalle" />
           <NavigationProperty Name="Cat_Modelo_Clase" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" FromRole="Cat_Taxonomia_Columna" ToRole="Cat_Modelo_Clase" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Columna" ToRole="Cat_Taxonomia_Detalle" />
         </EntityType>
         <Association Name="FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto">
           <End Type="BmvXblrModel.Cat_Validacion_Contexto" Role="Cat_Validacion_Contexto" Multiplicity="0..1" />
@@ -1016,38 +1097,6 @@
           <NavigationProperty Name="Taxonomia_Detalle_Suma" Relationship="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Contenido" FromRole="Cat_Contenido" ToRole="Taxonomia_Detalle_Suma" />
           <NavigationProperty Name="Taxonomia_Reporte" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Contenido" FromRole="Cat_Contenido" ToRole="Taxonomia_Reporte" />
         </EntityType>
-        <EntityType Name="Cat_Taxonomia_Detalle">
-          <Key>
-            <PropertyRef Name="Id_Taxonomia_Detalle" />
-          </Key>
-          <Property Type="Int32" Name="Id_Taxonomia_Detalle" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="Id_Origen_Elemento" />
-          <Property Type="Int32" Name="Id_Tipo_Formato" />
-          <Property Type="String" Name="Contenido" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Id_Tabla_Padre" />
-          <Property Type="Int32" Name="Id_Axis_Padre" />
-          <Property Type="String" Name="Formato" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Orden" />
-          <Property Type="String" Name="Descripcion" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Prefijo" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nombre_esquema" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Referencia_Tiempo" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_Registro" Precision="3" />
-          <Property Type="Int32" Name="Nivel_Sangria" />
-          <Property Type="Boolean" Name="Campo_Dinamico" />
-          <NavigationProperty Name="Cat_Origen_Elemento" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Origen_Elemento" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Origen_Elemento" />
-          <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Columna" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle1" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Detalle1" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle2" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle1" ToRole="Cat_Taxonomia_Detalle" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle11" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Detalle1" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle3" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle1" ToRole="Cat_Taxonomia_Detalle" />
-          <NavigationProperty Name="Cat_Tipo_Formato" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Tipo_Formato" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Tipo_Formato" />
-          <NavigationProperty Name="Taxonomia_Detalle_Suma" Relationship="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Detalle_Suma" />
-          <NavigationProperty Name="Taxonomia_Detalle_Suma1" Relationship="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Detalle_Suma" />
-          <NavigationProperty Name="Taxonomia_Reporte" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Reporte" />
-          <NavigationProperty Name="Cat_Modelo_Clase" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Modelo_Clase" />
-          <NavigationProperty Name="Cat_Modelo_Clase1" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Modelo_Clase" />
-        </EntityType>
         <Association Name="FK_Cat_Taxonomia_Columna_Cat_Contenido">
           <End Type="BmvXblrModel.Cat_Contenido" Role="Cat_Contenido" Multiplicity="0..1" />
           <End Type="BmvXblrModel.Cat_Taxonomia_Columna" Role="Cat_Taxonomia_Columna" Multiplicity="*" />
@@ -1081,6 +1130,198 @@
             </Principal>
             <Dependent Role="Taxonomia_Reporte">
               <PropertyRef Name="Id_Contenido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cat_Validacion_Trimestre">
+          <Key>
+            <PropertyRef Name="Id_Contexto_Periodo" />
+          </Key>
+          <Property Type="Int32" Name="Id_Contexto_Periodo" Nullable="false" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
+          <Property Type="Int32" Name="Id_Trimestre" />
+          <Property Type="String" Name="Dia_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Mes_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Dia_Final" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Mes_Final" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" FromRole="Cat_Validacion_Trimestre" ToRole="Cat_Trimestre" />
+        </EntityType>
+        <EntityType Name="Periodo_Sin_Presentar">
+          <Key>
+            <PropertyRef Name="Id_Periodo_Sin_Presentar" />
+          </Key>
+          <Property Type="Int32" Name="Id_Periodo_Sin_Presentar" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="Id_Trimestre" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
+          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Trimestre" />
+          <NavigationProperty Name="Cat_Validacion_Contexto" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Validacion_Contexto" />
+        </EntityType>
+        <Association Name="FK_Cat_Periodo_Cat_Trimestre">
+          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Cat_Validacion_Trimestre" Role="Cat_Validacion_Trimestre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Cat_Validacion_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Trimestre">
+          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Trimestre">
+              <PropertyRef Name="Id_Trimestre" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
+              <PropertyRef Name="Id_Trimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+          <End Type="BmvXblrModel.Cat_Validacion_Contexto" Role="Cat_Validacion_Contexto" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Validacion_Contexto">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Principal>
+            <Dependent Role="Periodo_Sin_Presentar">
+              <PropertyRef Name="Id_Validacion_Contexto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cat_Modelo_Clase">
+          <Key>
+            <PropertyRef Name="Id_Modelo_Clase" />
+          </Key>
+          <Property Type="Int32" Name="Id_Modelo_Clase" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Atributo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Id_Taxonomia_Detalle_Axis_X" />
+          <Property Type="Int32" Name="Id_Taxonomia_Detalle_Axis_Y" />
+          <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Columna" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Detalle" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle1" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Detalle" />
+        </EntityType>
+        <Association Name="FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase">
+          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Cat_Taxonomia_Columna" Role="Cat_Taxonomia_Columna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Modelo_Clase">
+              <PropertyRef Name="Id_Modelo_Clase" />
+            </Principal>
+            <Dependent Role="Cat_Taxonomia_Columna">
+              <PropertyRef Name="Id_Modelo_Clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cat_Taxonomia_Detalle">
+          <Key>
+            <PropertyRef Name="Id_Taxonomia_Detalle" />
+          </Key>
+          <Property Type="Int32" Name="Id_Taxonomia_Detalle" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="Id_Origen_Elemento" />
+          <Property Type="Int32" Name="Id_Tipo_Formato" />
+          <Property Type="String" Name="Contenido" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Id_Tabla_Padre" />
+          <Property Type="Int32" Name="Id_Axis_Padre" />
+          <Property Type="String" Name="Formato" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Orden" />
+          <Property Type="String" Name="Descripcion" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nombre_esquema" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Referencia_Tiempo" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Registro" Precision="3" />
+          <Property Type="Int32" Name="Nivel_Sangria" />
+          <Property Type="Boolean" Name="Campo_Dinamico" />
+          <NavigationProperty Name="Cat_Modelo_Clase" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Modelo_Clase" />
+          <NavigationProperty Name="Cat_Modelo_Clase1" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Modelo_Clase" />
+          <NavigationProperty Name="Cat_Origen_Elemento" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Origen_Elemento" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Origen_Elemento" />
+          <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Columna" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle1" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Detalle1" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle2" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle1" ToRole="Cat_Taxonomia_Detalle" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle11" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Taxonomia_Detalle1" />
+          <NavigationProperty Name="Cat_Taxonomia_Detalle3" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle1" ToRole="Cat_Taxonomia_Detalle" />
+          <NavigationProperty Name="Cat_Tipo_Formato" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Tipo_Formato" FromRole="Cat_Taxonomia_Detalle" ToRole="Cat_Tipo_Formato" />
+          <NavigationProperty Name="Taxonomia_Detalle_Suma" Relationship="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Detalle_Suma" />
+          <NavigationProperty Name="Taxonomia_Detalle_Suma1" Relationship="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle1" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Detalle_Suma" />
+          <NavigationProperty Name="Taxonomia_Reporte" Relationship="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" FromRole="Cat_Taxonomia_Detalle" ToRole="Taxonomia_Reporte" />
+        </EntityType>
+        <EntityType Name="XBRL_Contexto">
+          <Key>
+            <PropertyRef Name="Id_Ano" />
+            <PropertyRef Name="Id_Trimestre" />
+            <PropertyRef Name="Id_XBRL_Contexto" />
+          </Key>
+          <Property Type="Int32" Name="Id_Ano" Nullable="false" />
+          <Property Type="Int32" Name="Id_Trimestre" Nullable="false" />
+          <Property Type="Int32" Name="Id_XBRL_Contexto" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="ReferenciaTiempo" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Prefijo" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EsquemaX" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EsquemaY" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EsquemaCabeceraX" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EsquemaCabeceraY" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Nombre_Esquema" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypedMember" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypedMember_Valor" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypedMember2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypedMember2_Valor" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Identificador_Fila" />
+          <Property Type="String" Name="FechaInicial" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FechaFinal" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="XBRL_Detalle">
+          <Key>
+            <PropertyRef Name="Id_ano" />
+            <PropertyRef Name="Id_trimestre" />
+            <PropertyRef Name="Id_XBRL_Contexto" />
+            <PropertyRef Name="Id_XBRL_Detalle" />
+          </Key>
+          <Property Type="Int32" Name="Id_ano" Nullable="false" />
+          <Property Type="Int32" Name="Id_trimestre" Nullable="false" />
+          <Property Type="Int32" Name="Id_XBRL_Contexto" Nullable="false" />
+          <Property Type="Int32" Name="Id_XBRL_Detalle" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="Id_contenido" />
+          <Property Type="String" Name="Contenido" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="Orden" />
+          <Property Type="String" Name="Formato" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Referencia_Tiempo" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Prefijo" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Atributo" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Valor" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Descripcion" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nombre_esquema" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EsquemaX" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EsquemaY" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EsquemaXCabecera" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EsquemaYCabecera" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Identificador_Fila" />
+          <Property Type="Int32" Name="Id_Validacion_Contexto" />
+          <Property Type="String" Name="Fecha_inicial" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fecha_final" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
+          <End Type="BmvXblrModel.Cat_Taxonomia_Detalle" Role="Cat_Taxonomia_Detalle" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Taxonomia_Detalle">
+              <PropertyRef Name="Id_Taxonomia_Detalle" />
+            </Principal>
+            <Dependent Role="Cat_Modelo_Clase">
+              <PropertyRef Name="Id_Taxonomia_Detalle_Axis_X" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1">
+          <End Type="BmvXblrModel.Cat_Taxonomia_Detalle" Role="Cat_Taxonomia_Detalle" Multiplicity="0..1" />
+          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cat_Taxonomia_Detalle">
+              <PropertyRef Name="Id_Taxonomia_Detalle" />
+            </Principal>
+            <Dependent Role="Cat_Modelo_Clase">
+              <PropertyRef Name="Id_Taxonomia_Detalle_Axis_Y" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1180,110 +1421,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Cat_Validacion_Trimestre">
-          <Key>
-            <PropertyRef Name="Id_Contexto_Periodo" />
-          </Key>
-          <Property Type="Int32" Name="Id_Contexto_Periodo" Nullable="false" />
-          <Property Type="Int32" Name="Id_Validacion_Contexto" />
-          <Property Type="Int32" Name="Id_Trimestre" />
-          <Property Type="String" Name="Dia_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Mes_Ini" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Dia_Final" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Mes_Final" MaxLength="2" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" FromRole="Cat_Validacion_Trimestre" ToRole="Cat_Trimestre" />
-        </EntityType>
-        <EntityType Name="Periodo_Sin_Presentar">
-          <Key>
-            <PropertyRef Name="Id_Periodo_Sin_Presentar" />
-          </Key>
-          <Property Type="Int32" Name="Id_Periodo_Sin_Presentar" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="Id_Trimestre" />
-          <Property Type="Int32" Name="Id_Validacion_Contexto" />
-          <NavigationProperty Name="Cat_Trimestre" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Trimestre" />
-          <NavigationProperty Name="Cat_Validacion_Contexto" Relationship="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" FromRole="Periodo_Sin_Presentar" ToRole="Cat_Validacion_Contexto" />
-        </EntityType>
-        <Association Name="FK_Cat_Periodo_Cat_Trimestre">
-          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Cat_Validacion_Trimestre" Role="Cat_Validacion_Trimestre" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cat_Trimestre">
-              <PropertyRef Name="Id_Trimestre" />
-            </Principal>
-            <Dependent Role="Cat_Validacion_Trimestre">
-              <PropertyRef Name="Id_Trimestre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Periodo_Sin_Presentar_Cat_Trimestre">
-          <End Type="BmvXblrModel.Cat_Trimestre" Role="Cat_Trimestre" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cat_Trimestre">
-              <PropertyRef Name="Id_Trimestre" />
-            </Principal>
-            <Dependent Role="Periodo_Sin_Presentar">
-              <PropertyRef Name="Id_Trimestre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto">
+        <Association Name="FK_Taxonomia_Reporte_Cat_Validacion_Contexto">
           <End Type="BmvXblrModel.Cat_Validacion_Contexto" Role="Cat_Validacion_Contexto" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Periodo_Sin_Presentar" Role="Periodo_Sin_Presentar" Multiplicity="*" />
+          <End Type="BmvXblrModel.Taxonomia_Reporte" Role="Taxonomia_Reporte" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cat_Validacion_Contexto">
               <PropertyRef Name="Id_Validacion_Contexto" />
             </Principal>
-            <Dependent Role="Periodo_Sin_Presentar">
+            <Dependent Role="Taxonomia_Reporte">
               <PropertyRef Name="Id_Validacion_Contexto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Cat_Modelo_Clase">
-          <Key>
-            <PropertyRef Name="Id_Modelo_Clase" />
-          </Key>
-          <Property Type="Int32" Name="Id_Modelo_Clase" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Atributo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Id_Taxonomia_Detalle_Axis_X" />
-          <Property Type="Int32" Name="Id_Taxonomia_Detalle_Axis_Y" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Detalle" />
-          <NavigationProperty Name="Cat_Taxonomia_Detalle1" Relationship="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Detalle" />
-          <NavigationProperty Name="Cat_Taxonomia_Columna" Relationship="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" FromRole="Cat_Modelo_Clase" ToRole="Cat_Taxonomia_Columna" />
-        </EntityType>
-        <Association Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle">
-          <End Type="BmvXblrModel.Cat_Taxonomia_Detalle" Role="Cat_Taxonomia_Detalle" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cat_Taxonomia_Detalle">
-              <PropertyRef Name="Id_Taxonomia_Detalle" />
-            </Principal>
-            <Dependent Role="Cat_Modelo_Clase">
-              <PropertyRef Name="Id_Taxonomia_Detalle_Axis_X" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1">
-          <End Type="BmvXblrModel.Cat_Taxonomia_Detalle" Role="Cat_Taxonomia_Detalle" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cat_Taxonomia_Detalle">
-              <PropertyRef Name="Id_Taxonomia_Detalle" />
-            </Principal>
-            <Dependent Role="Cat_Modelo_Clase">
-              <PropertyRef Name="Id_Taxonomia_Detalle_Axis_Y" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase">
-          <End Type="BmvXblrModel.Cat_Modelo_Clase" Role="Cat_Modelo_Clase" Multiplicity="0..1" />
-          <End Type="BmvXblrModel.Cat_Taxonomia_Columna" Role="Cat_Taxonomia_Columna" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cat_Modelo_Clase">
-              <PropertyRef Name="Id_Modelo_Clase" />
-            </Principal>
-            <Dependent Role="Cat_Taxonomia_Columna">
-              <PropertyRef Name="Id_Modelo_Clase" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1376,6 +1522,7 @@
           <EntitySetMapping Name="Taxonomia_Reporte">
             <EntityTypeMapping TypeName="BmvXblrModel.Taxonomia_Reporte">
               <MappingFragment StoreEntitySet="Taxonomia_Reporte">
+                <ScalarProperty Name="Id_Validacion_Contexto" ColumnName="Id_Validacion_Contexto" />
                 <ScalarProperty Name="Id_Contenido" ColumnName="Id_Contenido" />
                 <ScalarProperty Name="Id_Taxonomia_Columna" ColumnName="Id_Taxonomia_Columna" />
                 <ScalarProperty Name="Id_Taxonomia_Detalle" ColumnName="Id_Taxonomia_Detalle" />
@@ -1418,27 +1565,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cat_Taxonomia_Detalle">
-            <EntityTypeMapping TypeName="BmvXblrModel.Cat_Taxonomia_Detalle">
-              <MappingFragment StoreEntitySet="Cat_Taxonomia_Detalle">
-                <ScalarProperty Name="Campo_Dinamico" ColumnName="Campo_Dinamico" />
-                <ScalarProperty Name="Nivel_Sangria" ColumnName="Nivel_Sangria" />
-                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
-                <ScalarProperty Name="Referencia_Tiempo" ColumnName="Referencia_Tiempo" />
-                <ScalarProperty Name="Nombre_esquema" ColumnName="Nombre_esquema" />
-                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Orden" ColumnName="Orden" />
-                <ScalarProperty Name="Formato" ColumnName="Formato" />
-                <ScalarProperty Name="Id_Axis_Padre" ColumnName="Id_Axis_Padre" />
-                <ScalarProperty Name="Id_Tabla_Padre" ColumnName="Id_Tabla_Padre" />
-                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
-                <ScalarProperty Name="Id_Tipo_Formato" ColumnName="Id_Tipo_Formato" />
-                <ScalarProperty Name="Id_Origen_Elemento" ColumnName="Id_Origen_Elemento" />
-                <ScalarProperty Name="Id_Taxonomia_Detalle" ColumnName="Id_Taxonomia_Detalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cat_Validacion_Trimestre">
             <EntityTypeMapping TypeName="BmvXblrModel.Cat_Validacion_Trimestre">
               <MappingFragment StoreEntitySet="Cat_Validacion_Trimestre">
@@ -1468,6 +1594,77 @@
                 <ScalarProperty Name="Id_Taxonomia_Detalle_Axis_X" ColumnName="Id_Taxonomia_Detalle_Axis_X" />
                 <ScalarProperty Name="Atributo" ColumnName="Atributo" />
                 <ScalarProperty Name="Id_Modelo_Clase" ColumnName="Id_Modelo_Clase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cat_Taxonomia_Detalle">
+            <EntityTypeMapping TypeName="BmvXblrModel.Cat_Taxonomia_Detalle">
+              <MappingFragment StoreEntitySet="Cat_Taxonomia_Detalle">
+                <ScalarProperty Name="Campo_Dinamico" ColumnName="Campo_Dinamico" />
+                <ScalarProperty Name="Nivel_Sangria" ColumnName="Nivel_Sangria" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Referencia_Tiempo" ColumnName="Referencia_Tiempo" />
+                <ScalarProperty Name="Nombre_esquema" ColumnName="Nombre_esquema" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Formato" ColumnName="Formato" />
+                <ScalarProperty Name="Id_Axis_Padre" ColumnName="Id_Axis_Padre" />
+                <ScalarProperty Name="Id_Tabla_Padre" ColumnName="Id_Tabla_Padre" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="Id_Tipo_Formato" ColumnName="Id_Tipo_Formato" />
+                <ScalarProperty Name="Id_Origen_Elemento" ColumnName="Id_Origen_Elemento" />
+                <ScalarProperty Name="Id_Taxonomia_Detalle" ColumnName="Id_Taxonomia_Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XBRL_Contexto">
+            <EntityTypeMapping TypeName="BmvXblrModel.XBRL_Contexto">
+              <MappingFragment StoreEntitySet="XBRL_Contexto">
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="Identificador_Fila" ColumnName="Identificador_Fila" />
+                <ScalarProperty Name="TypedMember2_Valor" ColumnName="TypedMember2_Valor" />
+                <ScalarProperty Name="TypedMember2" ColumnName="TypedMember2" />
+                <ScalarProperty Name="TypedMember_Valor" ColumnName="TypedMember_Valor" />
+                <ScalarProperty Name="TypedMember" ColumnName="TypedMember" />
+                <ScalarProperty Name="Nombre_Esquema" ColumnName="Nombre_Esquema" />
+                <ScalarProperty Name="EsquemaCabeceraY" ColumnName="EsquemaCabeceraY" />
+                <ScalarProperty Name="EsquemaCabeceraX" ColumnName="EsquemaCabeceraX" />
+                <ScalarProperty Name="EsquemaY" ColumnName="EsquemaY" />
+                <ScalarProperty Name="EsquemaX" ColumnName="EsquemaX" />
+                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="ReferenciaTiempo" ColumnName="ReferenciaTiempo" />
+                <ScalarProperty Name="Id_XBRL_Contexto" ColumnName="Id_XBRL_Contexto" />
+                <ScalarProperty Name="Id_Trimestre" ColumnName="Id_Trimestre" />
+                <ScalarProperty Name="Id_Ano" ColumnName="Id_Ano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XBRL_Detalle">
+            <EntityTypeMapping TypeName="BmvXblrModel.XBRL_Detalle">
+              <MappingFragment StoreEntitySet="XBRL_Detalle">
+                <ScalarProperty Name="Fecha_final" ColumnName="Fecha_final" />
+                <ScalarProperty Name="Fecha_inicial" ColumnName="Fecha_inicial" />
+                <ScalarProperty Name="Id_Validacion_Contexto" ColumnName="Id_Validacion_Contexto" />
+                <ScalarProperty Name="Identificador_Fila" ColumnName="Identificador_Fila" />
+                <ScalarProperty Name="EsquemaYCabecera" ColumnName="EsquemaYCabecera" />
+                <ScalarProperty Name="EsquemaXCabecera" ColumnName="EsquemaXCabecera" />
+                <ScalarProperty Name="EsquemaY" ColumnName="EsquemaY" />
+                <ScalarProperty Name="EsquemaX" ColumnName="EsquemaX" />
+                <ScalarProperty Name="Nombre_esquema" ColumnName="Nombre_esquema" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Atributo" ColumnName="Atributo" />
+                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="Referencia_Tiempo" ColumnName="Referencia_Tiempo" />
+                <ScalarProperty Name="Formato" ColumnName="Formato" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="Id_contenido" ColumnName="Id_contenido" />
+                <ScalarProperty Name="Id_XBRL_Detalle" ColumnName="Id_XBRL_Detalle" />
+                <ScalarProperty Name="Id_XBRL_Contexto" ColumnName="Id_XBRL_Contexto" />
+                <ScalarProperty Name="Id_trimestre" ColumnName="Id_trimestre" />
+                <ScalarProperty Name="Id_ano" ColumnName="Id_ano" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

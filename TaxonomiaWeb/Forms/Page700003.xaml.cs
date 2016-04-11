@@ -85,10 +85,46 @@ namespace TaxonomiaWeb.Forms
             //Para que con un solo click o con el teclado entre en modo editar
             this.DgvTaxo.CurrentCellChanged += DgvTaxo_CurrentCellChanged;
 
+            this.DgvTaxo.LayoutUpdated += DgvTaxo_LayoutUpdated;
+
         }
 
 
         #region Eventos del Datagrid
+
+        void DgvTaxo_LayoutUpdated(object sender, EventArgs e)
+        {
+            DataGrid grid = this.DgvTaxo;
+            if (grid != null)
+            {
+                grid.FrozenColumnCount = 1;
+                ObservableCollection<DataGridColumn> listColumns = grid.Columns;
+                foreach (var dgColumn in listColumns)
+                {
+
+                    string headerName = Regex.Replace(dgColumn.Header == null ? "" : dgColumn.Header.ToString(), @"\s+", "");
+                    //Orden de la columnas mostradas
+                    switch (headerName)
+                    {
+                        case AppConsts.COL_DESCRIPCION:
+                            dgColumn.DisplayIndex = 0;
+                            break;
+
+                        case AppConsts.COL_ANOACTUAL:
+                            dgColumn.DisplayIndex = 1;
+                            break;
+
+                        case AppConsts.COL_ANOANTERIOR:
+                            dgColumn.DisplayIndex = 2;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
 
         private void DgvTaxo_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -100,7 +136,6 @@ namespace TaxonomiaWeb.Forms
                 if (dgColumn != null)
                 {
                     DataGrid grid = sender as DataGrid;
-                    grid.FrozenColumnCount = 1;
                     Style elementStyle = new Style(typeof(TextBlock));
                     elementStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
                     Style editingElmentStyle = new Style(typeof(TextBox));
@@ -115,17 +150,14 @@ namespace TaxonomiaWeb.Forms
                     {
                         case AppConsts.COL_DESCRIPCION:
                             dgColumn.MaxWidth = AppConsts.MAXWIDTH_COL_DESCRIPCION;
-                            dgColumn.DisplayIndex = 0;
                             break;
 
                         case AppConsts.COL_ANOACTUAL:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 1;
                             break;
 
                         case AppConsts.COL_ANOANTERIOR:
                             dgColumn.Width = DataGridLength.SizeToHeader;
-                            dgColumn.DisplayIndex = 2;
                             break;
 
                     }

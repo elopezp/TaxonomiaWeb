@@ -121,7 +121,7 @@ namespace TaxonomiaWeb.Forms
                             item.DisplayIndex = 3;
                             break;
 
-                        case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                        case AppConsts.COL_INSTITUCIONEXTRANJERASINO:
                             item.DisplayIndex = 4;
                             break;
 
@@ -218,14 +218,13 @@ namespace TaxonomiaWeb.Forms
                     {
                         case AppConsts.COL_DESCRIPCION:
                             dgColumn.MaxWidth = AppConsts.MAXWIDTH_COL_DESCRIPCION;
-                            dgColumn.Width = DataGridLength.SizeToCells;
                             break;
 
                         case AppConsts.COL_INSTITUCION:
-                            dgColumn.Width = DataGridLength.SizeToHeader;
+                            dgColumn.Width = new DataGridLength(250, DataGridLengthUnitType.Pixel);
                             break;
 
-                        case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                        case AppConsts.COL_INSTITUCIONEXTRANJERASINO:
                             dgColumn.Width = DataGridLength.SizeToHeader;
                             break;
 
@@ -1000,7 +999,7 @@ namespace TaxonomiaWeb.Forms
                                 itemAgrupado.Institucion = string.IsNullOrEmpty(subItems.Valor) == true ? "" : subItems.Valor;
                                 break;
 
-                            case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                            case AppConsts.COL_INSTITUCIONEXTRANJERASINO:
                                 itemAgrupado.InstitucionExtranjera = string.IsNullOrEmpty(subItems.Valor) == true ? false : Boolean.Parse(subItems.Valor);
                                 break;
 
@@ -1176,7 +1175,7 @@ namespace TaxonomiaWeb.Forms
                                 valor = Convert.ToString(itemAgrupado.Institucion);
                                 break;
 
-                            case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                            case AppConsts.COL_INSTITUCIONEXTRANJERASINO:
                                 valor = Convert.ToString(itemAgrupado.InstitucionExtranjera).ToLower();
                                 break;
 
@@ -1295,7 +1294,7 @@ namespace TaxonomiaWeb.Forms
                                     rd.Valor = Convert.ToString(itemEliminado.Institucion);
                                     break;
 
-                                case AppConsts.COL_INSTITUCIONEXTRANJERA:
+                                case AppConsts.COL_INSTITUCIONEXTRANJERASINO:
                                     rd.Valor = Convert.ToString(itemEliminado.InstitucionExtranjera).ToLower();
                                     break;
 

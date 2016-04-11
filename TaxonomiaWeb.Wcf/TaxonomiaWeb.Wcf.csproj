@@ -140,6 +140,12 @@
     <Compile Include="EntityModel\Taxonomia_Reporte_Detalle.cs">
       <DependentUpon>BmvXblr.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\XBRL_Contexto.cs">
+      <DependentUpon>BmvXblr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\XBRL_Detalle.cs">
+      <DependentUpon>BmvXblr.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ContextoCabecera.cs" />
     <Compile Include="Model\PeriodoAno.cs" />
     <Compile Include="Model\Bmv105000.cs" />

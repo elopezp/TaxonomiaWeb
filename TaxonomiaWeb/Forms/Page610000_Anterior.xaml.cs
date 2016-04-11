@@ -204,7 +204,6 @@ namespace TaxonomiaWeb.Forms
                 if (dgColumn != null)
                 {
                     DataGrid grid = sender as DataGrid;
-                    grid.FrozenColumnCount = 1;
                     Style elementStyle = new Style(typeof(TextBlock));
                     elementStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
                     Style editingElmentStyle = new Style(typeof(TextBox));

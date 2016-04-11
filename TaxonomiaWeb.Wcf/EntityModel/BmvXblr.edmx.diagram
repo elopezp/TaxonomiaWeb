@@ -18,19 +18,30 @@
         <AssociationConnector Association="BmvXblrModel.FK_Periodo_Cat_Trimestre" />
         <AssociationConnector Association="BmvXblrModel.FK_Periodo_Cat_Validacion_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Contexto_Periodo" />
-        <EntityTypeShape EntityType="BmvXblrModel.Taxonomia_Reporte_Detalle" Width="1.5" PointX="3.1162360045668835" PointY="9.527821262147194" />
+        <EntityTypeShape EntityType="BmvXblrModel.Taxonomia_Reporte_Detalle" Width="1.5" PointX="2.125" PointY="9.625" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Ano" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Trimestre" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Taxonomia_Reporte" />
-        <EntityTypeShape EntityType="BmvXblrModel.Cat_Taxonomia_Columna" Width="1.5" PointX="4.313006324839316" PointY="8.7960001420211054" />
+        <EntityTypeShape EntityType="BmvXblrModel.Cat_Taxonomia_Columna" Width="1.5" PointX="6.875" PointY="9.125" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Columna" />
         <EntityTypeShape EntityType="BmvXblrModel.Cat_Contenido" Width="1.5" PointX="9.6286209326370713" PointY="21.63963730150817" />
-        <EntityTypeShape EntityType="BmvXblrModel.Cat_Taxonomia_Detalle" Width="1.5" PointX="10.390297108511579" PointY="27.336117384646144" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Contenido" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Contenido" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Contenido" />
+        <EntityTypeShape EntityType="BmvXblrModel.Cat_Validacion_Trimestre" Width="1.5" PointX="12.25" PointY="3.5" />
+        <EntityTypeShape EntityType="BmvXblrModel.Periodo_Sin_Presentar" Width="1.5" PointX="11.721489881966956" PointY="18.883560055346955" />
+        <AssociationConnector Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" />
+        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" />
+        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" />
+        <EntityTypeShape EntityType="BmvXblrModel.Cat_Modelo_Clase" Width="1.5" PointX="3.5609129050564547" PointY="7.321925360393676" />
+        <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" />
+        <EntityTypeShape EntityType="BmvXblrModel.Cat_Taxonomia_Detalle" Width="1.5" PointX="5.1715374203266284" PointY="4.0513241160899982" />
+        <EntityTypeShape EntityType="BmvXblrModel.XBRL_Contexto" Width="1.5" PointX="4.3817979397167441" PointY="5.4548765893349778" />
+        <EntityTypeShape EntityType="BmvXblrModel.XBRL_Detalle" Width="1.5" PointX="6.7968855028957531" PointY="1.2779976433506224" />
+        <AssociationConnector Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" />
+        <AssociationConnector Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Origen_Elemento" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Taxonomia_Detalle" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Detalle_Cat_Taxonomia_Detalle" />
@@ -39,15 +50,7 @@
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle1" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" />
-        <EntityTypeShape EntityType="BmvXblrModel.Cat_Validacion_Trimestre" Width="1.5" PointX="12.25" PointY="3.5" />
-        <EntityTypeShape EntityType="BmvXblrModel.Periodo_Sin_Presentar" Width="1.5" PointX="11.721489881966956" PointY="18.883560055346955" />
-        <AssociationConnector Association="BmvXblrModel.FK_Cat_Periodo_Cat_Trimestre" />
-        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Trimestre" />
-        <AssociationConnector Association="BmvXblrModel.FK_Periodo_Sin_Presentar_Cat_Validacion_Contexto" />
-        <EntityTypeShape EntityType="BmvXblrModel.Cat_Modelo_Clase" Width="1.5" PointX="3.5609129050564547" PointY="7.321925360393676" />
-        <AssociationConnector Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle" />
-        <AssociationConnector Association="BmvXblrModel.FK_Cat_Modelo_Clase_Cat_Taxonomia_Detalle1" />
-        <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Modelo_Clase" />
+        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Validacion_Contexto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

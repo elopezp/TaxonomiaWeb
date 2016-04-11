@@ -24,8 +24,8 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public Nullable<int> Id_Taxonomia_Detalle_Axis_X { get; set; }
         public Nullable<int> Id_Taxonomia_Detalle_Axis_Y { get; set; }
     
+        public virtual ICollection<Cat_Taxonomia_Columna> Cat_Taxonomia_Columna { get; set; }
         public virtual Cat_Taxonomia_Detalle Cat_Taxonomia_Detalle { get; set; }
         public virtual Cat_Taxonomia_Detalle Cat_Taxonomia_Detalle1 { get; set; }
-        public virtual ICollection<Cat_Taxonomia_Columna> Cat_Taxonomia_Columna { get; set; }
     }
 }
