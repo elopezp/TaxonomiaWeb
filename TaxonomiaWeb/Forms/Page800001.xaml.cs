@@ -303,7 +303,7 @@ namespace TaxonomiaWeb.Forms
                         DataGridBoundColumn obj = e.Column as DataGridBoundColumn;
                         if (obj != null && obj.Binding != null)
                         {
-                            obj.Binding.StringFormat = "{0:dd/MM/yyyy}";
+                            obj.Binding.StringFormat = "{0:yyyy-MM-dd}";
                         }
                     }
                 }
@@ -1180,11 +1180,11 @@ namespace TaxonomiaWeb.Forms
                                 break;
 
                             case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                valor = itemAgrupado.FechaDeFirmaContrato == null ? "" : itemAgrupado.FechaDeFirmaContrato.Value.ToString("dd/MM/yyyy");
+                                valor = itemAgrupado.FechaDeFirmaContrato == null ? "" : itemAgrupado.FechaDeFirmaContrato.Value.ToString("yyyy-MM-dd");
                                 break;
 
                             case AppConsts.COL_FECHADEVENCIMIENTO:
-                                valor = itemAgrupado.FechaDeVencimiento == null ? "" : itemAgrupado.FechaDeVencimiento.Value.ToString("dd/MM/yyyy");
+                                valor = itemAgrupado.FechaDeVencimiento == null ? "" : itemAgrupado.FechaDeVencimiento.Value.ToString("yyyy-MM-dd");
                                 break;
 
                             case AppConsts.COL_TASADEINTERESYOSOBRETASA:
@@ -1299,11 +1299,11 @@ namespace TaxonomiaWeb.Forms
                                     break;
 
                                 case AppConsts.COL_FECHADEFIRMACONTRATO:
-                                    rd.Valor = itemEliminado.FechaDeFirmaContrato == null ? "" : itemEliminado.FechaDeFirmaContrato.Value.ToString("dd/MM/yyyy");
+                                    rd.Valor = itemEliminado.FechaDeFirmaContrato == null ? "" : itemEliminado.FechaDeFirmaContrato.Value.ToString("yyyy-MM-dd");
                                     break;
 
                                 case AppConsts.COL_FECHADEVENCIMIENTO:
-                                    rd.Valor = itemEliminado.FechaDeVencimiento == null ? "" : itemEliminado.FechaDeVencimiento.Value.ToString("dd/MM/yyyy");
+                                    rd.Valor = itemEliminado.FechaDeVencimiento == null ? "" : itemEliminado.FechaDeVencimiento.Value.ToString("yyyy-MM-dd");
                                     break;
 
                                 case AppConsts.COL_TASADEINTERESYOSOBRETASA:
