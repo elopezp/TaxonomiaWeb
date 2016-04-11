@@ -117,13 +117,15 @@ namespace TaxonomiaWeb.Utils
 
             if (tmp.ToUpper().StartsWith("S") || tmp.ToUpper().StartsWith("N"))
             {
-                if (tmp.Length == 1)
+                if (tmp.Length == 1 || tmp.Length > 2)
                 {
-                    if (tmp.ToUpper().Contains("S"))
+                    string subs = tmp.ToUpper();
+                    subs = subs.Substring(0, 1);
+                    if (subs.Contains("S"))
                     {
                         tmp = "SI";
                     }
-                    else if (tmp.ToUpper().Contains("N"))
+                    else if (subs.Contains("N"))
                     {
                         tmp = "NO";
                     }
