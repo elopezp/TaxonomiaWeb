@@ -1177,7 +1177,7 @@ namespace TaxonomiaWeb.Forms
                                 break;
 
                             case AppConsts.COL_INSTITUCIONEXTRANJERA:
-                                valor = Convert.ToString(itemAgrupado.InstitucionExtranjera);
+                                valor = Convert.ToString(itemAgrupado.InstitucionExtranjera).ToLower();
                                 break;
 
                             case AppConsts.COL_FECHADEFIRMACONTRATO:
@@ -1296,7 +1296,7 @@ namespace TaxonomiaWeb.Forms
                                     break;
 
                                 case AppConsts.COL_INSTITUCIONEXTRANJERA:
-                                    rd.Valor = Convert.ToString(itemEliminado.InstitucionExtranjera);
+                                    rd.Valor = Convert.ToString(itemEliminado.InstitucionExtranjera).ToLower();
                                     break;
 
                                 case AppConsts.COL_FECHADEFIRMACONTRATO:
