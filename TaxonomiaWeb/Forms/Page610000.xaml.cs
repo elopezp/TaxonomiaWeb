@@ -1085,6 +1085,7 @@ namespace TaxonomiaWeb.Forms
                         rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
+
                         //Si el valor de todos los campos es igual a 0 en los campos del eje Aplicación retroactiva y reexpresión retroactiva se borra de la bd. En caso contrario se guarda o se actualiza.
                         if (isValorDiferenteCeroAplicaciónRetroactivaYReexpresionRetroactiva == false && subItems.IdAxisPadre.HasValue == true)
                         {
@@ -1094,7 +1095,18 @@ namespace TaxonomiaWeb.Forms
                         {
                             rd.Estado = true;
                         }
-                        sortedList.Add(rd);
+                        if (rd.Estado == true)
+                        {
+                            sortedList.Add(rd);
+                        }
+                        else
+                        {
+                            if (subItems.IdReporteDetalle != null)
+                            {
+                                sortedList.Add(rd); 
+                            }
+                        }
+                      
                     }
                 }
 

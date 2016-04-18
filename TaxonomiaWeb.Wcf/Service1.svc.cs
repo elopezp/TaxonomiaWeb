@@ -720,7 +720,7 @@ namespace TaxonomiaWeb.Wcf
                                 {
                                     int idReporteDetalle = bmvItem.IdReporteDetalle.HasValue ? bmvItem.IdReporteDetalle.Value : 0;
                                     //Verificamos si existen los datos en la base de datos. En este caso insertar
-                                    if (idReporteDetalle == 0)
+                                    if (idReporteDetalle == 0 && bmvItem.Estado == true)
                                     {
                                         Taxonomia_Reporte_Detalle trd = new Taxonomia_Reporte_Detalle();
                                         trd.Id_Ano = idAno;
@@ -794,7 +794,7 @@ namespace TaxonomiaWeb.Wcf
                                 {
                                     int idReporteDetalle = bmvItem.IdReporteDetalle.HasValue ? bmvItem.IdReporteDetalle.Value : 0;
                                     //Verificamos si existen los datos en la base de datos. En este caso insertar
-                                    if (idReporteDetalle == 0)
+                                    if (idReporteDetalle == 0 && bmvItem.Estado == true)
                                     {
                                         Taxonomia_Reporte_Detalle trd = new Taxonomia_Reporte_Detalle();
                                         trd.Id_Ano = idAno;

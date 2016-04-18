@@ -1094,7 +1094,17 @@ namespace TaxonomiaWeb.Forms
                         {
                             rd.Estado = true;
                         }
-                        sortedList.Add(rd);
+                        if (rd.Estado == true)
+                        {
+                            sortedList.Add(rd);
+                        }
+                        else
+                        {
+                            if (subItems.IdReporteDetalle != null)
+                            {
+                                sortedList.Add(rd);
+                            }
+                        }
                     }
                 }
 
