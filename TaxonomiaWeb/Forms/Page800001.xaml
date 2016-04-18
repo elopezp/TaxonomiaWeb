@@ -21,9 +21,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-
-                    <sdk:DataGrid Grid.Row="0"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" MaxHeight="650" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                <TextBlock x:Name="LblError" Text="" HorizontalAlignment="Center"  Grid.Row="0"  Style="{StaticResource StyleErrorTextBlock}"/>
+                <sdk:DataGrid Grid.Row="1"  x:Name="DgvTaxo" AutoGeneratingColumn="DgvTaxo_AutoGeneratingColumn" HeadersVisibility="All" AutoGenerateColumns="True" CanUserSortColumns = "False" CanUserReorderColumns="False"   HorizontalAlignment="Center" MaxHeight="650" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
                         <sdk:DataGrid.Columns>
                             <sdk:DataGridTemplateColumn DisplayIndex="0"  Width="SizeToCells" Header="">
                                 <sdk:DataGridTemplateColumn.CellTemplate>
@@ -42,7 +43,7 @@
                             </sdk:DataGridTemplateColumn>
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
-                    <StackPanel x:Name="ButtonsPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                    <StackPanel x:Name="ButtonsPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
                         <Button x:Name="BtnGuardar"  Content="Guardar" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGuardar_Click"></Button>
                         <Button x:Name="BtnExportarExcel"  Content="Exportar Excel" Width="100" Height="30" Margin="10,10,10,10" Click="BtnExportarExcel_Click" ></Button>
                     </StackPanel>

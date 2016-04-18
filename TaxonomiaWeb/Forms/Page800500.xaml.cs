@@ -506,21 +506,21 @@ namespace TaxonomiaWeb.Forms
                     //Si son editables se tienen que validar los campos
                     if (renglon.Lectura == false)
                     {
-                        if ((renglon.TrimestreActual == null) || (renglon.TrimestreActual != null && renglon.TrimestreActual.Trim().Equals("") == true))
-                        {
-                            int indexOf = listaBmvAgrupada.IndexOf(renglon);
-                            DgvTaxo.SelectedItem = renglon;
-                            DataGridColumn dgc = Utilerias.FindColumnByName(DgvTaxo.Columns, AppConsts.COL_TRIMESTREACTUAL);
-                            if (dgc != null)
-                            {
-                                DgvTaxo.CurrentColumn = dgc;
-                                DgvTaxo.Dispatcher.BeginInvoke(() => { DgvTaxo.ScrollIntoView(renglon, dgc); });
-                            }
-                            DgvTaxo.Focus();
-                            DgvTaxo.BeginEdit();
-                            return res;
+                        //if ((renglon.TrimestreActual == null) || (renglon.TrimestreActual != null && renglon.TrimestreActual.Trim().Equals("") == true))
+                        //{
+                        //    int indexOf = listaBmvAgrupada.IndexOf(renglon);
+                        //    DgvTaxo.SelectedItem = renglon;
+                        //    DataGridColumn dgc = Utilerias.FindColumnByName(DgvTaxo.Columns, AppConsts.COL_TRIMESTREACTUAL,false);
+                        //    if (dgc != null)
+                        //    {
+                        //        DgvTaxo.CurrentColumn = dgc;
+                        //        DgvTaxo.Dispatcher.BeginInvoke(() => { DgvTaxo.ScrollIntoView(renglon, dgc); });
+                        //    }
+                        //    DgvTaxo.Focus();
+                        //    DgvTaxo.BeginEdit();
+                        //    return res;
 
-                        }
+                        //}
 
                     }
                 }

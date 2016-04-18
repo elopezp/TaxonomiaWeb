@@ -1422,6 +1422,39 @@ namespace TaxonomiaWeb.Forms
                     //Si son editables se tienen que validar los campos
                     if (renglon.Lectura == false)
                     {
+                        if (renglon.CampoDinamico == true && string.IsNullOrEmpty(renglon.Institucion) == false)
+                        {
+                            if (renglon.FechaDeFirmaContrato.HasValue == false)
+                            {
+                                    int indexOf = listaBmv.IndexOf(renglon);
+                                    DgvTaxo.SelectedItem = renglon;
+                                    DataGridColumn dgc = Utilerias.FindColumnByName(DgvTaxo.Columns, AppConsts.COL_FECHADEFIRMACONTRATO, true);
+                                    if (dgc != null)
+                                    {
+                                        DgvTaxo.CurrentColumn = dgc;
+                                        DgvTaxo.Dispatcher.BeginInvoke(() => { DgvTaxo.ScrollIntoView(renglon, dgc); });
+                                    }
+                                    DgvTaxo.Focus();
+                                    DgvTaxo.BeginEdit();
+                                    LblError.Text = "La institución debe tener una fecha de firma de contrato en el siguiente formato aaaa-mm-dd";
+                                    return res;
+                            }
+                            else if(renglon.FechaDeVencimiento.HasValue == false)
+                            {
+                                    int indexOf = listaBmv.IndexOf(renglon);
+                                    DgvTaxo.SelectedItem = renglon;
+                                    DataGridColumn dgc = Utilerias.FindColumnByName(DgvTaxo.Columns, AppConsts.COL_FECHADEVENCIMIENTO, true);
+                                    if (dgc != null)
+                                    {
+                                        DgvTaxo.CurrentColumn = dgc;
+                                        DgvTaxo.Dispatcher.BeginInvoke(() => { DgvTaxo.ScrollIntoView(renglon, dgc); });
+                                    }
+                                    DgvTaxo.Focus();
+                                    DgvTaxo.BeginEdit();
+                                    LblError.Text = "La institución debe tener una fecha de vencimiento en el siguiente formato aaaa-mm-dd";
+                                    return res;
+                            }
+                        }
                         //if (renglon.TrimestreActual == null)
                         //{
                         //    int indexOf = listaBmv.IndexOf(renglon);
@@ -1445,6 +1478,7 @@ namespace TaxonomiaWeb.Forms
             {
                 return res;
             }
+            LblError.Text = "";
             res = true;
             return res;
         }

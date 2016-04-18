@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,9 +16,25 @@ namespace TaxonomiaWeb.Utils
 {
     public static class Utilerias
     {
-        public static DataGridColumn FindColumnByName(ObservableCollection<DataGridColumn> col, string name)
+        public static DataGridColumn FindColumnByName(ObservableCollection<DataGridColumn> listColumns, string name, bool noSpaces)
         {
-            return col.SingleOrDefault(p => ((string)p.Header).Equals(name));
+            DataGridColumn column = null;
+            if (noSpaces == true)
+            {
+                foreach (var c in listColumns)
+                {
+                    if (Regex.Replace(c.Header == null ? "" : c.Header.ToString(), @"\s+", "").Equals(name))
+                    {
+                        column = c;
+                        return column;
+                    }
+                }
+            }
+            else
+            {
+                column = listColumns.SingleOrDefault(p => ((string)p.Header).Equals(name));
+            }
+            return column;
         }
 
         /// <summary>
