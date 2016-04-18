@@ -97,6 +97,13 @@ namespace TaxonomiaWeb.Forms
 
             this.DgvTaxo.LayoutUpdated += DgvTaxo_LayoutUpdated;
 
+            this.DgvTaxo.CellEditEnded += DgvTaxo_CellEditEnded;
+
+        }
+
+        void DgvTaxo_CellEditEnded(object sender, DataGridCellEditEndedEventArgs e)
+        {
+            LblError.Text = "";
         }
 
         void DgvTaxo_LayoutUpdated(object sender, EventArgs e)
