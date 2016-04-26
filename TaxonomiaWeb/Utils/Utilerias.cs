@@ -113,6 +113,7 @@ namespace TaxonomiaWeb.Utils
                     if (dGrid.ItemsSource == null) return null;
                     var countColumns = (from c in dGrid.Columns
                                         select c).Count();
+
                     List<string> lstFields = new string[countColumns].ToList();
                     if (dGrid.HeadersVisibility == DataGridHeadersVisibility.Column || dGrid.HeadersVisibility == DataGridHeadersVisibility.All)
                     {
@@ -126,6 +127,7 @@ namespace TaxonomiaWeb.Utils
                                     string header = dgcol.Header == null ? "" : dgcol.Header.ToString();
                                     if (string.IsNullOrEmpty(header) == false)
                                     {
+                                        lstFields.RemoveAt(index);
                                         lstFields.Insert(index, FormatField(header, strFormat));
                                     }
                                 }
@@ -183,8 +185,9 @@ namespace TaxonomiaWeb.Utils
                                     string header = col.Header == null ? "" : col.Header.ToString();
                                     if (string.IsNullOrEmpty(header) == false)
                                     {
-                                
+                                        lstFields.RemoveAt(index);
                                         lstFields.Insert(index, FormatField(strValue, strFormat));
+                                       
                                     }
                                 }
 
