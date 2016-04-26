@@ -428,7 +428,6 @@
   <xs:complexType name="ReporteDetalle">
     <xs:sequence>
       <xs:element minOccurs="0" name="Estado" type="xs:boolean" />
-      <xs:element minOccurs="0" name="FormatoCampo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdReporte" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="IdReporteDetalle" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="IdentificadorFila" nillable="true" type="xs:int" />

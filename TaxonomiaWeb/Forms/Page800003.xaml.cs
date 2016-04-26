@@ -702,7 +702,6 @@ namespace TaxonomiaWeb.Forms
                             default:
                                 break;
                         }
-                        rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
                         rd.Estado = true;
@@ -722,7 +721,6 @@ namespace TaxonomiaWeb.Forms
                     {
                         ReporteDetalle rd = new ReporteDetalle();
                         rd.Valor = Txt1.Text;
-                        rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
                         rd.Estado = true;

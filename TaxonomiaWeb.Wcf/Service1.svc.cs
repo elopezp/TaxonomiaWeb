@@ -716,8 +716,8 @@ namespace TaxonomiaWeb.Wcf
                             foreach (var bmvItem in listBmv)
                             {
                                 //Quitamos los campos de sinopsis de solo lectura
-                                if (string.IsNullOrEmpty(bmvItem.FormatoCampo) == false)
-                                {
+                                //if (string.IsNullOrEmpty(bmvItem.FormatoCampo) == false)
+                                //{
                                     int idReporteDetalle = bmvItem.IdReporteDetalle.HasValue ? bmvItem.IdReporteDetalle.Value : 0;
                                     //Verificamos si existen los datos en la base de datos. En este caso insertar
                                     if (idReporteDetalle == 0 && bmvItem.Estado == true)
@@ -748,7 +748,7 @@ namespace TaxonomiaWeb.Wcf
                                             }
                                         }
                                     }
-                                }
+                                //}
                             }
                             int rowsAffected = context.SaveChanges();
                             if (rowsAffected > 0)
@@ -790,8 +790,8 @@ namespace TaxonomiaWeb.Wcf
                             foreach (var bmvItem in listBmv)
                             {
                                 //Quitamos los campos de sinopsis de solo lectura
-                                if (string.IsNullOrEmpty(bmvItem.FormatoCampo) == false)
-                                {
+                                //if (string.IsNullOrEmpty(bmvItem.FormatoCampo) == false)
+                                //{
                                     int idReporteDetalle = bmvItem.IdReporteDetalle.HasValue ? bmvItem.IdReporteDetalle.Value : 0;
                                     //Verificamos si existen los datos en la base de datos. En este caso insertar
                                     if (idReporteDetalle == 0 && bmvItem.Estado == true)
@@ -832,7 +832,7 @@ namespace TaxonomiaWeb.Wcf
                                         }
                                        
                                     }
-                                }
+                                //}
                             }
                             int rowsAffected = context.SaveChanges();
                             if (rowsAffected > 0)

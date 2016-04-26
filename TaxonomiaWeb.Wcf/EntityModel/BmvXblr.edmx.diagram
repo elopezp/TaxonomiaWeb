@@ -18,11 +18,6 @@
         <AssociationConnector Association="BmvXblrModel.FK_Periodo_Cat_Trimestre" />
         <AssociationConnector Association="BmvXblrModel.FK_Periodo_Cat_Validacion_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Contexto_Periodo" />
-        <EntityTypeShape EntityType="BmvXblrModel.Taxonomia_Reporte_Detalle" Width="1.5" PointX="2.125" PointY="9.625" />
-        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Ano" />
-        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Trimestre" />
-        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Contexto" />
-        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Taxonomia_Reporte" />
         <EntityTypeShape EntityType="BmvXblrModel.Cat_Taxonomia_Columna" Width="1.5" PointX="6.875" PointY="9.125" />
         <AssociationConnector Association="BmvXblrModel.FK_Cat_Taxonomia_Columna_Cat_Validacion_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Columna" />
@@ -51,6 +46,11 @@
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Detalle_Suma_Cat_Taxonomia_Detalle1" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Taxonomia_Detalle" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Cat_Validacion_Contexto" />
+        <EntityTypeShape EntityType="BmvXblrModel.Taxonomia_Reporte_Detalle" Width="1.5" PointX="7.0535050235006516" PointY="10.993830671065409" />
+        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Ano" />
+        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Trimestre" />
+        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Contexto" />
+        <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Taxonomia_Reporte" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

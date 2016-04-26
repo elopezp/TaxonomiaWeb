@@ -1082,7 +1082,6 @@ namespace TaxonomiaWeb.Forms
                             default:
                                 break;
                         }
-                        rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
                         //Si el valor de todos los campos es igual a 0 en los campos del eje Aplicación retroactiva y reexpresión retroactiva se borra de la bd. En caso contrario se guarda o se actualiza.

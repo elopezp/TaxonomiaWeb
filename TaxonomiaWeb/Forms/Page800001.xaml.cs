@@ -1250,7 +1250,6 @@ namespace TaxonomiaWeb.Forms
             
                         ReporteDetalle rd = new ReporteDetalle();
                         rd.Valor = valor;
-                        rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         if (itemAgrupado.IdReporteDetalle != null)
                         {
@@ -1366,7 +1365,6 @@ namespace TaxonomiaWeb.Forms
                                 default:
                                     break;
                             }
-                            rd.FormatoCampo = subItems.FormatoCampo;
                             rd.IdReporte = subItems.IdReporte;
                             rd.IdReporteDetalle = subItems.IdReporteDetalle;
                             rd.IdentificadorFila = subItems.IdentificadorFila;

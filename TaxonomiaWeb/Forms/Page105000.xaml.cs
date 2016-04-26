@@ -481,7 +481,6 @@ namespace TaxonomiaWeb.Forms
                             default:
                                 break;
                         }
-                        rd.FormatoCampo = subItems.FormatoCampo;
                         rd.IdReporte = subItems.IdReporte;
                         rd.IdReporteDetalle = subItems.IdReporteDetalle;
                         rd.Estado = true;

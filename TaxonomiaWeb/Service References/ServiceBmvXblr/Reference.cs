@@ -1809,8 +1809,6 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         
         private bool EstadoField;
         
-        private string FormatoCampoField;
-        
         private System.Nullable<int> IdReporteField;
         
         private System.Nullable<int> IdReporteDetalleField;
@@ -1828,19 +1826,6 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                 if ((this.EstadoField.Equals(value) != true)) {
                     this.EstadoField = value;
                     this.RaisePropertyChanged("Estado");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FormatoCampo {
-            get {
-                return this.FormatoCampoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FormatoCampoField, value) != true)) {
-                    this.FormatoCampoField = value;
-                    this.RaisePropertyChanged("FormatoCampo");
                 }
             }
         }

@@ -10,7 +10,6 @@ namespace TaxonomiaWeb.Model
         private int? idReporte;
         private int? idReporteDetalle;
         private string valor;
-        private string formatoCampo;
         private int? identificadorFila;
         private bool estado;
 
@@ -46,18 +45,6 @@ namespace TaxonomiaWeb.Model
                 if (value != valor)
                 {
                     valor = value;
-                }
-            }
-        }
-
-        public string FormatoCampo
-        {
-            get { return formatoCampo; }
-            set
-            {
-                if (value != formatoCampo)
-                {
-                    formatoCampo = value;
                 }
             }
         }

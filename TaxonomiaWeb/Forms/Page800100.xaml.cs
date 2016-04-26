@@ -605,14 +605,12 @@ namespace TaxonomiaWeb.Forms
                         {
                             case AppConsts.COL_CIERREEJERCICIOANTERIOR:
                             case AppConsts.COL_TRIMESTREACTUAL:
-                                rd.FormatoCampo = subItems.FormatoCampo;
                                 rd.IdReporte = subItems.IdReporte;
                                 rd.IdReporteDetalle = subItems.IdReporteDetalle;
                                 rd.Estado = true;
                                 sortedList.Add(rd);
                                 break;
                             case AppConsts.COL_INICIOEJERCICIOANTERIOR:
-                                rd.FormatoCampo = subItems.FormatoCampo;
                                 rd.IdReporte = subItems.IdReporte;
                                 rd.IdReporteDetalle = subItems.IdReporteDetalle;
                                 if (isValidoInicioEjercicioAnteriorEstadoSituacionFinanciera == true)
