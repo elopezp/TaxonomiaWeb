@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -1560,6 +1561,45 @@ namespace TaxonomiaWeb.Wcf
             }
 
             return listAtributoColumna;
+        }
+
+
+        public Stream GetXblr(string empresa, int numTrimestre, int idAno)
+        {
+            bool res = false;
+            try
+            {
+                using (var context = new BmvXblrEntities())
+                {
+
+       
+                        DateTime dtNow = DateTime.Now;
+                        context.Configuration.LazyLoadingEnabled = false;
+                        ((System.Data.Entity.Infrastructure.IObjectContextAdapter)context).ObjectContext.CommandTimeout = 360; 
+                        var catTrimestre = (from u in context.Cat_Trimestre
+                                            where u.Trimestre == numTrimestre
+                                            select u).FirstOrDefault();
+                        var catEmpresas = (from u in context.BMV_Empresas
+                                            where u.Clave_Cotizacion.Equals(empresa)
+                                            select u).FirstOrDefault();
+                        if (idAno > 0 && catTrimestre != null && catEmpresas != null)
+                        {
+
+                            var resul = context.SP_Genera_XBLR(idAno, catTrimestre.Id_Trimestre,catEmpresas.Id);
+                            System.Console.Out.WriteLine(resul);
+         
+                    
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
         }
     }
 }

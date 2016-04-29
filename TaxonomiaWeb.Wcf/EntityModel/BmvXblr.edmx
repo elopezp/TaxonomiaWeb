@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="BmvXblrModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="BmvXblrModelStoreContainer">
+          <EntitySet Name="BMV_Empresas" EntityType="BmvXblrModel.Store.BMV_Empresas" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cat_Ano" EntityType="BmvXblrModel.Store.Cat_Ano" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cat_Contenido" EntityType="BmvXblrModel.Store.Cat_Contenido" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cat_Modelo_Clase" EntityType="BmvXblrModel.Store.Cat_Modelo_Clase" store:Type="Tables" Schema="dbo" />
@@ -137,6 +138,17 @@
             <End Role="Taxonomia_Reporte_Detalle" EntitySet="Taxonomia_Reporte_Detalle" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BMV_Empresas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Clave_Cotizacion" Type="varchar" MaxLength="25" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha_Registro" Type="datetime" />
+          <Property Name="Usuario_registro" Type="varchar" MaxLength="25" />
+          <Property Name="Id_Taxonomia" Type="varchar" MaxLength="5" />
+        </EntityType>
         <EntityType Name="Cat_Ano">
           <Key>
             <PropertyRef Name="Id_Ano" />
@@ -341,7 +353,7 @@
           <Property Name="Referencia_Tiempo" Type="varchar" MaxLength="25" />
           <Property Name="Prefijo" Type="nvarchar" MaxLength="50" />
           <Property Name="Atributo" Type="nvarchar" MaxLength="200" />
-          <Property Name="Valor" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Valor" Type="nvarchar(max)" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Nombre_esquema" Type="varchar(max)" />
           <Property Name="EsquemaX" Type="varchar(max)" />
@@ -689,6 +701,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_Data_XBRL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_ano" Type="int" Mode="In" />
+          <Parameter Name="id_trimestre" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Genera_XBRL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_ano" Type="int" Mode="In" />
+          <Parameter Name="id_trimestre" Type="int" Mode="In" />
+          <Parameter Name="id_cotizacion" Type="int" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -824,6 +845,16 @@
             <End Role="Taxonomia_Reporte" EntitySet="Taxonomia_Reporte" />
             <End Role="Taxonomia_Reporte_Detalle" EntitySet="Taxonomia_Reporte_Detalle" />
           </AssociationSet>
+          <EntitySet Name="BMV_Empresas" EntityType="BmvXblrModel.BMV_Empresas" />
+          <FunctionImport Name="SP_Data_XBRL">
+            <Parameter Name="id_ano" Mode="In" Type="Int32" />
+            <Parameter Name="id_trimestre" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Genera_XBLR" ReturnType="Collection(String)">
+            <Parameter Name="id_ano" Mode="In" Type="Int32" />
+            <Parameter Name="id_trimestre" Mode="In" Type="Int32" />
+            <Parameter Name="id_cotizacion" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Cat_Ano">
           <Key>
@@ -1223,7 +1254,7 @@
           <Property Type="String" Name="Referencia_Tiempo" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Prefijo" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Atributo" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Valor" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Valor" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Descripcion" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Nombre_esquema" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="EsquemaX" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -1433,6 +1464,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BMV_Empresas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Clave_Cotizacion" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nombre" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Registro" Precision="3" />
+          <Property Type="String" Name="Usuario_registro" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Id_Taxonomia" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1668,6 +1710,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BMV_Empresas">
+            <EntityTypeMapping TypeName="BmvXblrModel.BMV_Empresas">
+              <MappingFragment StoreEntitySet="BMV_Empresas">
+                <ScalarProperty Name="Id_Taxonomia" ColumnName="Id_Taxonomia" />
+                <ScalarProperty Name="Usuario_registro" ColumnName="Usuario_registro" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clave_Cotizacion" ColumnName="Clave_Cotizacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Data_XBRL" FunctionName="BmvXblrModel.Store.SP_Data_XBRL" />
+          <FunctionImportMapping FunctionImportName="SP_Genera_XBLR" FunctionName="BmvXblrModel.Store.SP_Genera_XBRL" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

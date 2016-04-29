@@ -2145,6 +2145,11 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         System.IAsyncResult BeginGetPeriodoSinPresentar(int numTrimestre, string contenido, System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<string> EndGetPeriodoSinPresentar(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetXblr", ReplyAction="http://tempuri.org/IService1/GetXblrResponse")]
+        System.IAsyncResult BeginGetXblr(string empresa, int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState);
+        
+        byte[] EndGetXblr(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2704,6 +2709,25 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetXblrCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetXblrCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public byte[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((byte[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class Service1Client : System.ServiceModel.ClientBase<TaxonomiaWeb.ServiceBmvXblr.IService1>, TaxonomiaWeb.ServiceBmvXblr.IService1 {
         
         private BeginOperationDelegate onBeginGetDataDelegate;
@@ -2880,6 +2904,12 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         
         private System.Threading.SendOrPostCallback onGetPeriodoSinPresentarCompletedDelegate;
         
+        private BeginOperationDelegate onBeginGetXblrDelegate;
+        
+        private EndOperationDelegate onEndGetXblrDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetXblrCompletedDelegate;
+        
         private BeginOperationDelegate onBeginOpenDelegate;
         
         private EndOperationDelegate onEndOpenDelegate;
@@ -2990,6 +3020,8 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
         public event System.EventHandler<GenerarContextosCompletedEventArgs> GenerarContextosCompleted;
         
         public event System.EventHandler<GetPeriodoSinPresentarCompletedEventArgs> GetPeriodoSinPresentarCompleted;
+        
+        public event System.EventHandler<GetXblrCompletedEventArgs> GetXblrCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -4379,6 +4411,56 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
                         contenido}, this.onEndGetPeriodoSinPresentarDelegate, this.onGetPeriodoSinPresentarCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TaxonomiaWeb.ServiceBmvXblr.IService1.BeginGetXblr(string empresa, int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetXblr(empresa, numTrimestre, idAno, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        byte[] TaxonomiaWeb.ServiceBmvXblr.IService1.EndGetXblr(System.IAsyncResult result) {
+            return base.Channel.EndGetXblr(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetXblr(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            string empresa = ((string)(inValues[0]));
+            int numTrimestre = ((int)(inValues[1]));
+            int idAno = ((int)(inValues[2]));
+            return ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).BeginGetXblr(empresa, numTrimestre, idAno, callback, asyncState);
+        }
+        
+        private object[] OnEndGetXblr(System.IAsyncResult result) {
+            byte[] retVal = ((TaxonomiaWeb.ServiceBmvXblr.IService1)(this)).EndGetXblr(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetXblrCompleted(object state) {
+            if ((this.GetXblrCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetXblrCompleted(this, new GetXblrCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetXblrAsync(string empresa, int numTrimestre, int idAno) {
+            this.GetXblrAsync(empresa, numTrimestre, idAno, null);
+        }
+        
+        public void GetXblrAsync(string empresa, int numTrimestre, int idAno, object userState) {
+            if ((this.onBeginGetXblrDelegate == null)) {
+                this.onBeginGetXblrDelegate = new BeginOperationDelegate(this.OnBeginGetXblr);
+            }
+            if ((this.onEndGetXblrDelegate == null)) {
+                this.onEndGetXblrDelegate = new EndOperationDelegate(this.OnEndGetXblr);
+            }
+            if ((this.onGetXblrCompletedDelegate == null)) {
+                this.onGetXblrCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetXblrCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetXblrDelegate, new object[] {
+                        empresa,
+                        numTrimestre,
+                        idAno}, this.onEndGetXblrDelegate, this.onGetXblrCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -4854,6 +4936,21 @@ namespace TaxonomiaWeb.ServiceBmvXblr {
             public System.Collections.ObjectModel.ObservableCollection<string> EndGetPeriodoSinPresentar(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<string> _result = ((System.Collections.ObjectModel.ObservableCollection<string>)(base.EndInvoke("GetPeriodoSinPresentar", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetXblr(string empresa, int numTrimestre, int idAno, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
+                _args[0] = empresa;
+                _args[1] = numTrimestre;
+                _args[2] = idAno;
+                System.IAsyncResult _result = base.BeginInvoke("GetXblr", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public byte[] EndGetXblr(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                byte[] _result = ((byte[])(base.EndInvoke("GetXblr", _args, result)));
                 return _result;
             }
         }

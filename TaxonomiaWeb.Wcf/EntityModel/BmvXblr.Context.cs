@@ -12,6 +12,9 @@ namespace TaxonomiaWeb.Wcf.EntityModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class BmvXblrEntities : DbContext
     {
@@ -43,5 +46,36 @@ namespace TaxonomiaWeb.Wcf.EntityModel
         public DbSet<XBRL_Contexto> XBRL_Contexto { get; set; }
         public DbSet<XBRL_Detalle> XBRL_Detalle { get; set; }
         public DbSet<Taxonomia_Reporte_Detalle> Taxonomia_Reporte_Detalle { get; set; }
+        public DbSet<BMV_Empresas> BMV_Empresas { get; set; }
+    
+        public virtual int SP_Data_XBRL(Nullable<int> id_ano, Nullable<int> id_trimestre)
+        {
+            var id_anoParameter = id_ano.HasValue ?
+                new ObjectParameter("id_ano", id_ano) :
+                new ObjectParameter("id_ano", typeof(int));
+    
+            var id_trimestreParameter = id_trimestre.HasValue ?
+                new ObjectParameter("id_trimestre", id_trimestre) :
+                new ObjectParameter("id_trimestre", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Data_XBRL", id_anoParameter, id_trimestreParameter);
+        }
+    
+        public virtual ObjectResult<string> SP_Genera_XBLR(Nullable<int> id_ano, Nullable<int> id_trimestre, Nullable<int> id_cotizacion)
+        {
+            var id_anoParameter = id_ano.HasValue ?
+                new ObjectParameter("id_ano", id_ano) :
+                new ObjectParameter("id_ano", typeof(int));
+    
+            var id_trimestreParameter = id_trimestre.HasValue ?
+                new ObjectParameter("id_trimestre", id_trimestre) :
+                new ObjectParameter("id_trimestre", typeof(int));
+    
+            var id_cotizacionParameter = id_cotizacion.HasValue ?
+                new ObjectParameter("id_cotizacion", id_cotizacion) :
+                new ObjectParameter("id_cotizacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_Genera_XBLR", id_anoParameter, id_trimestreParameter, id_cotizacionParameter);
+        }
     }
 }

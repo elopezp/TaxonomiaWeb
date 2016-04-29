@@ -296,6 +296,9 @@
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Service References\ServiceBmvXblr\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv105000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

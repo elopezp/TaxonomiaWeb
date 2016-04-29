@@ -87,18 +87,20 @@ namespace TaxonomiaWeb.Forms
         private void BtnGenerarXblr_Click(object sender, RoutedEventArgs e)
         {
             servBmvXblr = new Service1Client();
-            servBmvXblr.GenerarContextosCompleted += servBmvXblr_GenerarContextosCompleted;
-            servBmvXblr.GenerarContextosAsync(mainPage.NumTrimestre,mainPage.IdAno);
+            servBmvXblr.GetXblrCompleted += servBmvXblr_GetXblrCompleted;
+            servBmvXblr.GetXblrAsync("QUMMA",mainPage.NumTrimestre,mainPage.IdAno);
+            busyIndicator.IsBusy = true;
         }
 
-        void servBmvXblr_GenerarContextosCompleted(object sender, GenerarContextosCompletedEventArgs e)
-        {
-            if (e.Result != null)
-            {
-                int cantidadContextos = e.Result;
+private void servBmvXblr_GetXblrCompleted(object sender, GetXblrCompletedEventArgs e)
+{
+    if (e.Result != null)
+    {
+ 
+    }
+    busyIndicator.IsBusy = false;
+}
 
-            }
-        }
 
         private void ListBox_Loaded(object sender, RoutedEventArgs e)
         {

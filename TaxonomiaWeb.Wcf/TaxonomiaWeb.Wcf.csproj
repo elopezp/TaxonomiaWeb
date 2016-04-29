@@ -92,6 +92,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BmvXblr.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\BMV_Empresas.cs">
+      <DependentUpon>BmvXblr.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\Cat_Ano.cs">
       <DependentUpon>BmvXblr.tt</DependentUpon>
     </Compile>

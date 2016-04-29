@@ -23,6 +23,7 @@
     <MetadataSource Address="http://localhost:1790/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="a3048f25-42cb-4434-b4a8-ed709de1db1b" SourceId="1" SourceUrl="http://localhost:1790/Service1.svc?xsd=xsd4" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="f26a57ca-5b0d-456e-9d37-b28e0cb12618" SourceId="1" SourceUrl="http://localhost:1790/Service1.svc?xsd=xsd1" />
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="574eb769-deb4-4d59-8f35-a0967054d21d" SourceId="1" SourceUrl="http://localhost:1790/Service1.svc?disco" />
     <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="a49b6ddc-7c10-41f4-941b-2711c4158810" SourceId="1" SourceUrl="http://localhost:1790/Service1.svc?wsdl" />

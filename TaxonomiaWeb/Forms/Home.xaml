@@ -3,13 +3,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
     mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"
     Title="Home"
     Style="{StaticResource PageStyle}">
 
     <Grid x:Name="LayoutRoot">
+ 
         <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
-            <Grid  Grid.Row="0">
+            <toolkit:BusyIndicator HorizontalAlignment="Center"   
+                                Name="busyIndicator" IsBusy="False"  BusyContent="Procesando información...">
+                <Grid  Grid.Row="0">
                 <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -40,6 +44,7 @@
             </ListBox>
             <Button x:Name="BtnGenerarXblr" Grid.Row="1" Content="Generar Xblr" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGenerarXblr_Click"></Button>
             </Grid>
+            </toolkit:BusyIndicator>
         </ScrollViewer>
     </Grid>
 

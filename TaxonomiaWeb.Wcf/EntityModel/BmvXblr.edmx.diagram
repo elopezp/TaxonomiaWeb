@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="438e03f055ea42bba5e9ed6e9026e5a6" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="438e03f055ea42bba5e9ed6e9026e5a6" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="BmvXblrModel.Cat_Ano" Width="1.5" PointX="10.883244668544851" PointY="19.354262986851047" />
         <EntityTypeShape EntityType="BmvXblrModel.Cat_Origen_Elemento" Width="1.5" PointX="8.8661446202854357" PointY="14.435056335495345" />
         <EntityTypeShape EntityType="BmvXblrModel.Cat_Tipo_Formato" Width="1.5" PointX="3.5952105855546939" PointY="28.976596309326865" />
@@ -51,6 +51,7 @@
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Cat_Trimestre" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Contexto" />
         <AssociationConnector Association="BmvXblrModel.FK_Taxonomia_Reporte_Detalle_Taxonomia_Reporte" />
+        <EntityTypeShape EntityType="BmvXblrModel.BMV_Empresas" Width="1.5" PointX="2.8597417766506514" PointY="0.18767461189426232" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
