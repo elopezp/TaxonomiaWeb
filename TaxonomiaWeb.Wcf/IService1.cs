@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -101,6 +102,8 @@ namespace TaxonomiaWeb.Wcf
         [OperationContract]
         List<String> GetPeriodoSinPresentar(int numTrimestre, string contenido);
 
+        [OperationContract]
+        Stream GetXblr(string empresa, int numTrimestre, int idAno);
         // TODO: Add your service operations here
     }
 
