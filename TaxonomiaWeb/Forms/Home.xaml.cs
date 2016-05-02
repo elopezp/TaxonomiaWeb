@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -87,6 +88,7 @@ namespace TaxonomiaWeb.Forms
         private void BtnGenerarXblr_Click(object sender, RoutedEventArgs e)
         {
             servBmvXblr = new Service1Client();
+            servBmvXblr.InnerChannel.OperationTimeout = new TimeSpan(0, 6, 0);
             servBmvXblr.GetXblrCompleted += servBmvXblr_GetXblrCompleted;
             servBmvXblr.GetXblrAsync("QUMMA",mainPage.NumTrimestre,mainPage.IdAno);
             busyIndicator.IsBusy = true;
@@ -94,11 +96,37 @@ namespace TaxonomiaWeb.Forms
 
 private void servBmvXblr_GetXblrCompleted(object sender, GetXblrCompletedEventArgs e)
 {
+    busyIndicator.IsBusy = false;
     if (e.Result != null)
     {
- 
+        byte[] buffer = e.Result;
+              try 
+       {
+           SaveFileDialog dialog = new SaveFileDialog();
+
+           //Show the dialog              
+           bool? dialogResult = dialog.ShowDialog();  
+
+           if (dialogResult!=true) return;
+
+
+            //Get the file stream
+
+            using ( Stream fs = ( Stream )dialog.OpenFile() )  
+            {
+                fs.Write(buffer, 0, buffer.Length);  
+                fs.Close();  
+
+                //File successfully saved
+            }  
+        }  
+        catch ( Exception ex )  
+        {  
+            //inspect ex.Message  
+        }  
+
+
     }
-    busyIndicator.IsBusy = false;
 }
 
 

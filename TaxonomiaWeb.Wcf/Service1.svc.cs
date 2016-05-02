@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Xml;
 using TaxonomiaWeb.Model;
 using TaxonomiaWeb.Wcf.EntityModel;
 using TaxonomiaWeb.Wcf.Util;
@@ -1566,7 +1567,7 @@ namespace TaxonomiaWeb.Wcf
 
         public Stream GetXblr(string empresa, int numTrimestre, int idAno)
         {
-            bool res = false;
+            MemoryStream ms = new MemoryStream();
             try
             {
                 using (var context = new BmvXblrEntities())
@@ -1586,7 +1587,24 @@ namespace TaxonomiaWeb.Wcf
                         {
 
                             var resul = context.SP_Genera_XBLR(idAno, catTrimestre.Id_Trimestre,catEmpresas.Id);
-                            System.Console.Out.WriteLine(resul);
+                            try
+                            {
+                                XmlDocument xml = new XmlDocument();
+                                string resXml = resul.FirstOrDefault();
+                                if (string.IsNullOrEmpty(resXml) == false)
+                                {
+                                    xml.LoadXml(resXml);
+                                    xml.Save(ms);
+                                    ms.Position = 0L;
+                                }
+                                
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Console.Out.WriteLine(ex.Message);
+                                ms = null;
+                            }
+
          
                     
 
@@ -1596,10 +1614,11 @@ namespace TaxonomiaWeb.Wcf
             }
             catch (Exception ex)
             {
-
+                System.Console.Out.WriteLine(ex.Message);
+                ms = null;
             }
 
-            return null;
+            return ms;
         }
     }
 }
