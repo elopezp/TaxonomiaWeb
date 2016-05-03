@@ -1589,19 +1589,19 @@ namespace TaxonomiaWeb.Wcf
                             var resul = context.SP_Genera_XBLR(idAno, catTrimestre.Id_Trimestre,catEmpresas.Id);
                             try
                             {
-                                XmlDocument xml = new XmlDocument();
+                                XmlDocument doc = new XmlDocument();
                                 string resXml = resul.FirstOrDefault();
                                 if (string.IsNullOrEmpty(resXml) == false)
                                 {
-                                    xml.LoadXml(resXml);
-                                    xml.Save(ms);
+                                    doc.LoadXml(resXml);
+                                    var tx = XmlWriter.Create(ms, new XmlWriterSettings { OmitXmlDeclaration = false, ConformanceLevel = ConformanceLevel.Document, Encoding = Encoding.GetEncoding("ISO-8859-1"), Indent = true });
+                                    doc.Save(tx);
                                     ms.Position = 0L;
                                 }
                                 
                             }
                             catch (Exception ex)
                             {
-                                System.Console.Out.WriteLine(ex.Message);
                                 ms = null;
                             }
 
@@ -1614,7 +1614,6 @@ namespace TaxonomiaWeb.Wcf
             }
             catch (Exception ex)
             {
-                System.Console.Out.WriteLine(ex.Message);
                 ms = null;
             }
 
