@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TaxonomiaWeb.ServiceBmvXblr;
+using TaxonomiaWeb.ServiceBmvXbrl;
 
 namespace TaxonomiaWeb.Forms
 {
@@ -59,7 +59,7 @@ namespace TaxonomiaWeb.Forms
             }
         }
 
-        private Service1Client servBmvXblr = null;
+        private Service1Client servBmvXbrl = null;
         private ObservableCollection<FormContenido> listFormContenido = null;
 
         void ItemContainerGenerator_ItemsChanged(object sender, System.Windows.Controls.Primitives.ItemsChangedEventArgs e)
@@ -69,13 +69,13 @@ namespace TaxonomiaWeb.Forms
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //this.TxtTitle.Text = "Forma 210000";
-            servBmvXblr = new Service1Client();
-            servBmvXblr.GetAllFormsCompleted += servBmvXblr_GetAllFormsCompleted;
-            servBmvXblr.GetAllFormsAsync();
+            servBmvXbrl = new Service1Client();
+            servBmvXbrl.GetAllFormsCompleted += servBmvXbrl_GetAllFormsCompleted;
+            servBmvXbrl.GetAllFormsAsync();
 
         }
 
-        void servBmvXblr_GetAllFormsCompleted(object sender, GetAllFormsCompletedEventArgs e)
+        void servBmvXbrl_GetAllFormsCompleted(object sender, GetAllFormsCompletedEventArgs e)
         {
             if (e.Result != null)
             {
@@ -86,22 +86,22 @@ namespace TaxonomiaWeb.Forms
             }
         }
 
-        private void BtnGenerarXblr_Click(object sender, RoutedEventArgs e)
+        private void BtnGenerarXbrl_Click(object sender, RoutedEventArgs e)
         {
-            saveFileDialog = new SaveFileDialog() { DefaultExt = "*.xblr", Filter = "Extensible Business Reporting Language (*.xblr)|*.xblr |All files (*.*)|*.*", FilterIndex = 1 };
+            saveFileDialog = new SaveFileDialog() { DefaultExt = "*.xbrl", Filter = "Extensible Business Reporting Language (*.xbrl)|*.xblr |All files (*.*)|*.*", FilterIndex = 1 };
             bool? dialogResult = saveFileDialog.ShowDialog();
             if (dialogResult.HasValue && dialogResult.Value)
             {
-                servBmvXblr = new Service1Client();
-                servBmvXblr.InnerChannel.OperationTimeout = new TimeSpan(0, 6, 0);
-                servBmvXblr.GetXblrCompleted += servBmvXblr_GetXblrCompleted;
-                servBmvXblr.GetXblrAsync("QUMMA", mainPage.NumTrimestre, mainPage.IdAno);
-                busyIndicator.BusyContent = "Generando archivo xblr... Esto puede tardar algunos minutos.";
+                servBmvXbrl = new Service1Client();
+                servBmvXbrl.InnerChannel.OperationTimeout = new TimeSpan(0, 6, 0);
+                servBmvXbrl.GetXbrlCompleted += servBmvXbrl_GetXbrlCompleted;
+                servBmvXbrl.GetXbrlAsync("QUMMA", mainPage.NumTrimestre, mainPage.IdAno);
+                busyIndicator.BusyContent = "Generando archivo xbrl... Esto puede tardar algunos minutos.";
                 busyIndicator.IsBusy = true;
             }
         }
 
-        private void servBmvXblr_GetXblrCompleted(object sender, GetXblrCompletedEventArgs e)
+        private void servBmvXbrl_GetXbrlCompleted(object sender, GetXbrlCompletedEventArgs e)
         {
             busyIndicator.IsBusy = false;
             if (!e.Cancelled)

@@ -13,7 +13,7 @@
 
     <client>
       <endpoint address="http://localhost:1790/Service1.svc" binding="basicHttpBinding"
-        bindingConfiguration="MyBasicHttpBinding" contract="ServiceBmvXblr.IService1"
+        bindingConfiguration="MyBasicHttpBinding" contract="ServiceBmvXbrl.IService1"
         name="ServiceBinding" />
     </client>
 

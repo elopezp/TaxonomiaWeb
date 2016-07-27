@@ -1565,7 +1565,7 @@ namespace TaxonomiaWeb.Wcf
         }
 
 
-        public Stream GetXblr(string empresa, int numTrimestre, int idAno)
+        public Stream GetXbrl(string empresa, int numTrimestre, int idAno)
         {
             MemoryStream ms = new MemoryStream();
             try

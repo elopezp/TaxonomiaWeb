@@ -174,7 +174,6 @@
     <Compile Include="Model\Bmv813000.cs" />
     <Compile Include="Model\FormContenido.cs" />
     <Compile Include="Model\ReporteDetalle.cs" />
-    <Compile Include="Model\RepositoryBase.cs" />
     <Compile Include="Model\PeriodoTrimestre.cs" />
     <Compile Include="Util\UtilBase.cs" />
     <Compile Include="Service1.svc.cs">

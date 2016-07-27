@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TaxonomiaWeb.ServiceBmvXblr;
+using TaxonomiaWeb.ServiceBmvXbrl;
 
 namespace TaxonomiaWeb.Forms
 {
@@ -33,7 +33,7 @@ namespace TaxonomiaWeb.Forms
             mainPage.actualizarTituloContenidos(null, "BMV", new Uri("/Inicio", UriKind.Relative));
         }
 
-        private Service1Client servBmvXblr = null;
+        private Service1Client servBmvXbrl = null;
         private ObservableCollection<FormContenido> listFormContenido = null;
 
         void ItemContainerGenerator_ItemsChanged(object sender, System.Windows.Controls.Primitives.ItemsChangedEventArgs e)
@@ -43,11 +43,11 @@ namespace TaxonomiaWeb.Forms
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             //this.TxtTitle.Text = "Forma 210000";
-            servBmvXblr = new Service1Client();
-            servBmvXblr.GetAllTrimestersCompleted += servBmvXblr_GetAllTrimestersCompleted;
-            servBmvXblr.GetAllTrimestersAsync();
-            servBmvXblr.GetAllYearsCompleted += servBmvXblr_GetAllYearsCompleted;
-            servBmvXblr.GetAllYearsAsync();
+            servBmvXbrl = new Service1Client();
+            servBmvXbrl.GetAllTrimestersCompleted += servBmvXbrl_GetAllTrimestersCompleted;
+            servBmvXbrl.GetAllTrimestersAsync();
+            servBmvXbrl.GetAllYearsCompleted += servBmvXbrl_GetAllYearsCompleted;
+            servBmvXbrl.GetAllYearsAsync();
             if (string.IsNullOrEmpty(mainPage.Compania) == false)
             {
                 TxtCompania.Text = mainPage.Compania;
@@ -66,7 +66,7 @@ namespace TaxonomiaWeb.Forms
 
         #region Llamadas a servicios asincronos WCF
 
-        void servBmvXblr_GetAllYearsCompleted(object sender, GetAllYearsCompletedEventArgs e)
+        void servBmvXbrl_GetAllYearsCompleted(object sender, GetAllYearsCompletedEventArgs e)
         {
             if (e.Result != null && e.Result.Any() == true)
             {
@@ -90,7 +90,7 @@ namespace TaxonomiaWeb.Forms
             }
         }
 
-        void servBmvXblr_GetAllTrimestersCompleted(object sender, GetAllTrimestersCompletedEventArgs e)
+        void servBmvXbrl_GetAllTrimestersCompleted(object sender, GetAllTrimestersCompletedEventArgs e)
         {
             if (e.Result != null && e.Result.Any() == true)
             {

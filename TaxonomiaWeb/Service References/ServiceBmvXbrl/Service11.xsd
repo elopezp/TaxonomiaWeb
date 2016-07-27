@@ -431,7 +431,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetXblr">
+  <xs:element name="GetXbrl">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="empresa" nillable="true" type="xs:string" />
@@ -440,10 +440,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetXblrResponse">
+  <xs:element name="GetXbrlResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.microsoft.com/Message" name="GetXblrResult" type="q28:StreamBody" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/Message" name="GetXbrlResult" type="q28:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

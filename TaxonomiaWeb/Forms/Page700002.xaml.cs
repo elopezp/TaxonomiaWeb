@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
-using TaxonomiaWeb.ServiceBmvXblr;
+using TaxonomiaWeb.ServiceBmvXbrl;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
@@ -23,7 +23,7 @@ namespace TaxonomiaWeb.Forms
     {
         private List<string> listHiddenColumns = null;
         private Dictionary<int, List<int>> listTotal = null;
-        private Service1Client servBmvXblr = null;
+        private Service1Client servBmvXbrl = null;
         private ObservableCollection<Bmv700002> listaBmv = null;
         private ObservableCollection<Bmv700002> listaBmvAgrupada = null;
         private MainPage mainPage = null;
@@ -75,9 +75,9 @@ namespace TaxonomiaWeb.Forms
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             fillHiddenColumns();
-            servBmvXblr = new Service1Client();
-            servBmvXblr.GetPeriodoSinPresentarCompleted += servBmvXblr_GetPeriodoSinPresentarCompleted;
-            servBmvXblr.GetPeriodoSinPresentarAsync(mainPage.NumTrimestre, "700002");
+            servBmvXbrl = new Service1Client();
+            servBmvXbrl.GetPeriodoSinPresentarCompleted += servBmvXbrl_GetPeriodoSinPresentarCompleted;
+            servBmvXbrl.GetPeriodoSinPresentarAsync(mainPage.NumTrimestre, "700002");
      
             //Agregamos los manejadores de eventos del datagrid
             //Se dispara cuando se comienza a editar una celda
@@ -370,9 +370,9 @@ namespace TaxonomiaWeb.Forms
             {
                 //Generamos nueva lista con los valores actualizados
                 ObservableCollection<ReporteDetalle> sortedList = sortReport(listaBmvAgrupada, listaBmv);
-                servBmvXblr = new Service1Client();
-                servBmvXblr.SaveBmvReporteCompleted += servBmvXblr_SaveBmvReporteCompleted;
-                servBmvXblr.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.NumTrimestre);
+                servBmvXbrl = new Service1Client();
+                servBmvXbrl.SaveBmvReporteCompleted += servBmvXbrl_SaveBmvReporteCompleted;
+                servBmvXbrl.SaveBmvReporteAsync(sortedList, mainPage.Compania,  mainPage.IdAno, mainPage.NumTrimestre);
                 busyIndicator.IsBusy = true;
             }
         }
@@ -392,18 +392,18 @@ namespace TaxonomiaWeb.Forms
 
         #region Llamadas a servicios asincronos WCF
 
-        void servBmvXblr_GetPeriodoSinPresentarCompleted(object sender, GetPeriodoSinPresentarCompletedEventArgs e)
+        void servBmvXbrl_GetPeriodoSinPresentarCompleted(object sender, GetPeriodoSinPresentarCompletedEventArgs e)
         {
             if (e.Result != null)
             {
                 listContextoSinPresentar = e.Result;
             }
-            servBmvXblr.GetBmv700002Completed += servBmvXblr_GetBmv700002Completed;
-            servBmvXblr.GetBmv700002Async(mainPage.NumTrimestre, mainPage.IdAno);
+            servBmvXbrl.GetBmv700002Completed += servBmvXbrl_GetBmv700002Completed;
+            servBmvXbrl.GetBmv700002Async(mainPage.NumTrimestre, mainPage.IdAno);
         }
 
 
-        void servBmvXblr_GetBmv700002Completed(object sender, GetBmv700002CompletedEventArgs e)
+        void servBmvXbrl_GetBmv700002Completed(object sender, GetBmv700002CompletedEventArgs e)
         {
             if (e.Result != null)
             {
@@ -414,7 +414,7 @@ namespace TaxonomiaWeb.Forms
         }
 
 
-        void servBmvXblr_SaveBmvReporteCompleted(object sender, SaveBmvReporteCompletedEventArgs e)
+        void servBmvXbrl_SaveBmvReporteCompleted(object sender, SaveBmvReporteCompletedEventArgs e)
         {
             busyIndicator.IsBusy = false;
             if (e.Error == null)

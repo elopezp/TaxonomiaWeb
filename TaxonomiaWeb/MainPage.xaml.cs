@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using TaxonomiaWeb.ServiceBmvXblr;
+using TaxonomiaWeb.ServiceBmvXbrl;
 using TaxonomiaWeb.XAMLConverters;
 using TaxonomiaWeb.Forms;
 using System.Windows.Navigation;

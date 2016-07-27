@@ -152,7 +152,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ServiceBmvXblr\Reference.cs">
+    <Compile Include="Service References\ServiceBmvXbrl\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -280,92 +280,92 @@
     <None Include="Properties\AppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceBmvXblr\Service1.wsdl" />
-    <None Include="Service References\ServiceBmvXblr\Service1.xsd">
+    <None Include="Service References\ServiceBmvXbrl\Service1.wsdl" />
+    <None Include="Service References\ServiceBmvXbrl\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceBmvXblr\Service11.xsd">
+    <None Include="Service References\ServiceBmvXbrl\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceBmvXblr\Service12.xsd">
+    <None Include="Service References\ServiceBmvXbrl\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceBmvXblr\Service13.xsd">
+    <None Include="Service References\ServiceBmvXbrl\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\ServiceBmvXblr\Service14.xsd">
+    <None Include="Service References\ServiceBmvXbrl\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv105000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv105000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv110000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv110000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv210000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv210000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv310000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv310000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv410000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv410000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv520000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv520000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv610000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv610000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv700000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv700000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv700002.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv700002.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv700003.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv700003.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800001.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800001.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800003.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800003.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800005.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800005.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800007.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800007.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800100.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800100.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800200.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800200.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800500.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800500.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv800600.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv800600.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.Bmv813000.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.Bmv813000.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.BmvDetalleSuma.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.BmvDetalleSuma.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.FormContenido.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.FormContenido.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.PeriodoAno.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.PeriodoAno.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceBmvXblr\TaxonomiaWeb.ServiceBmvXblr.PeriodoTrimestre.datasource">
+    <None Include="Service References\ServiceBmvXbrl\TaxonomiaWeb.ServiceBmvXbrl.PeriodoTrimestre.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -373,19 +373,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceBmvXblr\" />
+    <WCFMetadataStorage Include="Service References\ServiceBmvXbrl\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceBmvXblr\Service1.disco" />
+    <None Include="Service References\ServiceBmvXbrl\Service1.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceBmvXblr\configuration91.svcinfo" />
+    <None Include="Service References\ServiceBmvXbrl\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceBmvXblr\configuration.svcinfo" />
+    <None Include="Service References\ServiceBmvXbrl\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceBmvXblr\Reference.svcmap">
+    <None Include="Service References\ServiceBmvXbrl\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -103,7 +103,7 @@ namespace TaxonomiaWeb.Wcf
         List<String> GetPeriodoSinPresentar(int numTrimestre, string contenido);
 
         [OperationContract]
-        Stream GetXblr(string empresa, int numTrimestre, int idAno);
+        Stream GetXbrl(string empresa, int numTrimestre, int idAno);
         // TODO: Add your service operations here
     }
 

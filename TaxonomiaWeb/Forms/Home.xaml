@@ -42,7 +42,7 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
-            <Button x:Name="BtnGenerarXblr" Grid.Row="1" Content="Generar Xblr" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGenerarXblr_Click"></Button>
+            <Button x:Name="BtnGenerarXbrl" Grid.Row="1" Content="Generar Xblr" Width="100" Height="30" Margin="10,10,10,10" Click="BtnGenerarXbrl_Click"></Button>
             </Grid>
             </toolkit:BusyIndicator>
         </ScrollViewer>
